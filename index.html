@@ -3,25 +3,117 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="pico.css">
+    <meta name="color-scheme" content="light">
+    <title>Team V.A.N.</title>
     <style>
-      :root {
-        --pico-background-color: #963e4c;
-      }
-      html, body {
-        background-color: #963e4c;
+      :root { color-scheme: light; font-family: system-ui, sans-serif; color: #fff; background: #78303d; }
+      * { box-sizing: border-box; }
+      body { margin: 0; line-height: 1.65; }
+      a { color: inherit; }
+      .container { width: min(1100px, 90%); margin-inline: auto; }
+      header { border-bottom: 1px solid #ffffff30; }
+      nav { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 24px; flex-wrap: wrap; }
+      .brand { font-size: 1.25rem; font-weight: 800; text-decoration: none; }
+      .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
+      .nav-links a { padding: 9px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+      .nav-links a:hover { background: #ffffff18; }
+      .nav-links a[aria-current="page"] { background: white; color: #78303d; }
+      a:focus-visible { outline: 3px solid #f6be70; outline-offset: 5px; }
+      main { min-height: 75vh; padding-bottom: 72px; }
+      .hero { padding: 76px 0 44px; max-width: 800px; }
+      .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #f2c9d1; }
+      h1 { font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.1; letter-spacing: -.04em; margin: 18px 0 24px; }
+      .intro { font-size: 1.2rem; color: #f6dfe4; max-width: 620px; }
+      h2 { font-size: 1.8rem; letter-spacing: -.025em; margin: 0 0 20px; }
+      h3 { font-size: 1.35rem; margin: 0 0 12px; }
+      .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+      .card { background: #fff; color: #352b30; border-radius: 18px; padding: 32px; box-shadow: 0 12px 30px #39111c20; }
+      .card p { margin: 0; color: #62555b; }
+      .card a { color: #78303d; overflow-wrap: anywhere; }
+      .card-label { display: block; color: #923e51; font-weight: 700; font-size: .75rem; letter-spacing: .12em; margin-bottom: 22px; }
+      footer { border-top: 1px solid #ffffff30; padding-block: 24px; color: #f2c9d1; font-size: .9rem; }
+      [hidden] { display: none !important; }
+      @media (max-width: 600px) {
+        nav { gap: 16px; }
+        .nav-links { gap: 4px; }
+        .nav-links a { padding: 8px 14px; }
+        .hero { padding-top: 48px; }
+        .cards { grid-template-columns: 1fr; }
+        .card { padding: 26px; }
       }
     </style>
-    <title>Team V.A.N.</title>
   </head>
   <body>
-    <main>
-      <h1>Team V.A.N.</h1>
-      <p>Student-led rookie FIRST Robotics team based in Brevard.</p>
-      <hr/>
-      <h2>Want to get in touch?</h2>
-      <p>You can contact us at <a href="mailto:contact@teamvan.org">contact@teamvan.org</a></p>
+    <header>
+      <nav class="container" aria-label="Main navigation">
+        <a class="brand" href="#home">Team V.A.N.</a>
+        <div class="nav-links">
+          <a href="#home" aria-current="page">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <section id="home" aria-labelledby="home-title">
+        <div class="hero">
+          <p class="eyebrow">Brevard · FIRST Robotics</p>
+          <h1 id="home-title">Team V.A.N.</h1>
+          <p class="intro">Student-led. Just getting started.<br>We're a rookie FIRST Robotics team based in Brevard.</p>
+        </div>
+        <h2>About Us</h2>
+        <div class="cards">
+          <article class="card">
+            <span class="card-label">01 / OUR TEAM</span>
+            <h3>Led by students</h3>
+            <p>Team V.A.N. is a student-led robotics team beginning our journey in FIRST Robotics.</p>
+          </article>
+          <article class="card">
+            <span class="card-label">02 / OUR COMMUNITY</span>
+            <h3>Based in Brevard</h3>
+            <p>We're proud to call Brevard home as we get our rookie team started.</p>
+          </article>
+        </div>
+      </section>
+      <section id="about" aria-labelledby="about-title">
+        <div class="hero">
+          <p class="eyebrow">Meet the team</p>
+          <h1 id="about-title">About Us</h1>
+          <p class="intro">A new team. A shared interest in robotics.</p>
+        </div>
+        <article class="card">
+          <h2>We're Team V.A.N.</h2>
+          <p>We're a student-led rookie FIRST Robotics team based in Brevard. This is the beginning of our team's story, and we're excited to share it.</p>
+        </article>
+      </section>
+      <section id="contact" aria-labelledby="contact-title">
+        <div class="hero">
+          <p class="eyebrow">Let's connect</p>
+          <h1 id="contact-title">Get in touch.</h1>
+          <p class="intro">Want to learn more about Team V.A.N.? We'd love to hear from you.</p>
+        </div>
+        <article class="card">
+          <h2>Email our team</h2>
+          <p><a href="mailto:contact@teamvan.org">contact@teamvan.org</a></p>
+        </article>
+      </section>
     </main>
+    <footer><div class="container">Team V.A.N. · Brevard · FIRST Robotics</div></footer>
+    <script>
+      const pages = [...document.querySelectorAll('main > section')];
+      const links = [...document.querySelectorAll('.nav-links a')];
+      function showPage() {
+        const requested = location.hash.slice(1) || 'home';
+        const active = pages.some(page => page.id === requested) ? requested : 'home';
+        pages.forEach(page => { page.hidden = page.id !== active; });
+        links.forEach(link => {
+          if (link.hash === '#' + active) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        });
+        document.title = (active === 'home' ? '' : active === 'about' ? 'About Us | ' : 'Contact | ') + 'Team V.A.N.';
+      }
+      window.addEventListener('hashchange', showPage);
+      showPage();
+    </script>
   </body>
 </html>
