@@ -6,18 +6,18 @@
     <meta name="color-scheme" content="light">
     <title>Team V.A.N.</title>
     <style>
-      :root { color-scheme: light; font-family: system-ui, sans-serif; color: #fff; background: #78303d; }
+      :root { color-scheme: light; font-family: system-ui, sans-serif; color: #fff; background: #652633; }
       * { box-sizing: border-box; }
       body { margin: 0; line-height: 1.65; }
       a { color: inherit; }
       .container { width: min(1100px, 90%); margin-inline: auto; }
-      header { border-bottom: 1px solid #ffffff30; }
+      header { background: #fff; color: #652633; border-bottom: 1px solid #eadde0; }
       nav { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 24px; flex-wrap: wrap; }
       .brand { font-size: 1.25rem; font-weight: 800; text-decoration: none; }
       .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
       .nav-links a { padding: 9px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; }
-      .nav-links a:hover { background: #ffffff18; }
-      .nav-links a[aria-current="page"] { background: white; color: #78303d; }
+      .nav-links a:hover { background: #f3e8eb; }
+      .nav-links a[aria-current="page"] { background: #652633; color: #fff; }
       a:focus-visible { outline: 3px solid #f6be70; outline-offset: 5px; }
       main { min-height: 75vh; padding-bottom: 72px; }
       .hero { padding: 76px 0 44px; max-width: 800px; }
@@ -29,6 +29,7 @@
       .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
       .card { background: #fff; color: #352b30; border-radius: 18px; padding: 32px; box-shadow: 0 12px 30px #39111c20; }
       .card p { margin: 0; color: #62555b; }
+      .card address { margin-top: 16px; font-style: normal; color: #62555b; }
       .card a { color: #78303d; overflow-wrap: anywhere; }
       .card-label { display: block; color: #923e51; font-weight: 700; font-size: .75rem; letter-spacing: .12em; margin-bottom: 22px; }
       footer { border-top: 1px solid #ffffff30; padding-block: 24px; color: #f2c9d1; font-size: .9rem; }
@@ -69,9 +70,11 @@
             <p>Team V.A.N. is a student-led robotics team beginning our journey in FIRST Robotics.</p>
           </article>
           <article class="card">
-            <span class="card-label">02 / OUR COMMUNITY</span>
-            <h3>Based in Brevard</h3>
-            <p>We're proud to call Brevard home as we get our rookie team started.</p>
+            <span class="card-label">02 / OUR BUILD SPACE</span>
+            <h3>Our home in Palm Bay</h3>
+            <p>Our build space is at Eastern Florida State College's Palm Bay Campus.</p>
+            <address>250 Community College Pkwy<br>Palm Bay, FL 32909</address>
+            <p><a href="https://www.easternflorida.edu/campuses/palm-bay/campus-maps.php">View campus map</a></p>
           </article>
         </div>
       </section>
