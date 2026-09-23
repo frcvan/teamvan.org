@@ -2,8 +2,8 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "./node_modules/.bin/astro dev",
-            "name": "Development server",
+            "command": "pnpm exec astro dev --background --open",
+            "name": "Preview website locally",
             "request": "launch",
             "type": "node-terminal"
         }

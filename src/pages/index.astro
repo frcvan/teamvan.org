@@ -4,7 +4,31 @@ import Layout from "@/layouts/PageLayout.astro";
 ---
 
 <Layout>
-    <PageHeader>Team V.A.N.</PageHeader>
+    <div class="outlined-title mb-4">
+        <PageHeader>Team V.A.N.</PageHeader>
+    </div>
 
     <p>Student-led FIRST Robotics Team.</p>
+
+    <section
+        class="mt-12 space-y-4 rounded-xl border-2 border-black bg-white p-6 text-main"
+        aria-labelledby="what-we-do"
+    >
+        <h2 id="what-we-do" class="text-3xl font-semibold tracking-tight sm:text-4xl">
+            What We Do
+        </h2>
+        <p class="max-w-3xl text-lg leading-relaxed">
+            You'll learn how to design, build, and program industrial-size robots
+            while developing business, marketing, and presentation skills.
+        </p>
+    </section>
 </Layout>
+
+<style>
+    .outlined-title :global(h1) {
+        -webkit-text-stroke: 3px black;
+        paint-order: stroke fill;
+        text-shadow: 0 0 8px rgb(255 255 255 / 35%),
+            0 0 20px rgb(255 225 235 / 25%);
+    }
+</style>
