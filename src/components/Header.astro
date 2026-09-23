@@ -14,18 +14,52 @@ const navigationLinks = navlinks.map((navlink) => ({
 ---
 
 <header class="border-border bg-secondary-background border-b-2">
-    <div class="mx-auto flex w-2/3 flex-col items-center justify-center gap-4 py-6 sm:flex-row sm:justify-between sm:gap-6">
+    <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 lg:flex-nowrap lg:gap-6">
         <a
-            class="text-main text-xl font-extrabold no-underline sm:text-2xl"
+            class="text-main flex items-center gap-3 text-xl font-extrabold no-underline sm:text-2xl"
             href="/"
         >
-            Team V.A.N. 12148
+            <span class="block size-10 shrink-0 border border-black bg-white sm:size-12" aria-hidden="true"></span>
+            <span>Team V.A.N. 12148</span>
         </a>
 
-        <Navigation
-            client:load
-            navlinks={navigationLinks}
-            className="w-full! flex-none! sm:w-auto!"
-        />
+        <div class="hidden lg:block">
+            <Navigation
+                client:load
+                navlinks={navigationLinks}
+                className="flex-none!"
+            />
+        </div>
+
+        <details class="mobile-menu w-full text-main lg:hidden">
+            <summary class="flex min-h-11 w-fit cursor-pointer list-none items-center gap-2 rounded-base border-2 border-black px-4 py-2 font-semibold focus-visible:outline-2 focus-visible:outline-offset-4">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                Menu
+            </summary>
+            <nav aria-label="Main navigation" class="mt-4 flex flex-col gap-2 border-t border-black/15 pt-4">
+                {navigationLinks.map((link) => (
+                    <a
+                        href={link.href}
+                        aria-current={link.active ? "page" : undefined}
+                        class:list={[
+                            "rounded-base border-2 px-4 py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2",
+                            link.active
+                                ? "border-black bg-main text-white"
+                                : "border-transparent hover:border-black hover:bg-main hover:text-white",
+                        ]}
+                    >
+                        {link.label}
+                    </a>
+                ))}
+            </nav>
+        </details>
     </div>
 </header>
+
+<style>
+    .mobile-menu summary::-webkit-details-marker {
+        display: none;
+    }
+</style>
