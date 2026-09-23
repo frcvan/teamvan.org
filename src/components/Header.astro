@@ -1,0 +1,31 @@
+---
+import Navigation from "@/components/Navigation.tsx";
+
+interface Props {
+    navlinks: { href: string; label: string }[];
+}
+
+const { navlinks } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const navigationLinks = navlinks.map((navlink) => ({
+    ...navlink,
+    active: (navlink.href.replace(/\/$/, "") || "/") === currentPath,
+}));
+---
+
+<header class="border-border bg-secondary-background border-b-2">
+    <div class="mx-auto flex w-2/3 flex-col items-center justify-center gap-4 py-6 sm:flex-row sm:justify-between sm:gap-6">
+        <a
+            class="text-main text-xl font-extrabold no-underline sm:text-2xl"
+            href="/"
+        >
+            Team V.A.N.
+        </a>
+
+        <Navigation
+            client:load
+            navlinks={navigationLinks}
+            className="w-full! flex-none! sm:w-auto!"
+        />
+    </div>
+</header>

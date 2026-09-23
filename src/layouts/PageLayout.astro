@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+interface Props {
+    wide?: boolean;
+}
+
+const { wide = false } = Astro.props;
+---
+
+<Layout>
+    <Header
+        navlinks={[
+            { href: "/", label: "Home" },
+            { href: "/calendar", label: "Calendar" },
+        ]}
+    />
+    <main
+        class:list={[
+            "mx-auto flex min-h-0 w-full flex-1 flex-col px-6 pt-16 sm:px-10 lg:px-20 xl:px-32",
+            wide ? "max-w-6xl" : "max-w-4xl",
+        ]}
+    >
+        <slot />
+    </main>
+    <Footer />
+</Layout>

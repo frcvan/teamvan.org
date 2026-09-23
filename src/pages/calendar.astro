@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/PageLayout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+---
+
+<Layout wide>
+    <div class="flex w-full flex-col gap-8">
+        <PageHeader level="h1">Team Calendar</PageHeader>
+
+        <div class="w-full overflow-hidden rounded-base border border-black/15 bg-white shadow-sm">
+            <iframe
+                class="block h-150 w-full border-0 max-[600px]:h-[70vh]"
+                src="https://calendar.google.com/calendar/embed?src=frc12148%40gmail.com&ctz=America%2FNew_York"
+                title="Team V.A.N. calendar"
+                loading="lazy"
+                scrolling="no"
+            ></iframe>
+        </div>
+    </div>
+</Layout>
