@@ -12,6 +12,7 @@ export default defineConfig({
     },
 
     integrations: [react()],
+    site: "https://teamvan.org",
     prefetch: {
         prefetchAll: true,
     },
