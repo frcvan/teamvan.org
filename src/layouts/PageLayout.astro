@@ -14,10 +14,14 @@ const { wide = false } = Astro.props;
     <Header
         navlinks={[
             { href: "/", label: "Home" },
-            { href: "/interest", label: "Want to Join?" },
             { href: "/calendar", label: "Calendar" },
             { href: "/competitions", label: "Competitions" },
             { href: "/sponsors", label: "For Sponsors" },
+            {
+                href: "/interest",
+                label: "Interested?",
+                labelClass: "underline underline-offset-4",
+            },
         ]}
     />
     <main

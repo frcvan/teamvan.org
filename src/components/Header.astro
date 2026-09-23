@@ -1,5 +1,6 @@
 ---
 import Navigation from "@/components/Navigation.tsx";
+import { Menu } from "lucide-react";
 
 interface Props {
     navlinks: { href: string; label: string }[];
@@ -27,7 +28,6 @@ const navigationLinks = navlinks.map((navlink) => ({
                 class="block size-10 shrink-0 sm:size-12"
                 style="color-scheme: light"
             />
-            <span>Team V.A.N. 12148</span>
         </a>
 
         <div class="hidden lg:block">
@@ -39,12 +39,16 @@ const navigationLinks = navlinks.map((navlink) => ({
         </div>
 
         <details class="mobile-menu shrink-0 text-main lg:hidden">
-            <summary aria-label="Menu" class="ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+            <summary
+                aria-label="Menu"
+                class="ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4"
+            >
+                <Menu size={32} />
             </summary>
-            <nav aria-label="Main navigation" class="absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-black bg-secondary-background px-6 py-4">
+            <nav
+                aria-label="Main navigation"
+                class="absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-black bg-secondary-background px-6 py-4"
+            >
                 {navigationLinks.map((link) => (
                     <a
                         href={link.href}

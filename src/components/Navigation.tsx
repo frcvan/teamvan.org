@@ -11,7 +11,12 @@ export default function Navigation({
     navlinks,
     className,
 }: {
-    navlinks: { href: string; label: string; active?: boolean }[];
+    navlinks: {
+        href: string;
+        label: string;
+        labelClass?: string;
+        active?: boolean;
+    }[];
     className?: string;
 }) {
     return (
@@ -26,6 +31,7 @@ export default function Navigation({
                                 navigationMenuTriggerStyle(),
                                 navlink.active &&
                                     "bg-main text-main-foreground border-border",
+                                navlink.labelClass || "",
                             )}
                         >
                             {navlink.label}

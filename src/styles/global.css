@@ -4,7 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-sans: "Merriweather Sans", -apple-system, "Segoe UI", Roboto;
+    --font-sans:
+        "Merriweather Sans", "Helvetica Neue", -apple-system, "Segoe UI", Roboto;
 
     --color-main: var(--main);
     --color-background: var(--background);
