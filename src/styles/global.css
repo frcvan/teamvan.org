@@ -7,6 +7,7 @@
     --font-sans:
         "Merriweather Sans", "Helvetica Neue", -apple-system, "Segoe UI", Roboto;
 
+    --color-silver: #c0c0c0;
     --color-main: var(--main);
     --color-background: var(--background);
     --color-secondary-background: var(--secondary-background);
