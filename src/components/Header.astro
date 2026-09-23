@@ -11,6 +11,7 @@ const navigationLinks = navlinks.map((navlink) => ({
     ...navlink,
     active: (navlink.href.replace(/\/$/, "") || "/") === currentPath,
 }));
+const currentPage = navigationLinks.find((link) => link.active)?.label;
 ---
 
 <header class="border-border bg-secondary-background border-b-2">
@@ -32,11 +33,11 @@ const navigationLinks = navlinks.map((navlink) => ({
         </div>
 
         <details class="mobile-menu w-full text-main lg:hidden">
-            <summary class="flex min-h-11 w-fit cursor-pointer list-none items-center gap-2 rounded-base border-2 border-black px-4 py-2 font-semibold focus-visible:outline-2 focus-visible:outline-offset-4">
+            <summary class="ml-auto flex min-h-11 w-fit cursor-pointer list-none items-center gap-2 rounded-base border-2 border-black px-4 py-2 font-semibold focus-visible:outline-2 focus-visible:outline-offset-4">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                     <path d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                Menu
+                Menu{currentPage ? ` · ${currentPage}` : ""}
             </summary>
             <nav aria-label="Main navigation" class="mt-4 flex flex-col gap-2 border-t border-black/15 pt-4">
                 {navigationLinks.map((link) => (
