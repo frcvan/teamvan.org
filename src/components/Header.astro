@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation.tsx";
 import { Menu } from "lucide-react";
 
 interface Props {
-    navlinks: { href: string; label: string }[];
+    navlinks: { href: string; label: string; labelClass?: string }[];
 }
 
 const { navlinks } = Astro.props;
@@ -47,17 +47,19 @@ const navigationLinks = navlinks.map((navlink) => ({
             </summary>
             <nav
                 aria-label="Main navigation"
-                class="absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-black bg-secondary-background px-6 py-4"
+                class="mobile-menu-nav absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-black bg-secondary-background px-6 py-4"
             >
-                {navigationLinks.map((link) => (
+                {navigationLinks.map((link, index) => (
                     <a
                         href={link.href}
                         aria-current={link.active ? "page" : undefined}
+                        style={`--mobile-menu-item-index: ${index};`}
                         class:list={[
-                            "rounded-base border-2 px-4 py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2",
+                            "mobile-menu-item rounded-base border-2 px-4 py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2",
                             link.active
                                 ? "border-black bg-main text-white"
                                 : "border-transparent hover:border-black hover:bg-main hover:text-white",
+                            link.labelClass || "",
                         ]}
                     >
                         {link.label}
