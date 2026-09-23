@@ -56,8 +56,8 @@
     --secondary-background: oklch(100% 0 0);
     --main: #652633;
     --ring: oklch(0% 0 0);
-    --foreground: white;
-    --main-foreground: white;
+    --foreground: var(--color-silver);
+    --main-foreground: var(--color-silver);
     --border: oklch(0% 0 0);
     --overlay: oklch(0% 0 0 / 0.8);
     --shadow: 2px 4px 0px 0px var(--border);
@@ -96,6 +96,25 @@
         font-weight: var(--font-weight-heading);
     }
 }
+main {
+    text-shadow: 0 1px 1px rgb(0 0 0 / 25%), 0 0 8px rgb(255 255 255 / 12%);
+}
+
+@supports (background-clip: text) {
+    main :is(h1, h2, h3, h4) {
+        background-image: linear-gradient(
+            to bottom,
+            #ffffff 0%,
+            #e4e4e4 50%,
+            #c0c0c0 100%
+        );
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+        filter: drop-shadow(0 1px 1px rgb(0 0 0 / 25%));
+    }
+}
+
 body,
 .scrollbar {
     --sb-track-color: #ffffff;

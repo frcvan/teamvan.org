@@ -5,9 +5,10 @@ import Footer from "@/components/Footer.astro";
 
 interface Props {
     wide?: boolean;
+    fullWidth?: boolean;
 }
 
-const { wide = false } = Astro.props;
+const { wide = false, fullWidth = false } = Astro.props;
 ---
 
 <Layout>
@@ -27,8 +28,10 @@ const { wide = false } = Astro.props;
     />
     <main
         class:list={[
-            "mx-auto flex min-h-0 w-full flex-1 flex-col px-6 pt-16 sm:px-10 lg:px-20 xl:px-32",
-            wide ? "max-w-6xl" : "max-w-4xl",
+            "mx-auto flex min-h-0 w-full flex-1 flex-col pt-16",
+            fullWidth
+                ? "px-4 sm:px-6 lg:px-8"
+                : ["px-6 sm:px-10 lg:px-20 xl:px-32", wide ? "max-w-6xl" : "max-w-4xl"],
         ]}
     >
         <slot />

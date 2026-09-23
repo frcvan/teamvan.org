@@ -30,7 +30,7 @@ export default function Navigation({
                             className={cn(
                                 navigationMenuTriggerStyle(),
                                 navlink.active &&
-                                    "bg-main text-main-foreground border-border",
+                                    "bg-main text-white hover:text-white focus:text-white border-border",
                                 navlink.labelClass || "",
                             )}
                         >

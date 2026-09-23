@@ -5,11 +5,8 @@ import { Camera, Mail, Play } from "lucide-react";
 <footer class="border-silver bg-white text-main mt-12 border-t-2 px-6 py-10 sm:px-10">
     <div class="mx-auto grid w-full max-w-6xl gap-8 sm:grid-cols-2">
         <section>
-            <h2 class="mb-3 text-lg">About Team V.A.N.</h2>
+            <h2 class="mb-3 text-lg">Location</h2>
             <p class="max-w-md text-sm leading-6">
-                A student-led rookie FIRST Robotics team based in Brevard,
-                Florida.
-                <br />
                 With main build space in Palm Bay, we serve southern Brevard
                 County and northern Indian River County.
             </p>
@@ -81,6 +78,33 @@ import { Camera, Mail, Play } from "lucide-react";
             </address>
         </section>
     </div>
+
+    <section
+        class="mx-auto mt-8 w-full max-w-6xl border-t border-silver pt-8"
+        aria-labelledby="sponsor-banners-heading"
+    >
+        <h2 id="sponsor-banners-heading" class="mb-6 text-lg">
+            Want to appear here?{" "}
+            <a href="/sponsors" class="underline decoration-silver underline-offset-4 hover:text-black">
+                Sponsor our team!
+            </a>
+        </h2>
+        <div class="flex flex-wrap items-center gap-6">
+            <a
+                href="https://www.firstinspires.org/"
+                target="_blank"
+                rel="noreferrer"
+                class="flex min-h-32 w-full max-w-sm items-center justify-center rounded-base border border-silver bg-white p-8"
+            >
+                <img
+                    src="/images/sponsors/first-logo.svg"
+                    alt="FIRST"
+                    class="h-auto w-full max-w-60"
+                    loading="lazy"
+                />
+            </a>
+        </div>
+    </section>
 
     <p class="mx-auto mt-8 w-full max-w-6xl border-silver border-t pt-4 text-xs">
         &copy; {new Date().getFullYear()} Team V.A.N. All rights reserved.
