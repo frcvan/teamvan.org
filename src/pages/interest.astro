@@ -1,14 +1,14 @@
 ---
 import Layout from "@/layouts/PageLayout.astro";
-import PageHeader from "@/components/PageHeader.astro";
+import H from "@/components/H.astro";
 import Iframe from "@/components/Iframe.astro";
 import Loader from "@/components/Loader.astro";
+import Section from "@/components/Section.astro";
 ---
 
 <Layout>
-    <div class="flex w-full flex-col gap-8">
-        <PageHeader>Want to Join?</PageHeader>
-
+    <H>Want to Join?</H>
+    <Section class="flex w-full flex-col gap-8">
         <p class="max-w-3xl text-lg leading-relaxed">
             If you'd like to join the team, please submit this inquiry form.
             We'll get back to you with information about meetings.
@@ -28,5 +28,5 @@ import Loader from "@/components/Loader.astro";
         >
             <Loader slot="loader" class="border-white/30 border-t-white" />
         </Iframe>
-    </div>
+    </Section>
 </Layout>

@@ -1,14 +1,14 @@
 ---
 import Layout from "@/layouts/PageLayout.astro";
-import PageHeader from "@/components/PageHeader.astro";
+import H from "@/components/H.astro";
 import Iframe from "@/components/Iframe.astro";
 import Loader from "@/components/Loader.astro";
+import Section from "@/components/Section.astro";
 ---
 
 <Layout wide>
-    <div class="flex w-full flex-col gap-8">
-        <PageHeader level="h1">Team Calendar</PageHeader>
-
+    <H level="h1">Team Calendar</H>
+    <Section class="flex w-full flex-col gap-8">
         <Iframe
             containerClass="w-full overflow-hidden rounded-base border border-black/15 bg-white shadow-sm"
             class="h-150 w-full border-0 max-[600px]:h-[70vh]"
@@ -19,5 +19,5 @@ import Loader from "@/components/Loader.astro";
         >
             <Loader slot="loader" />
         </Iframe>
-    </div>
+    </Section>
 </Layout>

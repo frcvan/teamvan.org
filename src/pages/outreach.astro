@@ -1,19 +1,17 @@
 ---
-import PageHeader from "@/components/PageHeader.astro";
+import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
+import Section from "@/components/Section.astro";
 ---
 
 <Layout>
-    <PageHeader>Outreach</PageHeader>
-    <section
-        class="mt-12 space-y-4"
-        aria-labelledby="fll-competitions-heading"
-    >
-        <h2 id="fll-competitions-heading" class="text-lg font-semibold tracking-tight sm:text-xl">
+    <H>Outreach</H>
+    <Section aria-labelledby="fll-competitions-heading">
+        <H id="fll-competitions-heading" level="h2">
             FLL Competitions
-        </h2>
+        </H>
         <ul class="list-disc space-y-2 pl-6">
             <li>Monteverde FLL competition — October 24</li>
         </ul>
-    </section>
+    </Section>
 </Layout>

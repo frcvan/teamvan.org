@@ -1,19 +1,16 @@
 ---
-import PageHeader from "@/components/PageHeader.astro";
+import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
+import Section from "@/components/Section.astro";
 ---
 
 <Layout>
-    <div class="mb-4">
-        <PageHeader>Team V.A.N.</PageHeader>
-    </div>
+    <H class="mb-4">Team V.A.N.</H>
 
     <p>Student-led FIRST Robotics Competition (FRC) Team.</p>
 
-    <section class="mt-12 space-y-4">
-        <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
-            What we do
-        </h2>
+    <Section>
+        <H level="h2">What we do</H>
         <p>
             A student-led rookie FIRST Robotics team based in Brevard, Florida.
         </p>
@@ -22,5 +19,5 @@ import Layout from "@/layouts/PageLayout.astro";
             robots while developing business, marketing, and presentation
             skills.
         </p>
-    </section>
+    </Section>
 </Layout>

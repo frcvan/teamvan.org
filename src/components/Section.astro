@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+    class?: string;
+}
+
+const { class: className, ...props } = Astro.props;
+---
+
+<section class:list={["mt-12 space-y-4", className]} {...props}>
+    <slot />
+</section>
