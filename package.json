@@ -20,6 +20,7 @@
         "astro": "^7.3.4",
         "astro-icon": "^1.2.0",
         "basecoat-css": "^1.0.2",
+        "sharp": "^0.35.4",
         "tailwindcss": "^4.3.3"
     },
     "allowScripts": {
