@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+
+import firstLogo from "@/images/sponsors/first-logo.svg";
+import argosyFoundation from "@/images/sponsors/argosy-foundation-logo.png";
+import hcb from "@/images/sponsors/hcb-logo.png";
+
+const sponsors = [
+    {
+        href: "https://www.firstinspires.org/",
+        ariaLabel: "FIRST robotics competition website (opens in a new tab)",
+        src: firstLogo,
+        alt: "FIRST Robotics Competition logo",
+    },
+    {
+        href: "https://www.argosyfnd.org/",
+        ariaLabel: "Argosy Foundation website (opens in a new tab)",
+        src: argosyFoundation,
+        alt: "Argosy Foundation logo",
+    },
+    {
+        href: "https://hackclub.com/hcb",
+        ariaLabel: "HCB website (opens in a new tab)",
+        src: hcb,
+        alt: "HCB logo",
+    },
+];
+---
+
+<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {sponsors.map((sponsor) => (
+        <a
+            href={sponsor.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={sponsor.ariaLabel}
+            class="flex min-h-28 w-full max-w-sm items-center justify-center rounded-base border border-silver bg-white p-3"
+        >
+            <Image
+                src={sponsor.src}
+                alt={sponsor.alt}
+                loading="lazy"
+                class="max-h-16 w-auto max-w-full object-contain"
+            />
+        </a>
+    ))}
+</div>
