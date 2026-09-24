@@ -69,7 +69,7 @@ import SocialLink from "@/components/SocialLink.astro";
                 Sponsor our team!
             </a>
         </h2>
-        <div class="flex flex-wrap items-center gap-6">
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <a
                 href="https://www.firstinspires.org/"
                 target="_blank"
@@ -81,6 +81,34 @@ import SocialLink from "@/components/SocialLink.astro";
                     src="/images/sponsors/first-logo.svg"
                     alt="FIRST Robotics Competition logo"
                     class="h-auto w-full max-w-60"
+                    loading="lazy"
+                />
+            </a>
+            <a
+                href="https://www.argosyfnd.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Argosy Foundation website (opens in a new tab)"
+                class="flex min-h-32 w-full max-w-sm items-center justify-center rounded-base border border-silver bg-white p-8"
+            >
+                <img
+                    src="/images/sponsors/argosy-foundation-logo.png"
+                    alt="Argosy Foundation logo"
+                    class="h-auto w-full max-w-60"
+                    loading="lazy"
+                />
+            </a>
+            <a
+                href="https://hackclub.com/hcb"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="HCB website (opens in a new tab)"
+                class="flex min-h-32 w-full max-w-sm items-center justify-center rounded-base border border-silver bg-white p-8"
+            >
+                <img
+                    src="/images/sponsors/hcb-logo.png"
+                    alt="HCB logo"
+                    class="h-16 w-16 object-contain"
                     loading="lazy"
                 />
             </a>
