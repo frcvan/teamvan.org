@@ -1,6 +1,15 @@
 ---
 import SocialLink from "@/components/SocialLink.astro";
 import SponsorGallery from "@/components/SponsorGallery.astro";
+
+const lastUpdated = new Date().toLocaleString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
+});
 ---
 
 <footer class="border-silver bg-white text-main mt-12 border-t-2 px-6 py-10 sm:px-10">
@@ -73,7 +82,10 @@ import SponsorGallery from "@/components/SponsorGallery.astro";
         <SponsorGallery />
     </section>
 
-    <p class="mx-auto mt-8 w-full max-w-6xl border-silver border-t pt-4 text-xs">
-        &copy; {new Date().getFullYear()} Team V.A.N. All rights reserved.
-    </p>
+    <div class="mx-auto mt-8 flex w-full max-w-6xl items-center justify-between gap-4 border-silver border-t pt-4 text-xs">
+        <p>
+            &copy; {new Date().getFullYear()} Team V.A.N. All rights reserved.
+        </p>
+        <p>Website last updated: {lastUpdated}</p>
+    </div>
 </footer>
