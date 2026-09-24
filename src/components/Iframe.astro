@@ -4,7 +4,7 @@ interface Props {
     title: string;
     class?: string;
     containerClass?: string;
-    backgroundClass?: string;
+    loaderClass?: string;
     loading?: "eager" | "lazy";
     scrolling?: "auto" | "yes" | "no";
 }
@@ -14,7 +14,7 @@ const {
     title,
     class: className,
     containerClass,
-    backgroundClass = "bg-white",
+    loaderClass,
     loading = "lazy",
     scrolling = "auto",
 } = Astro.props;
@@ -24,7 +24,7 @@ const {
     <div
         class:list={[
             "absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 [.is-loaded_&]:pointer-events-none [.is-loaded_&]:opacity-0",
-            backgroundClass,
+            loaderClass,
         ]}
         data-iframe-loader
         role="status"
