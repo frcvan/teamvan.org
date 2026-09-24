@@ -52,13 +52,12 @@ const navigationLinks = navlinks.map((navlink) => ({
                 aria-label="Main navigation"
                 class="mobile-menu-nav absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-silver bg-secondary-background px-6 py-4"
             >
-                {navigationLinks.map((link, index) => (
+                {navigationLinks.map((link) => (
                     <Button
                         href={link.href}
                         current={link.active}
                         variant={link.active ? "primary" : "ghost"}
                         size="lg"
-                        style={`--mobile-menu-item-index: ${index};`}
                         class:list={[
                             "mobile-menu-item rounded-base border-2 px-4 py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2",
                             link.labelClass || "",

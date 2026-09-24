@@ -9,7 +9,6 @@ interface Props {
     rel?: string;
     ariaLabel?: string;
     current?: boolean;
-    style?: string;
 }
 
 const {
@@ -22,10 +21,13 @@ const {
     rel,
     ariaLabel,
     current = false,
-    style,
 } = Astro.props;
 
-const classes = ["btn", className];
+const classes = [
+    "btn !px-4 text-base font-bold !min-h-11",
+    size === "lg" && "!px-5 text-[1.05rem] !min-h-13",
+    className,
+];
 ---
 
 {href ? (
@@ -39,7 +41,6 @@ const classes = ["btn", className];
         target={target}
         rel={rel}
         aria-label={ariaLabel}
-        style={style}
     >
         <slot />
     </a>
@@ -51,7 +52,6 @@ const classes = ["btn", className];
         data-size={size === "default" ? undefined : size}
         aria-current={current ? "page" : undefined}
         aria-label={ariaLabel}
-        style={style}
     >
         <slot />
     </button>
