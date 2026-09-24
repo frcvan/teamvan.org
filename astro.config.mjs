@@ -9,15 +9,16 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-      plugins: [tailwindcss()],
-  },
+    vite: {
+        plugins: [tailwindcss()],
+    },
 
-  site: "https://teamvan.org",
+    site: "https://teamvan.org",
+    trailingSlash: "always",
 
-  prefetch: {
-      prefetchAll: true,
-  },
+    prefetch: {
+        prefetchAll: true,
+    },
 
-  integrations: [icon(), sitemap()],
+    integrations: [icon(), sitemap()],
 });

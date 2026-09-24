@@ -23,7 +23,7 @@ const {
 <div class:list={["relative", containerClass]} data-iframe-container>
     <div
         class:list={[
-            "absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 [.is-loaded_&]:pointer-events-none [.is-loaded_&]:opacity-0",
+            "absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 in-[.is-loaded]:pointer-events-none in-[.is-loaded]:opacity-0",
             loaderClass,
         ]}
         data-iframe-loader
@@ -34,7 +34,7 @@ const {
     </div>
     <iframe
         class:list={[
-            "block opacity-0 transition-opacity duration-300 [.is-loaded_&]:opacity-100",
+            "block opacity-0 transition-opacity duration-300 in-[.is-loaded]:opacity-100",
             className,
         ]}
         src={src}
