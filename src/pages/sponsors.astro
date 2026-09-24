@@ -1,7 +1,7 @@
 ---
 import PageHeader from "@/components/PageHeader.astro";
 import Layout from "@/layouts/PageLayout.astro";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 ---
 
 <Layout>
@@ -18,11 +18,18 @@ import { Button } from "@/components/ui/button";
             us to discuss how you can help.
         </p>
         <div class="flex flex-wrap gap-4">
-            <a href="/sponsor-packet.pdf" download="Sponsorship Form.pdf">
-                <Button>Sponsorship Form</Button>
+            <a
+                href="/sponsor-packet.pdf"
+                download="Sponsorship Form.pdf"
+                class={buttonVariants({ variant: "default", size: "default" })}
+            >
+                Sponsorship Form
             </a>
-            <a href="mailto:contact@teamvan.org?subject=Donation%20to%20Team%20V.A.N.">
-                <Button>Contact Us For Donations</Button>
+            <a
+                href="mailto:contact@teamvan.org?subject=Donation%20to%20Team%20V.A.N."
+                class={buttonVariants({ variant: "default", size: "default" })}
+            >
+                Contact Us For Donations
             </a>
         </div>
     </section>

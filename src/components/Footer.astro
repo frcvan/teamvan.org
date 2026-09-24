@@ -17,7 +17,8 @@ import { Camera, Mail, Play } from "lucide-react";
                     class="text-blue-700 underline underline-offset-4 hover:text-blue-900"
                     href="https://www.google.com/maps/search/?api=1&amp;query=Eastern+Florida+State+College+250+Community+College+Pkwy+Palm+Bay+FL+32909"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label="Open map to Eastern Florida State College Palm Bay campus in a new tab"
                 >
                     250 Community College Pkwy, Palm Bay, FL 32909
                 </a>
@@ -38,7 +39,8 @@ import { Camera, Mail, Play } from "lucide-react";
                     class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
                     href="https://www.instagram.com/team.van/"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram profile for Team V.A.N. (opens in a new tab)"
                 >
                     <Camera size={16} aria-hidden="true" />
                     @team.van
@@ -47,7 +49,8 @@ import { Camera, Mail, Play } from "lucide-react";
                     class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
                     href="https://www.youtube.com/@frcvan"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label="YouTube channel for Team V.A.N. (opens in a new tab)"
                 >
                     <Play size={16} aria-hidden="true" />
                     Team V.A.N.
@@ -56,7 +59,8 @@ import { Camera, Mail, Play } from "lucide-react";
                     class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
                     href="https://github.com/frcvan"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub organization for Team V.A.N. (opens in a new tab)"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -93,12 +97,13 @@ import { Camera, Mail, Play } from "lucide-react";
             <a
                 href="https://www.firstinspires.org/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                aria-label="FIRST robotics competition website (opens in a new tab)"
                 class="flex min-h-32 w-full max-w-sm items-center justify-center rounded-base border border-silver bg-white p-8"
             >
                 <img
                     src="/images/sponsors/first-logo.svg"
-                    alt="FIRST"
+                    alt="FIRST Robotics Competition logo"
                     class="h-auto w-full max-w-60"
                     loading="lazy"
                 />

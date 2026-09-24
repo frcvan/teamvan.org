@@ -19,6 +19,7 @@ const navigationLinks = navlinks.map((navlink) => ({
         <a
             class="text-main flex min-w-0 items-center gap-3 text-xl font-extrabold no-underline sm:text-2xl"
             href="/"
+            aria-label="Team V.A.N. home"
         >
             <img
                 src="/favicon.svg"
@@ -27,26 +28,25 @@ const navigationLinks = navlinks.map((navlink) => ({
                 height="48"
                 class="block size-10 shrink-0 sm:size-12"
                 style="color-scheme: light"
+                aria-hidden="true"
             />
             <span class="hidden lg:block">Team V.A.N. 12148</span>
         </a>
 
         <div class="hidden lg:block">
-            <Navigation
-                client:load
-                navlinks={navigationLinks}
-                className="flex-none!"
-            />
+            <Navigation navlinks={navigationLinks} className="flex-none!" />
         </div>
 
         <details class="mobile-menu shrink-0 text-main lg:hidden">
             <summary
-                aria-label="Menu"
+                aria-label="Open navigation menu"
+                aria-controls="mobile-navigation"
                 class="ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4"
             >
-                <Menu size={32} />
+                <Menu size={32} aria-hidden="true" />
             </summary>
             <nav
+                id="mobile-navigation"
                 aria-label="Main navigation"
                 class="mobile-menu-nav absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-silver bg-secondary-background px-6 py-4"
             >

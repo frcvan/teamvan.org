@@ -12,6 +12,12 @@ const { wide = false, fullWidth = false } = Astro.props;
 ---
 
 <Layout>
+    <a
+        href="#main-content"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-base focus:border-2 focus:border-black focus:bg-white focus:px-4 focus:py-2 focus:text-main focus:no-underline"
+    >
+        Skip to content
+    </a>
     <Header
         navlinks={[
             { href: "/", label: "Home" },
@@ -27,6 +33,7 @@ const { wide = false, fullWidth = false } = Astro.props;
         ]}
     />
     <main
+        id="main-content"
         class:list={[
             "mx-auto flex min-h-0 w-full flex-1 flex-col pt-16",
             fullWidth

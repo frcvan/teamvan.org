@@ -87,19 +87,22 @@
     h6 {
         font-weight: var(--font-weight-heading);
     }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-weight: var(--font-weight-heading);
-    }
 }
 main {
     text-shadow:
         0 1px 1px rgb(0 0 0 / 25%),
         0 0 8px rgb(255 255 255 / 12%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 @supports (background-clip: text) {
@@ -122,12 +125,15 @@ body,
     --sb-track-color: #ffffff;
     --sb-thumb-color: #000000;
 }
+
 .scrollbar::-webkit-scrollbar {
     width: 16px;
 }
+
 .scrollbar::-webkit-scrollbar-track {
     background: var(--sb-track-color);
 }
+
 .scrollbar::-webkit-scrollbar-thumb {
     background: var(--sb-thumb-color);
 }
@@ -136,9 +142,4 @@ body,
     .scrollbar {
         scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
-}
-body,
-.scrollbar {
-    --sb-track-color: #ffffff;
-    --sb-thumb-color: #000000;
 }
