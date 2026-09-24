@@ -1,0 +1,58 @@
+---
+interface Props {
+    href?: string;
+    variant?: "primary" | "secondary" | "ghost" | "outline";
+    size?: "default" | "sm" | "lg" | "icon";
+    class?: string;
+    download?: string | boolean;
+    target?: string;
+    rel?: string;
+    ariaLabel?: string;
+    current?: boolean;
+    style?: string;
+}
+
+const {
+    href,
+    variant = "primary",
+    size = "default",
+    class: className,
+    download,
+    target,
+    rel,
+    ariaLabel,
+    current = false,
+    style,
+} = Astro.props;
+
+const classes = ["btn", className];
+---
+
+{href ? (
+    <a
+        href={href}
+        class:list={classes}
+        data-variant={variant}
+        data-size={size === "default" ? undefined : size}
+        aria-current={current ? "page" : undefined}
+        download={download}
+        target={target}
+        rel={rel}
+        aria-label={ariaLabel}
+        style={style}
+    >
+        <slot />
+    </a>
+) : (
+    <button
+        type="button"
+        class:list={classes}
+        data-variant={variant}
+        data-size={size === "default" ? undefined : size}
+        aria-current={current ? "page" : undefined}
+        aria-label={ariaLabel}
+        style={style}
+    >
+        <slot />
+    </button>
+)}

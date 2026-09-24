@@ -1,0 +1,31 @@
+---
+import Button from "@/components/Button.astro";
+
+interface Props {
+    navlinks: {
+        href: string;
+        label: string;
+        labelClass?: string;
+        active?: boolean;
+    }[];
+    class?: string;
+}
+
+const { navlinks, class: className } = Astro.props;
+---
+
+<nav
+    class:list={["text-main flex items-center gap-2", className]}
+    aria-label="Main navigation"
+>
+    {navlinks.map((navlink) => (
+        <Button
+            href={navlink.href}
+            current={navlink.active}
+            variant={navlink.active ? "primary" : "ghost"}
+            class={navlink.labelClass}
+        >
+            {navlink.label}
+        </Button>
+    ))}
+</nav>

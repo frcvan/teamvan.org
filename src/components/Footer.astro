@@ -1,5 +1,5 @@
 ---
-import { Camera, Mail, Play } from "lucide-react";
+import SocialLink from "@/components/SocialLink.astro";
 ---
 
 <footer class="border-silver bg-white text-main mt-12 border-t-2 px-6 py-10 sm:px-10">
@@ -29,57 +29,29 @@ import { Camera, Mail, Play } from "lucide-react";
         <section class="sm:justify-self-end">
             <h2 class="mb-3 text-lg">Connect</h2>
             <address class="flex flex-col gap-2 text-sm not-italic">
-                <a
-                    class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
+                <SocialLink
                     href="mailto:contact@teamvan.org"
-                >
-                    <Mail size={16} aria-hidden="true" />
-                    contact@teamvan.org
-                </a>
-                <a
-                    class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
+                    icon="tabler:mail"
+                    label="contact@teamvan.org"
+                />
+                <SocialLink
                     href="https://www.instagram.com/team.van/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram profile for Team V.A.N. (opens in a new tab)"
-                >
-                    <Camera size={16} aria-hidden="true" />
-                    @team.van
-                </a>
-                <a
-                    class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
+                    icon="tabler:brand-instagram"
+                    label="@team.van"
+                    ariaLabel="Instagram profile for Team V.A.N. (opens in a new tab)"
+                />
+                <SocialLink
                     href="https://www.youtube.com/@frcvan"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="YouTube channel for Team V.A.N. (opens in a new tab)"
-                >
-                    <Play size={16} aria-hidden="true" />
-                    Team V.A.N.
-                </a>
-                <a
-                    class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
+                    icon="tabler:brand-youtube"
+                    label="Team V.A.N."
+                    ariaLabel="YouTube channel for Team V.A.N. (opens in a new tab)"
+                />
+                <SocialLink
                     href="https://github.com/frcvan"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub organization for Team V.A.N. (opens in a new tab)"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                        class="shrink-0"
-                    >
-                        <path d="M9 19c-4.3 1.3-4.3-2.5-6-3m12 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-7 0C5.27.65 4.09 1 4.09 1A5.07 5.07 0 0 0 4 4.77 5.44 5.44 0 0 0 2.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22" />
-                    </svg>
-                    frcvan
-                </a>
+                    icon="tabler:brand-github"
+                    label="frcvan"
+                    ariaLabel="GitHub organization for Team V.A.N. (opens in a new tab)"
+                />
             </address>
         </section>
     </div>

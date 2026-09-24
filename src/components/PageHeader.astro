@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { cn } from "@/lib/utils"; // Assumes you have shadcn's default cn helper
 
 interface Props extends HTMLAttributes<"h1" | "h2" | "h3" | "h4"> {
     level?: "h1" | "h2" | "h3" | "h4";
@@ -10,29 +9,26 @@ interface Props extends HTMLAttributes<"h1" | "h2" | "h3" | "h4"> {
 
 const { level = "h1", description, class: className, ...props } = Astro.props;
 
-// Map header levels to semantic HTML tags
 const Tag = level;
-
-// shadcn/ui design system typography classes
-const headerVariants = {
-    h1: "scroll-m-20 text-main-foreground text-4xl font-extrabold leading-tight tracking-tight lg:text-5xl",
-    h2: "scroll-m-20 text-main-foreground text-4xl font-semibold leading-tight tracking-tight",
-    h3: "scroll-m-20 text-main-foreground text-3xl font-semibold leading-tight tracking-tight",
-    h4: "scroll-m-20 text-main-foreground text-2xl font-semibold leading-tight tracking-tight",
+const headerSizes = {
+    h1: "text-4xl leading-tight lg:text-5xl",
+    h2: "text-4xl leading-tight",
+    h3: "text-3xl leading-tight",
+    h4: "text-2xl leading-tight",
 };
 ---
 
-<div class={cn("space-y-1.5", level === "h2" && "border-b pb-4", className)}>
-    <Tag class={cn(headerVariants[level])} {...props}>
+<div class:list={["space-y-1.5", level === "h2" && "border-b pb-4", className]}>
+    <Tag class:list={["scroll-m-20 font-bold", headerSizes[level]]} {...props}>
         <slot />
     </Tag>
 
     {description && (
         <p
-            class={cn(
-                "text-muted-foreground",
+            class:list={[
+                "text-slate-600",
                 level === "h1" ? "text-lg" : "text-sm",
-            )}
+            ]}
         >
             {description}
         </p>

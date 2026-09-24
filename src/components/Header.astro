@@ -1,6 +1,8 @@
 ---
-import Navigation from "@/components/Navigation.tsx";
-import { Menu } from "lucide-react";
+import { Icon } from "astro-icon/components";
+
+import Navigation from "@/components/Navigation.astro";
+import Button from "@/components/Button.astro";
 
 interface Props {
     navlinks: { href: string; label: string; labelClass?: string }[];
@@ -34,7 +36,7 @@ const navigationLinks = navlinks.map((navlink) => ({
         </a>
 
         <div class="hidden lg:block">
-            <Navigation navlinks={navigationLinks} className="flex-none!" />
+            <Navigation navlinks={navigationLinks} class="flex-none!" />
         </div>
 
         <details class="mobile-menu shrink-0 text-main lg:hidden">
@@ -43,7 +45,7 @@ const navigationLinks = navlinks.map((navlink) => ({
                 aria-controls="mobile-navigation"
                 class="ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4"
             >
-                <Menu size={32} aria-hidden="true" />
+                <Icon name="tabler:menu" size={32} />
             </summary>
             <nav
                 id="mobile-navigation"
@@ -51,20 +53,19 @@ const navigationLinks = navlinks.map((navlink) => ({
                 class="mobile-menu-nav absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-silver bg-secondary-background px-6 py-4"
             >
                 {navigationLinks.map((link, index) => (
-                    <a
+                    <Button
                         href={link.href}
-                        aria-current={link.active ? "page" : undefined}
+                        current={link.active}
+                        variant={link.active ? "primary" : "ghost"}
+                        size="lg"
                         style={`--mobile-menu-item-index: ${index};`}
                         class:list={[
                             "mobile-menu-item rounded-base border-2 px-4 py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2",
-                            link.active
-                                ? "border-black bg-main text-white"
-                                : "border-transparent hover:border-black hover:bg-main hover:text-white",
                             link.labelClass || "",
                         ]}
                     >
                         {link.label}
-                    </a>
+                    </Button>
                 ))}
             </nav>
         </details>
