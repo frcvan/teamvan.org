@@ -16,7 +16,7 @@ function NavigationMenu({
             data-slot="navigation-menu"
             className={cn(
                 "group/navigation-menu relative z-10 flex max-w-max rounded-base font-heading border-none border-2 p-1 bg-none flex-1 items-center justify-center",
-                className,
+                className
             )}
             {...props}
         >
@@ -35,7 +35,7 @@ function NavigationMenuList({
             data-slot="navigation-menu-list"
             className={cn(
                 "group flex flex-1 list-none items-center font-heading justify-center space-x-1",
-                className,
+                className
             )}
             {...props}
         />
@@ -56,7 +56,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-    "group inline-flex h-10 w-max items-center justify-center text-foreground rounded-base border-2 border-transparent text-main px-4 py-2 text-sm font-heading transition-colors focus:outline-none hover:bg-main hover:text-white hover:border-border focus:bg-main focus:text-white focus:border-border data-popup-open:bg-main data-popup-open:text-main-foreground data-popup-open:border-border data-active:bg-main data-active:text-main-foreground data-active:border-border disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50",
+    "group inline-flex h-10 w-max items-center justify-center text-foreground rounded-base border-2 border-transparent text-main px-4 py-2 text-sm font-heading transition-colors focus:outline-none hover:bg-main hover:text-main-foreground hover:border-border focus:bg-main focus:text-main-foreground focus:border-border data-popup-open:bg-main data-popup-open:text-main-foreground data-popup-open:border-border data-active:bg-main data-active:text-main-foreground data-active:border-border disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50"
 );
 
 function NavigationMenuTrigger({
@@ -88,7 +88,7 @@ function NavigationMenuContent({
             data-slot="navigation-menu-content"
             className={cn(
                 "h-full w-auto p-2 pr-2.5 transition-[opacity,transform,translate] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] data-starting-style:opacity-0 data-ending-style:opacity-0 data-starting-style:data-[activation-direction=left]:translate-x-[-50%] data-starting-style:data-[activation-direction=right]:translate-x-[50%] data-ending-style:data-[activation-direction=left]:translate-x-[50%] data-ending-style:data-[activation-direction=right]:translate-x-[-50%] **:data-[slot=navigation-menu-link]:focus:ring-0 **:data-[slot=navigation-menu-link]:focus:outline-none",
-                className,
+                className
             )}
             {...props}
         />
@@ -103,8 +103,8 @@ function NavigationMenuLink({
         <NavigationMenuPrimitive.Link
             data-slot="navigation-menu-link"
             className={cn(
-                "block select-none space-y-1 rounded-base border-2 border-transparent p-2 leading-none no-underline outline-none transition-colors hover:bg-main hover:text-white hover:border-border focus:bg-main focus:text-white focus:border-border focus-visible:ring-4 focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4",
-                className,
+                "block select-none space-y-1 rounded-base border-2 border-transparent p-2 leading-none no-underline outline-none transition-colors hover:bg-main hover:text-main-foreground hover:border-border focus:bg-main focus:text-white focus:border-border focus-visible:ring-4 focus-visible:outline-1 [&_svg:not([class*='size-'])]:size-4",
+                className
             )}
             {...props}
         />
@@ -140,7 +140,7 @@ function NavigationMenuViewport({
                         data-slot="navigation-menu-viewport"
                         className={cn(
                             "relative size-full overflow-hidden",
-                            className,
+                            className
                         )}
                         {...props}
                     />
@@ -159,7 +159,7 @@ function NavigationMenuIndicator({
             data-slot="navigation-menu-indicator"
             className={cn(
                 "flex items-center justify-center transition-transform duration-200 data-popup-open:rotate-180",
-                className,
+                className
             )}
             {...props}
         />
@@ -175,5 +175,5 @@ export {
     NavigationMenuTrigger,
     NavigationMenuLink,
     NavigationMenuIndicator,
-    NavigationMenuViewport,
+    NavigationMenuViewport
 };

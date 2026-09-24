@@ -3,13 +3,13 @@ import {
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    navigationMenuTriggerStyle,
+    navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 
 export default function Navigation({
     navlinks,
-    className,
+    className
 }: {
     navlinks: {
         href: string;
@@ -30,8 +30,8 @@ export default function Navigation({
                             className={cn(
                                 navigationMenuTriggerStyle(),
                                 navlink.active &&
-                                    "bg-main text-white hover:text-white focus:text-white border-border",
-                                navlink.labelClass || "",
+                                    "bg-main text-main-foreground border-border",
+                                navlink.labelClass || ""
                             )}
                         >
                             {navlink.label}
