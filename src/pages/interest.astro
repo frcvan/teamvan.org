@@ -1,6 +1,8 @@
 ---
 import Layout from "@/layouts/PageLayout.astro";
 import PageHeader from "@/components/PageHeader.astro";
+import Iframe from "@/components/Iframe.astro";
+import Loader from "@/components/Loader.astro";
 ---
 
 <Layout>
@@ -12,14 +14,16 @@ import PageHeader from "@/components/PageHeader.astro";
             We'll get back to you with information about meetings.
         </p>
 
-        <div class="w-full h-300 overflow-hidden rounded-base border-none shadow-none">
-            <iframe
-                class="block w-full h-full border-none outline-none shadow-none"
-                src="https://tally.so/embed/KYbz6k?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                title="Team V.A.N. interest form"
-                loading="eager"
-                scrolling="no"
-            ></iframe>
-        </div>
+        <Iframe
+            containerClass="w-full h-300 overflow-hidden rounded-base border-none shadow-none"
+            class="w-full h-full border-none outline-none shadow-none"
+            src="https://tally.so/embed/KYbz6k?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+            title="Team V.A.N. interest form"
+            backgroundClass="bg-transparent"
+            loading="eager"
+            scrolling="no"
+        >
+            <Loader slot="loader" class="border-white/30 border-t-white" />
+        </Iframe>
     </div>
 </Layout>

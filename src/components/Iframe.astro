@@ -1,0 +1,61 @@
+---
+interface Props {
+    src: string;
+    title: string;
+    class?: string;
+    containerClass?: string;
+    backgroundClass?: string;
+    loading?: "eager" | "lazy";
+    scrolling?: "auto" | "yes" | "no";
+}
+
+const {
+    src,
+    title,
+    class: className,
+    containerClass,
+    backgroundClass = "bg-white",
+    loading = "lazy",
+    scrolling = "auto",
+} = Astro.props;
+---
+
+<div class:list={["relative", containerClass]} data-iframe-container>
+    <div
+        class:list={[
+            "absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 [.is-loaded_&]:pointer-events-none [.is-loaded_&]:opacity-0",
+            backgroundClass,
+        ]}
+        data-iframe-loader
+        role="status"
+        aria-label="Loading content"
+    >
+        <slot name="loader" />
+    </div>
+    <iframe
+        class:list={[
+            "block opacity-0 transition-opacity duration-300 [.is-loaded_&]:opacity-100",
+            className,
+        ]}
+        src={src}
+        title={title}
+        loading={loading}
+        scrolling={scrolling}
+        data-iframe
+    ></iframe>
+</div>
+
+<script>
+    document
+        .querySelectorAll<HTMLElement>("[data-iframe-container]")
+        .forEach((container) => {
+            const iframe =
+                container.querySelector<HTMLIFrameElement>("[data-iframe]");
+
+            iframe?.addEventListener(
+                "load",
+                () => container.classList.add("is-loaded"),
+                { once: true },
+            );
+        });
+</script>

@@ -1,0 +1,15 @@
+---
+interface Props {
+    class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span
+    class:list={[
+        "size-8 animate-spin rounded-full border-4 border-main/20 border-t-main",
+        className,
+    ]}
+    aria-hidden="true"
+></span>
