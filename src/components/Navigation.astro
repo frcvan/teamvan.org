@@ -11,14 +11,14 @@ interface Props {
     class?: string;
 }
 
-const { navlinks, class: className } = Astro.props;
+const { navlinks, class: className } = Astro.props as Props;
 ---
 
 <nav
     class:list={["text-main flex items-center gap-1", className]}
     aria-label="Main navigation"
 >
-    {navlinks.map((navlink) => (
+    {navlinks.map((navlink: Props["navlinks"][number]) => (
         <Button
             href={navlink.href}
             current={navlink.active}

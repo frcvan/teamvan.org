@@ -2,25 +2,24 @@
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
+import List from "@/components/List.astro";
 ---
 
 <Layout>
     <H>Competitions</H>
     <Section>
         <H level="h2">FRC regional competitions we plan to attend:</H>
-        <ul class="list-disc space-y-3 pl-6">
+        <List>
             <li>
                 <div>
                     <strong>Orlando Regional</strong> — March 17-20, 2027.
                 </div>
-                <p class="mt-1 pl-4 text-sm"></p>
             </li>
             <li>
                 <div>
                     <strong>Rocket City Regional</strong> — April 7-10, 2027.
                 </div>
-                <p class="mt-1 pl-4 text-sm"></p>
             </li>
-        </ul>
+        </List>
     </Section>
 </Layout>

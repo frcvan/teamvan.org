@@ -3,11 +3,10 @@ import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"h1" | "h2" | "h3" | "h4"> {
     level?: "h1" | "h2" | "h3" | "h4";
-    description?: string;
     class?: string;
 }
 
-const { level = "h1", description, class: className, ...props } = Astro.props;
+const { level = "h1", class: className, ...props } = Astro.props as Props;
 
 const Tag = level;
 const headerSizes = {
@@ -18,19 +17,12 @@ const headerSizes = {
 };
 ---
 
-<div class:list={["space-y-1.5", level === "h2" && "border-b pb-4", className]}>
+<div class:list={["space-y-1", className]}>
     <Tag class:list={["scroll-m-20 font-bold", headerSizes[level]]} {...props}>
         <slot />
     </Tag>
 
-    {description && (
-        <p
-            class:list={[
-                "text-slate-600",
-                level === "h1" ? "text-lg" : "text-sm",
-            ]}
-        >
-            {description}
-        </p>
-    )}
+    <div class:list={["text-sm"]}>
+        <slot name="description" />
+    </div>
 </div>

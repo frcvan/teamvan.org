@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"ul" | "ol"> {
+    type?: "disc" | "numbered";
+    class?: string;
+}
+
+const { type = "disc", class: className, ...props } = Astro.props as Props;
+const Tag = type === "numbered" ? "ol" : "ul";
+const listStyle = type === "numbered" ? "list-decimal" : "list-disc";
+---
+
+<Tag class:list={[listStyle, "space-y-3 pl-6", className]} {...props}>
+    <slot />
+</Tag>

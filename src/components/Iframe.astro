@@ -17,7 +17,7 @@ const {
     loaderClass,
     loading = "lazy",
     scrolling = "auto",
-} = Astro.props;
+} = Astro.props as Props;
 ---
 
 <div class:list={["relative", containerClass]} data-iframe-container>

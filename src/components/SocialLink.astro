@@ -8,7 +8,7 @@ interface Props {
     ariaLabel?: string;
 }
 
-const { href, icon, label, ariaLabel } = Astro.props;
+const { href, icon, label, ariaLabel } = Astro.props as Props;
 ---
 
 <a

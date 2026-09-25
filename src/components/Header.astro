@@ -9,7 +9,7 @@ interface Props {
     navlinks: { href: string; label: string; labelClass?: string }[];
 }
 
-const { navlinks } = Astro.props;
+const { navlinks } = Astro.props as Props;
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const navigationLinks = navlinks.map((navlink) => ({
     ...navlink,
