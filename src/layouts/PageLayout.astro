@@ -4,12 +4,10 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 
 interface Props {
-    wide?: boolean;
-    fullWidth?: boolean;
     title?: string;
 }
 
-const { wide = false, fullWidth = false, title } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <Layout title={title}>
@@ -31,15 +29,7 @@ const { wide = false, fullWidth = false, title } = Astro.props;
     />
     <main
         id="main-content"
-        class:list={[
-            "mx-auto flex min-h-0 w-full flex-1 flex-col pt-16",
-            fullWidth
-                ? "px-4 sm:px-6 lg:px-8"
-                : [
-                      "px-6 sm:px-10 lg:px-20 xl:px-32",
-                      wide ? "max-w-6xl" : "max-w-4xl",
-                  ],
-        ]}
+        class="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col px-6 pt-16 sm:px-10 lg:px-12"
     >
         <slot />
     </main>
