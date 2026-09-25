@@ -50,6 +50,9 @@
     h6 {
         font-weight: var(--font-weight-heading);
     }
+    p {
+        word-spacing: 0.1em;
+    }
 }
 main {
     text-shadow:
