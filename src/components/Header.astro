@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
+import favicon from "@/../public/favicon.svg";
+
 import Navigation from "@/components/Navigation.astro";
 import Button from "@/components/Button.astro";
 
@@ -25,7 +27,7 @@ const navigationLinks = navlinks.map((navlink) => ({
             aria-label="Team V.A.N. home"
         >
             <Image
-                src="/logo.svg"
+                src={favicon}
                 alt=""
                 width={48}
                 height={48}
