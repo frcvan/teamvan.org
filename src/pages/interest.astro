@@ -6,17 +6,33 @@ import Loader from "@/components/Loader.astro";
 import Section from "@/components/Section.astro";
 ---
 
-<Layout title="Join">
+<Layout title="Join Team V.A.N.">
     <H>Want to Join?</H>
-    <Section>
+
+    <Section aria-labelledby="join-intro-heading">
+        <H id="join-intro-heading" level="h2">
+            No Prior Experience Required
+        </H>
         <p>
-            If you'd like to join the team, please submit this inquiry form.
-            We'll get back to you with information about meetings.
+            Whether you are interested in building, programming, web
+            development, business, or marketing, there is a place for you on
+            Team V.A.N. As a student-led team serving southern Brevard and
+            Indian River counties, we teach you everything you need to know.
         </p>
-        <p>For other inquiries, feel free to write an email!</p>
+    </Section>
+
+    <Section aria-labelledby="form-heading">
+        <H id="form-heading" level="h2">
+            Student Interest Form
+        </H>
+        <p class="mb-4">
+            Fill out the form below to let us know you're interested! We will
+            reach out with details on our meeting schedule, build space location
+            in Palm Bay, and how to get started.
+        </p>
 
         <Iframe
-            containerClass="w-full h-300 overflow-hidden rounded-base border-none shadow-none"
+            containerClass="w-full h-[800px] overflow-hidden rounded-base border-none shadow-none"
             class="w-full h-full border-none outline-none shadow-none"
             src="https://tally.so/embed/KYbz6k?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
             title="Team V.A.N. interest form"
@@ -26,5 +42,17 @@ import Section from "@/components/Section.astro";
         >
             <Loader slot="loader" class="border-white/30 border-t-white" />
         </Iframe>
+
+        <p class="mt-6">
+            Have questions before joining or looking to mentor? Shoot us an
+            email at{" "}
+            <a
+                href="mailto:contact@teamvan.org"
+                class="text-blue-300 underline underline-offset-4"
+            >
+                contact@teamvan.org
+            </a>
+            .
+        </p>
     </Section>
 </Layout>
