@@ -7,27 +7,91 @@ import Section from "@/components/Section.astro";
 
 <Layout title="For Sponsors">
     <H>For Sponsors</H>
-    <Section aria-labelledby="donations-heading">
-        <H id="donations-heading" level="h2">
-            Donate To Our Team
+
+    <Section aria-labelledby="rookie-partner-heading">
+        <H id="rookie-partner-heading" level="h2">
+            Partner With a First-Year Team
         </H>
         <p>
-            Interested in making a donation or contributing materials? Contact
-            us to discuss how you can help.
+            As a first-year rookie team building our entire team operations from
+            the ground up, we offer unmatched flexibility for our community
+            sponsors. Because we are designing our program and outreach strategy
+            from scratch, we can work directly with you to craft custom
+            sponsorship packages tailored to your organization's goals, whether
+            that means unique branding opportunities or tailored community
+            initiatives, like a team showcase at an event.
         </p>
-        <div class="flex flex-wrap gap-4">
-            <Button
+        <p>
+            <strong class="underline underline-offset-4">
+                Anything helps.
+            </strong>{" "}
+            As a registered 501(c)(3) non-profit organization, all monetary
+            contributions and qualifying in-kind donations to Team V.A.N. are
+            tax-deductible.
+        </p>
+    </Section>
+
+    <Section aria-labelledby="community-impact-heading">
+        <H id="community-impact-heading" level="h2">
+            Uniquely Positioned for Community Impact
+        </H>
+        <p>
+            Based in Palm Bay, Team V.A.N. is the southernmost FRC team in
+            Brevard County, and is the <strong>only</strong> FRC team serving
+            northern Indian River County. Our region includes multiple Title 1
+            schools and historically underserved communities where access to
+            high-level STEM pathways is scarce.
+        </p>
+        <p>
+            Your sponsorship removes financial barriers for local students,
+            ensuring that financial background never prevents a student from
+            gaining real-world engineering, software development, and business
+            management experience.
+        </p>
+    </Section>
+
+    <Section aria-labelledby="ways-to-support-heading">
+        <H id="ways-to-support-heading" level="h2">
+            Ways You Can Support Us
+        </H>
+        <ul class="list-disc pl-6 space-y-2">
+            <li>
+                <strong>Monetary Sponsorships:</strong> Flexible tiers with logo
+                placement on our competition robot, team apparel, pit displays,
+                and digital media.
+            </li>
+            <li>
+                <strong>In-Kind Material & Services:</strong> Donations of raw
+                aluminum, electrical hardware, fasteners, shop tools, 3D
+                printing filament (PLA, PETG, TPU, etc).
+            </li>
+            <li>
+                <strong>Mentorship & Expertise:</strong> Industry experts in
+                mechanical design, electrical engineering, software development,
+                web development, or marketing looking to guide students.
+            </li>
+        </ul>
+    </Section>
+
+    <Section aria-labelledby="donations-heading">
+        <H id="donations-heading" level="h2">
+            Get In Touch
+        </H>
+        <p>Interested in how you can help? Reach out to us!</p>
+        <div class="flex flex-wrap gap-4 mt-4">
+            <!--<Button
                 target="_blank"
                 href="/sponsor-packet.pdf"
                 variant="secondary"
+                disabled={true}
             >
-                Sponsorship Form
-            </Button>
+                Download Sponsor Packet
+            </Button>-->
             <Button
-                href="mailto:contact@teamvan.org?subject=Donation%20to%20Team%20V.A.N."
+                href="mailto:contact@teamvan.org?subject=Sponsorship%20Inquiry%20-%20Team%20V.A.N."
                 variant="secondary"
             >
-                Contact Us For Donations
+                Contact Us For Sponsorship
             </Button>
         </div>
     </Section>

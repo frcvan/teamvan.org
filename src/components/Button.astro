@@ -9,6 +9,7 @@ interface Props {
     rel?: string;
     ariaLabel?: string;
     current?: boolean;
+    disabled?: boolean;
 }
 
 const {
@@ -21,22 +22,26 @@ const {
     rel,
     ariaLabel,
     current = false,
+    disabled = false,
 } = Astro.props as Props;
 
 const classes = [
     "btn !px-4 text-base font-bold !min-h-11",
     size === "lg" && "!px-5 text-[1.05rem] !min-h-13",
+    disabled && "pointer-events-none cursor-not-allowed opacity-50",
     className,
 ];
 ---
 
 {href ? (
     <a
-        href={href}
+        href={disabled ? undefined : href}
         class:list={classes}
         data-variant={variant}
         data-size={size === "default" ? undefined : size}
         aria-current={current ? "page" : undefined}
+        aria-disabled={disabled ? "true" : undefined}
+        tabindex={disabled ? -1 : undefined}
         download={download}
         target={target}
         rel={rel}
@@ -52,6 +57,7 @@ const classes = [
         data-size={size === "default" ? undefined : size}
         aria-current={current ? "page" : undefined}
         aria-label={ariaLabel}
+        disabled={disabled}
     >
         <slot />
     </button>
