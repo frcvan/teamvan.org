@@ -5,12 +5,13 @@ import Footer from "@/components/Footer.astro";
 
 interface Props {
     title?: string;
+    description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
     <a
         href="#main-content"
         class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-base focus:border-2 focus:border-black focus:bg-white focus:px-4 focus:py-2 focus:text-main focus:no-underline"
