@@ -1,8 +1,11 @@
 ---
+import { Image } from "astro:assets";
+
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
 import List from "@/components/List.astro";
+import tammyDennis from "@/icons/2026/tammy-dennis.jpeg";
 ---
 
 <Layout
@@ -15,13 +18,25 @@ import List from "@/components/List.astro";
         <H id="community-leadership-heading" level="h2">
             Community Leadership & Advocacy
         </H>
-        <p class="mb-4">
+        <p class="mb-0">
             At the Space Coast Showdown, Team V.A.N. had the privilege of
             inviting and hosting guided tours for influential community leaders,
             educational advocates, and industry professionals. We shared our
             mission as a rookie FRC team and showcased how hands-on STEM
             empowers local youth across Brevard through FIRST:
         </p>
+        <figure class="my-6">
+            <Image
+                src={tammyDennis}
+                alt="Team V.A.N. members talking with Tammy Dennis at the Space Coast Showdown"
+                class="h-auto w-full rounded-base border border-silver object-cover"
+                loading="lazy"
+            />
+            <figcaption class="mt-2 text-sm">
+                Team V.A.N. members introduce Tammy Dennis to the program and
+                show her the competition at the Space Coast Showdown.
+            </figcaption>
+        </figure>
         <ul class="list-disc pl-6 space-y-3 mb-6">
             <li>
                 <strong>Tammy Dennis</strong> (Brevard District 5 School Board

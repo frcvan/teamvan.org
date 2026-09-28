@@ -50,27 +50,29 @@ const socialImageUrl = new URL("/favicon.svg", Astro.site ?? Astro.url);
         <meta name="twitter:image" content={socialImageUrl} />
         <meta name="twitter:image:alt" content="Team V.A.N. logo" />
 
-        <script type="application/ld+json" set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "Organization",
-                    name: siteName,
-                    url: Astro.site,
-                    logo: socialImageUrl,
-                    email: "contact@teamvan.org",
-                    description: pageDescription,
-                    areaServed: ["Brevard County", "Indian River County"],
-                },
-                {
-                    "@type": "WebSite",
-                    name: siteName,
-                    url: Astro.site,
-                    inLanguage: "en-US",
-                },
-            ],
-        })} />
-
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "Organization",
+                        name: siteName,
+                        url: Astro.site,
+                        logo: socialImageUrl,
+                        email: "contact@teamvan.org",
+                        description: pageDescription,
+                        areaServed: ["Brevard County", "Indian River County"],
+                    },
+                    {
+                        "@type": "WebSite",
+                        name: siteName,
+                        url: Astro.site,
+                        inLanguage: "en-US",
+                    },
+                ],
+            })}
+        ></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
