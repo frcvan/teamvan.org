@@ -13,13 +13,21 @@ const pageDescription =
     description ??
     "Team V.A.N. is a student-led FIRST Robotics Competition team based in Palm Bay, serving students across Brevard and Indian River counties.";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
-const socialImageUrl = new URL("/favicon.svg", Astro.site ?? Astro.url);
+const socialImageUrl = new URL("/social-image.png", Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            rel="stylesheet"
+        />
+
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -29,6 +37,7 @@ const socialImageUrl = new URL("/favicon.svg", Astro.site ?? Astro.url);
         <meta name="theme-color" content="#652633" />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="sitemap" href="/sitemap-index.xml" />
+
         <title>{pageTitle}</title>
 
         <meta property="og:type" content="website" />
@@ -39,12 +48,12 @@ const socialImageUrl = new URL("/favicon.svg", Astro.site ?? Astro.url);
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:image" content={socialImageUrl} />
         <meta property="og:image:secure_url" content={socialImageUrl} />
-        <meta property="og:image:type" content="image/svg+xml" />
-        <meta property="og:image:width" content="253" />
-        <meta property="og:image:height" content="253" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Team V.A.N. logo" />
 
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta name="twitter:image" content={socialImageUrl} />
@@ -73,12 +82,6 @@ const socialImageUrl = new URL("/favicon.svg", Astro.site ?? Astro.url);
                 ],
             })}
         ></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-            rel="stylesheet"
-        />
     </head>
     <body class="bg-main m-0 flex min-h-screen w-full flex-col">
         <slot />
