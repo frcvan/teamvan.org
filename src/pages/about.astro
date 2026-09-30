@@ -1,0 +1,78 @@
+---
+import H from "@/components/H.astro";
+import Layout from "@/layouts/PageLayout.astro";
+import Section from "@/components/Section.astro";
+import List from "@/components/List.astro";
+---
+
+<Layout
+    title="About"
+    description="How Team V.A.N. is organized and where we work as a first-year FIRST Robotics Competition team serving southern Brevard and Indian River counties."
+>
+    <H>About Team V.A.N.</H>
+
+    <p>
+        Team V.A.N. (FRC 12148) is a student-led FIRST Robotics Competition team
+        based in Palm Bay, serving students in southern Brevard County and
+        Indian River County.
+    </p>
+
+    <Section aria-labelledby="organization-heading">
+        <H id="organization-heading" level="h2">
+            How the team is organized
+        </H>
+        <p>
+            Student leadership is four team leads specializing in electrical,
+            mechanical, software, or operations. The operations lead manages
+            outreach, fundraising, communications, and other organizational
+            responsibilities. Because membership is still small, students and
+            Leads are expected to work across those areas while we design and
+            build the robot. As the team grows, we plan to form larger, more
+            distinct subteams with additional student leaders.
+        </p>
+        <p>
+            Experienced students will train new members and keep notes on both
+            the technical work and how the team is run, so those
+            responsibilities can be handed to future leaders.
+        </p>
+    </Section>
+
+    <Section aria-labelledby="access-heading">
+        <H id="access-heading" level="h2">
+            Who we serve
+        </H>
+        <p>
+            Indian River County currently has no local FRC team, and students in
+            southern Brevard often face transportation and financial barriers to
+            existing programs. Palm Bay Magnet Senior High operates under a
+            Title I schoolwide program, and Bayside High and Heritage High serve
+            significant populations of economically disadvantaged students.
+        </p>
+    </Section>
+
+    <Section aria-labelledby="facilities-heading">
+        <H id="facilities-heading" level="h2">
+            Where we work
+        </H>
+        <p>
+            We meet and build in more than one place so the team is not
+            dependent on a single partnership.
+        </p>
+        <List>
+            <li>
+                <strong>Mind Forge Guild</strong> is a local makerspace and our
+                primary prototyping location, with woodworking and prototyping
+                facilities. The makerspace has offered free access and weekend
+                space to set up and practice on a field.
+            </li>
+            <li>
+                <strong>Eastern Florida State College</strong> has pledged
+                permanent space on campus for weekday meetings, planning, and
+                team activities. We have access to their machine shop, 3D
+                printer farm, tools, and storage. Metalworking faculty can
+                assist with machining custom metal components, while we supply
+                the raw materials.
+            </li>
+        </List>
+    </Section>
+</Layout>
