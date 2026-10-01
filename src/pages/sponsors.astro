@@ -3,11 +3,12 @@ import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Button from "@/components/Button.astro";
 import Section from "@/components/Section.astro";
+import BudgetTable from "@/components/BudgetTable.astro";
 ---
 
 <Layout
     title="For Sponsors"
-    description="Support Team V.A.N., a first-year 501(c)(3) FIRST Robotics team helping students in Brevard and Indian River counties gain hands-on STEM experience."
+    description="Support Team V.A.N., a first-year FIRST Robotics team helping students in Brevard and Indian River counties gain hands-on STEM experience."
 >
     <H>For Sponsors</H>
 
@@ -34,8 +35,55 @@ import Section from "@/components/Section.astro";
             <strong class="underline underline-offset-4">
                 Anything helps.
             </strong>{" "}
-            As a registered 501(c)(3) nonprofit, monetary contributions and
-            qualifying in-kind donations to Team V.A.N. are tax-deductible.
+            Team V.A.N. does not yet hold its own 501(c)(3) status. We operate
+            as a program of{" "}
+            <a
+                href="/about/"
+                class="text-blue-300 underline underline-offset-4"
+            >
+                Mind Forge Guild
+            </a>
+            , the nonprofit makerspace that hosts our team, so sponsorships and
+            donations are made to Mind Forge Guild on our behalf.
+        </p>
+    </Section>
+
+    <Section aria-labelledby="impact-heading">
+        <H id="impact-heading" level="h2">
+            Why FIRST robotics is worth backing
+        </H>
+        <p>
+            Team V.A.N. competes in FIRST Robotics Competition (FRC), a program
+            with a long track record of measurable outcomes for students who
+            might not otherwise have access to hands-on engineering. Nationally,
+            FIRST alumni report:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+            <li>
+                <strong>~90% college degree attainment</strong>, compared with
+                roughly 55% nationally, according to Brandeis University's
+                10-year FIRST Longitudinal Study.
+            </li>
+            <li>
+                <strong>83%</strong> declare a STEM major by their fourth year
+                of college.
+            </li>
+            <li>
+                <strong>63%</strong> are currently employed in a STEM field.
+            </li>
+            <li>
+                Access to{" "}
+                <strong>
+                    200+ scholarship, university, and workforce partners
+                </strong>{" "}
+                offering exclusive scholarship opportunities to FIRST
+                participants.
+            </li>
+        </ul>
+        <p>
+            Sponsor support turns those outcomes into opportunities for students
+            in Palm Bay and Indian River County who currently have little or no
+            local access to an FRC program.
         </p>
     </Section>
 
@@ -67,7 +115,10 @@ import Section from "@/components/Section.astro";
             a machine shop, 3D printers, tools, and storage. Mind Forge Guild's
             makerspace is a second workspace for prototyping and weekend field
             practice. More about those partnerships is on the{" "}
-            <a href="/about/" class="text-blue-300 underline underline-offset-4">
+            <a
+                href="/about/"
+                class="text-blue-300 underline underline-offset-4"
+            >
                 About
             </a>{" "}
             page.
@@ -94,6 +145,37 @@ import Section from "@/components/Section.astro";
                 businesses, civic groups, or others who may want to help.
             </li>
         </ul>
+    </Section>
+
+    <Section aria-labelledby="budget-heading">
+        <H id="budget-heading" level="h2">
+            Our season budget
+        </H>
+        <p>
+            A competitive season is not cheap, and{" "}
+            <strong class="underline underline-offset-4">
+                we need as much help as we can get.
+            </strong>{" "}
+            Here is a simplified look at what it costs to field a team for one
+            FRC season:
+        </p>
+        <BudgetTable
+            items={[
+                { label: "Registration & regional fees", cost: "$8,500" },
+                { label: "Travel & lodging", cost: "$2,450" },
+                { label: "Robot & prototyping parts", cost: "$9,000" },
+                { label: "Tools & shop equipment", cost: "$5,000" },
+                { label: "Insurance", cost: "$900" },
+                { label: "Food", cost: "$1,200" },
+                { label: "Misc", cost: "$600" },
+            ]}
+            total="$28,750"
+        />
+        <p>
+            Every dollar and every donated part or hour moves us closer to that
+            number, and closer to putting a robot on the field for the first
+            time.
+        </p>
     </Section>
 
     <Section aria-labelledby="donations-heading">

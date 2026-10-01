@@ -1,0 +1,42 @@
+---
+interface BudgetItem {
+    label: string;
+    cost: string;
+}
+
+interface Props {
+    items: BudgetItem[];
+    total: string;
+}
+
+const { items, total } = Astro.props as Props;
+---
+
+<div class="overflow-x-auto rounded-base border border-white/20 shadow-sm">
+    <table class="w-full min-w-max border-collapse text-sm">
+        <thead>
+            <tr class="bg-white text-main">
+                <th class="border-b-2 border-main py-2 pr-4 pl-4 text-left">
+                    Budget item
+                </th>
+                <th class="border-b-2 border-main py-2 pr-4 text-right">
+                    Cost
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {items.map((item, index) => (
+                <tr class={index % 2 === 1 ? "bg-white/5" : ""}>
+                    <td class="py-2 pr-4 pl-4">{item.label}</td>
+                    <td class="py-2 pr-4 text-right">{item.cost}</td>
+                </tr>
+            ))}
+        </tbody>
+        <tfoot>
+            <tr class="border-t-2 border-white/40 font-bold">
+                <td class="py-2 pr-4 pl-4">Total</td>
+                <td class="py-2 pr-4 text-right">{total}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

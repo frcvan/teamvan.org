@@ -11,6 +11,25 @@ import List from "@/components/List.astro";
 >
     <H>Competitions</H>
 
+    <Section aria-labelledby="how-it-works-heading">
+        <H id="how-it-works-heading" level="h2">
+            How qualifying for Worlds works
+        </H>
+        <p>
+            Team V.A.N. is a Regional-style state, which means our registration
+            covers one regional event rather than a district season. We qualify
+            for the FIRST Championship directly out of a regional by placing
+            well enough in the event's rankings and playoffs, or by winning
+            certain awards that carry an automatic bid, such as the Regional
+            Impact Award or an Engineering Inspiration Award.
+        </p>
+        <p>
+            This season we'll be registered for two regionals, the Orlando
+            Regional and the Rocket City Regional, so we get two chances to
+            qualify.
+        </p>
+    </Section>
+
     <Section>
         <H level="h2">Offseason Competitions</H>
         <List>
@@ -84,5 +103,41 @@ import List from "@/components/List.astro";
                 <p class="pl-4">If we qualify.</p>
             </li>
         </List>
+    </Section>
+
+    <Section aria-labelledby="follow-along-heading">
+        <H id="follow-along-heading" level="h2">
+            Follow along
+        </H>
+        <p>
+            Match schedules, rankings, and results for every FRC event are
+            public, including ours once we start competing. Live scores and
+            standings for an event are posted on{" "}
+            <a
+                class="text-blue-300 underline underline-offset-4"
+                href="https://www.thebluealliance.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                The Blue Alliance
+            </a>{" "}
+            and advanced team statistics on{" "}
+            <a
+                class="text-blue-300 underline underline-offset-4"
+                href="https://www.statbotics.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Statbotics
+            </a>{" "}
+            — search "Team 12148" once we've competed at an event. Our{" "}
+            <a
+                href="/calendar/"
+                class="text-blue-300 underline underline-offset-4"
+            >
+                calendar
+            </a>{" "}
+            page has event dates as they're finalized.
+        </p>
     </Section>
 </Layout>

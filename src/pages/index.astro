@@ -2,6 +2,7 @@
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
+import StatGrid from "@/components/StatGrid.astro";
 ---
 
 <Layout
@@ -17,14 +18,44 @@ import Section from "@/components/Section.astro";
         design decisions that shape the season.
     </p>
 
+    <Section aria-labelledby="what-is-frc-heading">
+        <H id="what-is-frc-heading" level="h2">
+            What is FIRST Robotics?
+        </H>
+        <p>
+            The FIRST Robotics Competition (FRC) is an international high school
+            engineering program. Every January, teams get a Kit of Parts and a
+            new game, then have about six weeks to design, build, program, and
+            test a competition robot before shipping it off to events. From
+            February through April, teams compete in head-to-head matches at
+            regional and district events around the world, working to qualify
+            for the FIRST Championship.
+        </p>
+        <p>
+            FRC runs on two values as much as it runs on robots:{" "}
+            <strong>Gracious Professionalism</strong>, treating competitors with
+            the same respect as teammates, and <strong>Coopertition</strong>,
+            the idea that teams can help each other and still compete hard.
+            Teams also earn judged awards for engineering quality, community
+            impact, and mentorship, not just match wins.
+        </p>
+        <StatGrid
+            stats={[
+                { value: "3,700+", label: "teams worldwide" },
+                { value: "33", label: "countries & regions" },
+                { value: "90,000+", label: "students competing" },
+                { value: "~600", label: "teams at FIRST Championship" },
+            ]}
+        />
+    </Section>
+
     <Section>
         <H level="h2">What we do</H>
         <p>
             Founded in 2026, Team V.A.N. (FRC 12148) is in its first FRC season.
             Students run the technical work and the day-to-day organization of
-            the team, with four Team Leads covering Electrical, Mechanical,
-            Software, and Operations. How those roles are split, and where we
-            meet and build, is on the{" "}
+            the team, with four leads managing organization and business. How
+            those roles are split, and where we meet and build, is on the{" "}
             <a
                 href="/about/"
                 class="text-blue-300 underline underline-offset-4"

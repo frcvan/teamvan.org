@@ -1,5 +1,7 @@
 ## Development
 
+Remember to check the existance of nvm when looking for the correct Node.js version.
+
 When starting the dev server, use background mode:
 
 ```

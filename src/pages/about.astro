@@ -3,6 +3,7 @@ import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
 import List from "@/components/List.astro";
+import Timeline from "@/components/Timeline.astro";
 ---
 
 <Layout
@@ -22,18 +23,85 @@ import List from "@/components/List.astro";
             How the team is organized
         </H>
         <p>
-            Student leadership is four team leads specializing in electrical,
-            mechanical, software, or operations. The operations lead manages
-            outreach, fundraising, communications, and other organizational
-            responsibilities. Because membership is still small, students and
-            Leads are expected to work across those areas while we design and
-            build the robot. As the team grows, we plan to form larger, more
-            distinct subteams with additional student leaders.
+            Team V.A.N. is student-run, with adult mentors coaching rather than
+            directing. Four team leads manage organization and business,
+            ensuring the team runs smoothly and that responsibilities are
+            clearly defined.
         </p>
         <p>
-            Experienced students will train new members and keep notes on both
-            the technical work and how the team is run, so those
-            responsibilities can be handed to future leaders.
+            Beyond that, membership is not divided into fixed subteams. Students
+            are free to work wherever they're most interested or most useful
+            that week, whether that's wiring one day and CAD the next, and
+            nobody is locked into one group for the season. Team leads
+            coordinate the work and mentors provide technical guidance and
+            safety oversight, but day-to-day problem solving is student-driven.
+        </p>
+        <p>
+            Experienced students train new members and keep notes on both the
+            technical work and how the team is run, so responsibilities and
+            institutional knowledge can be handed off to future leaders as the
+            team grows.
+        </p>
+    </Section>
+
+    <Section aria-labelledby="timeline-heading">
+        <H id="timeline-heading" level="h2">
+            Our season at a glance
+        </H>
+        <p>
+            Team V.A.N. runs on the standard FIRST Robotics Competition
+            calendar, with a team kickoff of our own in November (exact date TBD) to get new
+            members ready before the season starts. Exact dates shift from year
+            to year; this is the shape of a typical season.
+        </p>
+        <Timeline
+            phases={[
+                {
+                    period: "November",
+                    title: "Team Kickoff",
+                    description:
+                        "New members meet, review safety basics, and get introduced to the team before the official FIRST season begins.",
+                },
+                {
+                    period: "Early January",
+                    title: "Kickoff",
+                    description:
+                        "FIRST reveals the new game. The team studies the rules, brainstorms strategy, and starts prototyping that same weekend.",
+                },
+                {
+                    period: "January – February",
+                    title: "Build season",
+                    description:
+                        "About six weeks to design, build, and program the competition robot, ending on Stop Build Day in late February, when the robot is bagged and no further changes are allowed until competition. The goal is to have it finished and competition-ready in time for our first event, the Orlando Regional, in March.",
+                },
+                {
+                    period: "February – April",
+                    title: "Competition events",
+                    description:
+                        "The team travels to regional events to compete, iterate on the robot between events, and work toward qualifying for the FIRST Championship.",
+                },
+                {
+                    period: "April",
+                    title: "FIRST Championship",
+                    description:
+                        "If the team qualifies, the season culminates at the FIRST Championship in Houston, Texas, alongside roughly 600 teams from around the world.",
+                },
+            ]}
+        />
+    </Section>
+
+    <Section aria-labelledby="commitment-heading">
+        <H id="commitment-heading" level="h2">
+            Time commitment
+        </H>
+        <p>
+            Outside of build season, members typically meet a couple of evenings
+            a week, around 2 hours a session. During the six-week build season
+            leading up to Stop Build Day in late February, that increases
+            significantly, often including weekend sessions, as the team races
+            to have the robot finished and ready to compete at the Orlando
+            Regional in March. Exact hours vary by week and by how close an
+            event is.
         </p>
     </Section>
 

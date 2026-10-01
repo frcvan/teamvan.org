@@ -5,6 +5,7 @@ import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
 import List from "@/components/List.astro";
+import StatGrid from "@/components/StatGrid.astro";
 import tammyDennis from "@/icons/2026/tammy-dennis.jpeg";
 ---
 
@@ -13,16 +14,32 @@ import tammyDennis from "@/icons/2026/tammy-dennis.jpeg";
     description="Learn how Team V.A.N. connects students with community leaders, educators, engineers, and STEM opportunities across Central Florida."
 >
     <H>Outreach</H>
+
+    <Section aria-labelledby="why-outreach-heading">
+        <H id="why-outreach-heading" level="h2">
+            Why outreach matters
+        </H>
+        <p>
+            There's a common saying among teams, "FRC isn't just about building
+            a robot." Teams are judged on how well they spread STEM and FIRST's
+            values in their community. For us, outreach also means introducing
+            the program itself to a part of Florida that doesn't have an
+            established FRC presence yet: hosting tours at competitions,
+            mentoring younger FIRST LEGO League (FLL) teams, and talking with
+            local leaders about what hands-on robotics can do for students here.
+        </p>
+    </Section>
+
     <Section aria-labelledby="community-leadership-heading">
         <H id="community-leadership-heading" level="h2">
             Community Leadership & Advocacy
         </H>
         <p class="mb-0">
-            At the Space Coast Showdown, Team V.A.N. had the privilege of
-            inviting and hosting guided tours for influential community leaders,
-            educational advocates, and industry professionals. We shared our
-            mission as a rookie FRC team and showcased how hands-on STEM
-            empowers local youth across Brevard through FIRST:
+            At the Space Coast Showdown, Team V.A.N. invited and hosted guided
+            tours for community leaders, educational advocates, and industry
+            professionals. We talked about what it's like to be a rookie FRC
+            team and how hands-on STEM through FIRST reaches local youth across
+            Brevard:
         </p>
         <figure class="my-6">
             <Image
@@ -32,10 +49,10 @@ import tammyDennis from "@/icons/2026/tammy-dennis.jpeg";
                 loading="lazy"
             />
             <figcaption class="mt-2 text-sm">
-                Team Van members introduce District 5 school board candidate
+                Team V.A.N. members introduce District 5 school board candidate
                 Tammy Dennis to the FIRST Robotics Competition program and show
                 her the competition at Space Coast Showdown on Saturday, Sept.
-                26
+                26.
             </figcaption>
         </figure>
         <ul class="list-disc pl-6 space-y-3 mb-6">
