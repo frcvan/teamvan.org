@@ -1,0 +1,33 @@
+---
+import { Icon } from "astro-icon/components";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+    title?: string;
+    class?: string;
+}
+
+const { title, class: className, ...props } = Astro.props as Props;
+---
+
+<div
+    role="status"
+    class:list={[
+        "flex gap-4 rounded-base border border-white/20 bg-white/5 p-4",
+        className,
+    ]}
+    {...props}
+>
+    <Icon
+        name="tabler:info-circle"
+        size={20}
+        class="mt-0.5 shrink-0"
+        aria-hidden="true"
+    />
+    <div class="space-y-2">
+        {title && <p class="font-bold">{title}</p>}
+        <div class="text-sm">
+            <slot />
+        </div>
+    </div>
+</div>

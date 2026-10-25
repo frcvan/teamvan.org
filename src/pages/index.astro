@@ -1,4 +1,5 @@
 ---
+import Alert from "@/components/Alert.astro";
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
@@ -17,6 +18,22 @@ import StatGrid from "@/components/StatGrid.astro";
         and they also take on sponsorships, fundraising, outreach, and the
         design decisions that shape the season.
     </p>
+
+    <Alert
+        title="Student kickoff is November 2 at the Mind Forge Guild"
+        class="mt-6"
+    >
+        <p>
+            The team calendar is shared publicly, so you can{" "}
+            <a
+                href="https://calendar.google.com/calendar/u/0?cid=ZnJjMTIxNDhAZ21haWwuY29t"
+                class="text-blue-300 underline underline-offset-4"
+            >
+                <strong>click here</strong>
+            </a>{" "}
+            to add it to your own.
+        </p>
+    </Alert>
 
     <Section aria-labelledby="what-is-frc-heading">
         <H id="what-is-frc-heading" level="h2">
