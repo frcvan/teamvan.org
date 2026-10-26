@@ -34,50 +34,58 @@ import tammyDennis from "@/icons/2026/tammy-dennis.jpeg";
         <H id="community-leadership-heading" level="h2">
             Community leadership & advocacy
         </H>
-        <p class="mb-0">
-            At the Space Coast Showdown, Team V.A.N. invited and hosted guided
-            tours for community leaders, educational advocates, and industry
-            professionals. We talked about what it's like to be a rookie FRC
-            team and how hands-on STEM through FIRST reaches local youth across
-            Brevard:
-        </p>
-        <figure class="my-6">
-            <Image
-                src={tammyDennis}
-                alt="Team V.A.N. members talking with Tammy Dennis at the Space Coast Showdown"
-                class="h-auto w-full rounded-base border border-silver object-cover"
-                loading="lazy"
-            />
-            <figcaption class="mt-2 text-sm">
-                Team V.A.N. members introduce District 5 school board candidate
-                Tammy Dennis to the FIRST Robotics Competition program and show
-                her the competition at Space Coast Showdown on Saturday, Sept.
-                26.
-            </figcaption>
-        </figure>
-        <ul class="list-disc pl-6 space-y-3 mb-6">
-            <li>
-                <strong>Tammy Dennis</strong> (Brevard District 5 School Board
-                Candidate) — Toured our setup and expressed strong support for
-                the FIRST vision and the expansion of robotics programs across
-                Brevard County schools. Viewed and interacted with most Brevard
-                teams.
-            </li>
-            <li>
-                <strong>Gordon B. Coffey</strong> (NASA Mechanical Engineer) —
-                Enthusiastically viewed Florida teams' robots and offered to
-                connect Team V.A.N. with professional engineering networks
-                across Florida, including contacts at aerospace leaders like
-                Lockheed Martin.
-            </li>
-            <li>
-                <strong>Daniel Mondshein</strong> (Eastern Florida State College
-                Collegewide Chair) — Toured with our members and offered full
-                access to EFSC resources, to the best of his ability, to support
-                our students' technical development and post-secondary STEM
-                pathways.
-            </li>
-        </ul>
+        <details class="rounded-base border border-white/20 bg-white/5">
+            <summary class="showdown-summary cursor-pointer p-4 font-semibold">
+                Space Coast Showdown
+            </summary>
+            <div class="space-y-4 px-4 pb-4">
+                <p class="mb-0">
+                    At the Space Coast Showdown, Team V.A.N. invited and hosted
+                    guided tours for community leaders, educational advocates,
+                    and industry professionals. We talked about what it's like
+                    to be a rookie FRC team and how hands-on STEM through FIRST
+                    reaches local youth across Brevard:
+                </p>
+                <figure class="my-6">
+                    <Image
+                        src={tammyDennis}
+                        alt="Team V.A.N. members talking with Tammy Dennis at the Space Coast Showdown"
+                        class="h-auto w-full rounded-base border border-silver object-cover"
+                        loading="lazy"
+                    />
+                    <figcaption class="mt-2 text-sm">
+                        Team V.A.N. members introduce District 5 school board
+                        candidate Tammy Dennis to the FIRST Robotics Competition
+                        program and show her the competition at Space Coast
+                        Showdown on Saturday, Sept. 26.
+                    </figcaption>
+                </figure>
+                <ul class="list-disc pl-6 space-y-3 mb-6">
+                    <li>
+                        <strong>Tammy Dennis</strong> (Brevard District 5 School
+                        Board Candidate) — Toured our setup and expressed strong
+                        support for the FIRST vision and the expansion of
+                        robotics programs across Brevard County schools. Viewed
+                        and interacted with most Brevard teams.
+                    </li>
+                    <li>
+                        <strong>Gordon B. Coffey</strong> (NASA Mechanical
+                        Engineer) — Enthusiastically viewed Florida teams'
+                        robots and offered to connect Team V.A.N. with
+                        professional engineering networks across Florida,
+                        including contacts at aerospace leaders like Lockheed
+                        Martin.
+                    </li>
+                    <li>
+                        <strong>Daniel Mondshein</strong> (Eastern Florida State
+                        College Collegewide Chair) — Toured with our members and
+                        offered full access to EFSC resources, to the best of
+                        his ability, to support our students' technical
+                        development and post-secondary STEM pathways.
+                    </li>
+                </ul>
+            </div>
+        </details>
     </Section>
 
     <Section aria-labelledby="fll-competitions-heading">
@@ -139,3 +147,30 @@ import tammyDennis from "@/icons/2026/tammy-dennis.jpeg";
         </List>
     </Section>
 </Layout>
+
+<style>
+    .showdown-summary {
+        display: flex;
+        align-items: center;
+        list-style: none;
+    }
+
+    .showdown-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .showdown-summary::before {
+        width: 0;
+        height: 0;
+        margin-right: 0.6rem;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 6px solid currentColor;
+        content: "";
+        transition: transform 150ms ease;
+    }
+
+    details[open] > .showdown-summary::before {
+        transform: rotate(90deg);
+    }
+</style>
