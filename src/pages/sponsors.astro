@@ -3,7 +3,6 @@ import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Button from "@/components/Button.astro";
 import Section from "@/components/Section.astro";
-import BudgetTable from "@/components/BudgetTable.astro";
 ---
 
 <Layout
@@ -11,6 +10,18 @@ import BudgetTable from "@/components/BudgetTable.astro";
     description="Support Team V.A.N., a first-year FIRST Robotics team helping students in Brevard and Indian River counties gain hands-on STEM experience."
 >
     <H>For Sponsors</H>
+
+    <Section aria-labelledby="sponsorship-heading">
+        <H id="sponsorship-heading" level="h2">
+            Sponsorship
+        </H>
+        <p>
+            As a first-year team we are still putting operations, travel,
+            registration, and a robot in place at the same time. Sponsor support
+            helps cover those operating costs, and sponsors are featured on team
+            shirts and the website.
+        </p>
+    </Section>
 
     <Section aria-labelledby="rookie-partner-heading">
         <H id="rookie-partner-heading" level="h2">
@@ -144,36 +155,6 @@ import BudgetTable from "@/components/BudgetTable.astro";
                 businesses, civic groups, or others who may want to help.
             </li>
         </ul>
-    </Section>
-
-    <Section aria-labelledby="budget-heading">
-        <H id="budget-heading" level="h2">
-            Our season budget
-        </H>
-        <p>
-            A competitive season is not cheap, and{" "}
-            <strong class="underline underline-offset-4">
-                we need as much help as we can get.
-            </strong>{" "}
-            Here is a simplified look at what it costs to field a team for one
-            FRC season:
-        </p>
-        <BudgetTable
-            items={[
-                { label: "Registration & regional fees", cost: "$8,500" },
-                { label: "Travel & lodging", cost: "$2,450" },
-                { label: "Robot & prototyping parts", cost: "$9,000" },
-                { label: "Tools & shop equipment", cost: "$5,000" },
-                { label: "Insurance", cost: "$900" },
-                { label: "Food", cost: "$1,200" },
-                { label: "Misc", cost: "$600" },
-            ]}
-            total="$28,750"
-        />
-        <p>
-            Every dollar, part, and hour donated gets us closer to that goal and
-            closer to putting a robot on the field for the first time.
-        </p>
     </Section>
 
     <Section aria-labelledby="donations-heading">
