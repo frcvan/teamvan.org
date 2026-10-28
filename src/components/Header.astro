@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
-import favicon from "@/../public/favicon.svg";
+import favicon from "@/../public/favicon.png";
 
 import Navigation from "@/components/Navigation.astro";
 import Button from "@/components/Button.astro";
@@ -29,10 +29,10 @@ const navigationLinks = navlinks.map((navlink) => ({
             <Image
                 src={favicon}
                 alt=""
-                width={48}
+                width={192}
                 height={48}
                 loading="eager"
-                class="block size-10 shrink-0 sm:size-12"
+                class="block shrink-0 max-w-24"
                 style="color-scheme: light"
                 aria-hidden="true"
             />

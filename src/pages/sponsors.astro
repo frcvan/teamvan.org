@@ -3,6 +3,7 @@ import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Button from "@/components/Button.astro";
 import Section from "@/components/Section.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout
@@ -162,22 +163,23 @@ import Section from "@/components/Section.astro";
             Get in touch
         </H>
         <p>
-            If you are interested in supporting the team, we would be glad to
+            If you are interested in investing in the team, we would be glad to
             talk through what a partnership could look like.
         </p>
         <div class="flex flex-wrap gap-4 mt-4">
-            <!--<Button
+            <Button
                 target="_blank"
-                href="/sponsor-packet.pdf"
+                href="/investment-packet.pdf"
                 variant="secondary"
-                disabled={true}
             >
-                Download Sponsor Packet
-            </Button>-->
+                <Icon name="tabler:download" size={32} />
+                Download our Investment Packet
+            </Button>
             <Button
                 href="mailto:contact@teamvan.org?subject=Sponsorship%20Inquiry%20-%20Team%20V.A.N."
                 variant="secondary"
             >
+                <Icon name="tabler:mail" size={32} />
                 Contact Us For Sponsorship
             </Button>
         </div>
