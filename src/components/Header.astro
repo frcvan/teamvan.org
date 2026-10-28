@@ -1,8 +1,5 @@
 ---
-import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-
-import favicon from "@/../public/favicon.png";
 
 import Navigation from "@/components/Navigation.astro";
 import Button from "@/components/Button.astro";
@@ -22,22 +19,20 @@ const navigationLinks = navlinks.map((navlink) => ({
 <header class="relative border-silver bg-secondary-background border-b-2">
     <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 lg:gap-6">
         <a
-            class="text-main flex min-w-0 flex-1 items-center gap-3 text-base font-extrabold no-underline sm:text-xl lg:flex-none lg:text-2xl"
+            class="text-main flex min-w-0 flex-1 items-center text-base font-extrabold no-underline sm:text-xl lg:flex-none lg:text-2xl"
             href="/"
             aria-label="Team V.A.N. home"
         >
-            <Image
-                src={favicon}
-                alt=""
-                width={192}
-                height={48}
-                loading="eager"
-                class="block shrink-0 max-w-24"
-                style="color-scheme: light"
-                aria-hidden="true"
-            />
             <span class="flex min-w-0 flex-col gap-1">
-                <span>Team V.A.N.</span>
+                <img
+                    src="/favicon.svg?v=wordmark-baseline-2"
+                    alt=""
+                    width="1955"
+                    height="335"
+                    loading="eager"
+                    class="block h-auto w-36 shrink-0 sm:w-44"
+                    aria-hidden="true"
+                />
                 <span class="text-xs font-semibold sm:text-sm">
                     Team <i>Very Awesome Name</i> — FRC 12148
                 </span>
