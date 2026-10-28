@@ -29,8 +29,17 @@ const socialImageUrl = new URL("/social-image.png", Astro.site ?? Astro.url);
         />
 
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/favicon-tab.svg?v=van-tab-icon-1"
+            sizes="any"
+        />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="/favicon.ico?v=van-tab-icon-1"
+        />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={pageDescription} />
         <meta name="robots" content="index, follow" />
