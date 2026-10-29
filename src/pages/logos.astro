@@ -1,0 +1,900 @@
+---
+import H from "@/components/H.astro";
+import Layout from "@/layouts/PageLayout.astro";
+import VanName from "@/components/VanName.astro";
+
+interface Specimen {
+    variant: string;
+    name: string;
+    note: string;
+    dark?: boolean;
+}
+
+interface Colorway {
+    name: string;
+    note: string;
+    bg: string;
+    fg: string;
+    speedway?: boolean;
+}
+
+const specimens: Specimen[] = [
+    {
+        variant: "baseline",
+        name: "Baseline",
+        note: "The mark as it sits in the site header.",
+    },
+    {
+        variant: "underline",
+        name: "Underline",
+        note: "A rule under the wordmark, cut on an angle.",
+    },
+    {
+        variant: "speed",
+        name: "Speed stripes",
+        note: "Stripes trailing behind a leaning mark.",
+    },
+    {
+        variant: "checker",
+        name: "Checker flag",
+        note: "On the team checker, with a plate behind it.",
+    },
+    {
+        variant: "outline",
+        name: "Outline",
+        note: "Hairline stroke, no fill.",
+    },
+    {
+        variant: "offset",
+        name: "Offset shadow",
+        note: "A hard drop, stacked twice.",
+    },
+    {
+        variant: "long",
+        name: "Long shadow",
+        note: "Extruded far enough to read as depth.",
+    },
+    {
+        variant: "knockout",
+        name: "Knockout",
+        note: "Reversed out of a maroon field.",
+        dark: true,
+    },
+    {
+        variant: "blueprint",
+        name: "Blueprint",
+        note: "Dashed silhouette on a 20px grid.",
+    },
+    {
+        variant: "repeat",
+        name: "Repeat",
+        note: "The mark tiled as wallpaper.",
+    },
+    {
+        variant: "glow",
+        name: "Glow",
+        note: "White mark with a soft bloom on maroon.",
+        dark: true,
+    },
+    {
+        variant: "halftone",
+        name: "Halftone",
+        note: "Screened down to a dot grid.",
+    },
+    {
+        variant: "neon",
+        name: "Neon tube",
+        note: "Open tube with a white bloom.",
+        dark: true,
+    },
+    {
+        variant: "badge",
+        name: "Badge",
+        note: "Pill lockup with a double ring on silver.",
+    },
+    {
+        variant: "construction",
+        name: "Construction",
+        note: "Hairline mark on center guides.",
+    },
+    {
+        variant: "split",
+        name: "Split fill",
+        note: "Maroon on one side, steel on the other.",
+    },
+    {
+        variant: "ticker",
+        name: "Ticker",
+        note: "A scrolling strip for banners.",
+    },
+    {
+        variant: "tracked",
+        name: "Tracked",
+        note: "Wide letter spacing across the wordmark.",
+    },
+    {
+        variant: "stencil",
+        name: "Stencil",
+        note: "Cut with horizontal slits.",
+    },
+];
+
+const colorways: Colorway[] = [
+    {
+        name: "Gold on black",
+        note: "Flat gold on near-black.",
+        bg: "#111111",
+        fg: "#d4af37",
+    },
+    {
+        name: "Black on gold",
+        note: "Ink reversed out of solid gold.",
+        bg: "#d4af37",
+        fg: "#111111",
+    },
+    {
+        name: "Silver on charcoal",
+        note: "Cool grey on a dark surface.",
+        bg: "#1a1c1e",
+        fg: "#c9d0d5",
+    },
+    {
+        name: "Silver on black",
+        note: "Steel on pure black.",
+        bg: "#000000",
+        fg: "#d7dcdf",
+    },
+    {
+        name: "White on black",
+        note: "Maximum contrast.",
+        bg: "#0a0a0a",
+        fg: "#ffffff",
+    },
+    {
+        name: "Black on white",
+        note: "Ink on paper.",
+        bg: "#ffffff",
+        fg: "#0a0a0a",
+    },
+    {
+        name: "Maroon on white",
+        note: "The site palette, flattened.",
+        bg: "#ffffff",
+        fg: "#652633",
+    },
+    {
+        name: "White on maroon",
+        note: "Reversed site palette.",
+        bg: "#652633",
+        fg: "#ffffff",
+    },
+    {
+        name: "Maroon on cream",
+        note: "Team maroon on warm paper.",
+        bg: "#f4ead8",
+        fg: "#652633",
+    },
+    {
+        name: "Cream on maroon",
+        note: "Warmer than a straight white.",
+        bg: "#652633",
+        fg: "#f4ead8",
+    },
+    {
+        name: "Bone on oxblood",
+        note: "Off-white on a deeper maroon.",
+        bg: "#4a1620",
+        fg: "#f4ead8",
+    },
+    {
+        name: "Ink on bone",
+        note: "Black on a warm paper tone.",
+        bg: "#f2e8d5",
+        fg: "#171717",
+    },
+    {
+        name: "Maroon on silver",
+        note: "Team color on brushed grey.",
+        bg: "#c0c0c0",
+        fg: "#652633",
+    },
+    {
+        name: "Silver on maroon",
+        note: "Grey on team maroon.",
+        bg: "#652633",
+        fg: "#c0c0c0",
+    },
+    {
+        name: "Gold on maroon",
+        note: "Gold on team maroon.",
+        bg: "#652633",
+        fg: "#d4af37",
+    },
+    {
+        name: "Bright gold on maroon",
+        note: "A lighter gold for small sizes.",
+        bg: "#652633",
+        fg: "#f2c14e",
+    },
+    {
+        name: "Maroon on gold",
+        note: "Team maroon on gold.",
+        bg: "#d4af37",
+        fg: "#652633",
+    },
+    {
+        name: "Gold on oxblood",
+        note: "Two warm darks, one metallic.",
+        bg: "#4a1620",
+        fg: "#d4af37",
+    },
+    {
+        name: "Bone on ink",
+        note: "Cream on a blue-black.",
+        bg: "#101215",
+        fg: "#f4ead8",
+    },
+    {
+        name: "Signal orange on black",
+        note: "A high-visibility check.",
+        bg: "#0b0b0b",
+        fg: "#ff6a13",
+    },
+    {
+        name: "Speedway",
+        note: "Speed lines feeding a checked V.",
+        bg: "#0a0a0a",
+        fg: "#f6f2ea",
+        speedway: true,
+    },
+];
+---
+
+<Layout title="Logo Lab" description="Style studies for the Team V.A.N. logo.">
+    <H class="mb-3">Logo Lab</H>
+    <p class="mb-12 max-w-2xl">
+        Nineteen treatments and twenty-one flat color pairs. Pick a pair to see
+        it on every treatment.
+    </p>
+
+    <section class="mb-16">
+        <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+            <H level="h2" class="mb-0">Colorways</H>
+            <button
+                id="palette-reset"
+                type="button"
+                class="rounded-base border-2 border-silver bg-white px-3 py-1.5 text-sm font-bold text-main hover:border-main focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+                Reset to site palette
+            </button>
+        </div>
+        <p class="mb-5 max-w-2xl text-sm">
+            Each card is one background and one foreground. Click a card to
+            apply the pair to the treatments below.
+        </p>
+
+        <ul
+            id="palette-picker"
+            class="logo-lab colorways grid list-none grid-cols-2 gap-4 p-0 sm:grid-cols-3 lg:grid-cols-4"
+        >
+            {
+                colorways.map((colorway) => (
+                    <li class="colorway-item flex flex-col overflow-hidden rounded-base border-2 border-silver bg-secondary-background text-main">
+                        <button
+                            type="button"
+                            class="palette-card"
+                            data-bg={colorway.bg}
+                            data-fg={colorway.fg}
+                            data-name={colorway.name}
+                            aria-pressed="false"
+                            aria-label={`Preview ${colorway.name}`}
+                        >
+                            <div
+                                class:list={[
+                                    "swatch",
+                                    colorway.speedway && "colorway--speedway",
+                                ]}
+                                style={`--cw-bg: ${colorway.bg}; --cw-fg: ${colorway.fg}`}
+                                aria-hidden="true"
+                            >
+                                <VanName full={false} class="logo-type" />
+                            </div>
+
+                            <div class="flex items-start gap-3 border-silver border-t-2 px-3 py-2.5">
+                                <span
+                                    class="mt-0.5 flex shrink-0 gap-1"
+                                    aria-hidden="true"
+                                >
+                                    <span
+                                        class="h-3 w-3 rounded-[2px] border border-black/15"
+                                        style={`background: ${colorway.bg}`}
+                                    >
+                                    </span>
+                                    <span
+                                        class="h-3 w-3 rounded-[2px] border border-black/15"
+                                        style={`background: ${colorway.fg}`}
+                                    >
+                                    </span>
+                                </span>
+                                <span class="min-w-0">
+                                    <span class="block text-xs leading-tight font-bold">
+                                        {colorway.name}
+                                    </span>
+                                    <span class="block text-[11px] leading-snug text-main/70">
+                                        {colorway.note}
+                                    </span>
+                                </span>
+                            </div>
+                        </button>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+
+    <section class="mb-16">
+        <H level="h2" class="mb-2">Treatments</H>
+        <p class="mb-2 max-w-2xl text-sm">
+            How the mark is built: stroke, shadow, pattern, and type.
+        </p>
+        <p
+            id="preview-status"
+            class="mb-5 text-sm font-bold"
+            aria-live="polite"
+        >
+            Previewing the site palette.
+        </p>
+
+        <ul
+            id="treatment-list"
+            class="logo-lab grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3"
+        >
+            {
+                specimens.map((specimen, index) => (
+                    <li
+                        data-spec={specimen.variant}
+                        class="spec flex flex-col overflow-hidden rounded-base border-2 border-silver bg-secondary-background text-main"
+                    >
+                        <div
+                            class:list={[
+                                "swatch",
+                                specimen.dark && "swatch--dark",
+                            ]}
+                            aria-hidden="true"
+                        >
+                            {specimen.variant === "repeat" && (
+                                <div class="rows">
+                                    {[0, 1, 2].map((row) => (
+                                        <div
+                                            class="row"
+                                            style={`--shift: ${-18 - row * 26}px`}
+                                        >
+                                            {[0, 1, 2, 3, 4].map(() => (
+                                                <VanName
+                                                    full={false}
+                                                    class="logo-type logo-type--sm"
+                                                />
+                                            ))}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                            {specimen.variant === "ticker" && (
+                                <div class="ticker">
+                                    <div class="ticker-track">
+                                        {Array.from({ length: 8 }).map(() => (
+                                            <VanName
+                                                full={false}
+                                                class="logo-type logo-type--sm"
+                                            />
+                                        ))}
+                                        {Array.from({ length: 8 }).map(() => (
+                                            <VanName
+                                                full={false}
+                                                class="logo-type logo-type--sm"
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                            {specimen.variant !== "repeat" &&
+                                specimen.variant !== "ticker" && (
+                                    <VanName full={false} class="logo-type" />
+                                )}
+                        </div>
+
+                        <div class="flex items-start gap-3 border-silver border-t-2 px-4 py-3">
+                            <span class="mt-0.5 font-archivo-black text-xs text-main/60">
+                                {String(index + 1).padStart(2, "0")}
+                            </span>
+                            <span class="min-w-0">
+                                <span class="block leading-tight font-bold">
+                                    {specimen.name}
+                                </span>
+                                <span class="block text-xs leading-snug text-main/75">
+                                    {specimen.note}
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+
+    <svg class="h-0 w-0" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="van-split" x1="0" y1="0" x2="1" y2="0.4">
+                <stop offset="0" stop-color="#652633"></stop>
+                <stop offset="0.5" stop-color="#652633"></stop>
+                <stop offset="0.5" stop-color="#9aa1a7"></stop>
+                <stop offset="1" stop-color="#c9d0d5"></stop>
+            </linearGradient>
+            <pattern
+                id="van-checker"
+                width="200"
+                height="200"
+                patternUnits="userSpaceOnUse"
+            >
+                <rect width="200" height="200" fill="#ffffff"></rect>
+                <rect width="100" height="100" fill="#652633"></rect>
+                <rect
+                    x="100"
+                    y="100"
+                    width="100"
+                    height="100"
+                    fill="#652633"
+                ></rect>
+            </pattern>
+        </defs>
+    </svg>
+</Layout>
+
+<style is:global>
+    .logo-lab {
+        --ink: #652633;
+    }
+
+    .logo-lab.is-themed {
+        --ink: var(--pal-fg);
+    }
+
+    .logo-lab .swatch {
+        position: relative;
+        display: flex;
+        min-height: 9rem;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 1.5rem 1rem;
+        color: var(--pal-fg, inherit);
+        background-color: var(--pal-bg, transparent);
+    }
+
+    .logo-lab .swatch--dark {
+        color: var(--pal-fg, #fff);
+        background-color: var(--pal-bg, var(--ink));
+    }
+
+    .logo-lab .logo-type {
+        position: relative;
+        display: block;
+        width: fit-content;
+        margin-inline: auto;
+        font-size: clamp(2rem, 6vw, 2.6rem);
+        line-height: 1;
+    }
+
+    /* Underline */
+    .logo-lab [data-spec="underline"] .logo-type {
+        position: relative;
+        padding-bottom: 0.3em;
+    }
+
+    .logo-lab [data-spec="underline"] .logo-type::after {
+        position: absolute;
+        inset-inline: 0 0.1em;
+        bottom: 0;
+        height: 0.14em;
+        background: currentColor;
+        clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
+        content: "";
+    }
+
+    /* Speed stripes */
+    .logo-lab [data-spec="speed"] .swatch {
+        background-image: repeating-linear-gradient(
+            105deg,
+            transparent 0 10px,
+            color-mix(in srgb, currentColor 20%, transparent) 10px 16px
+        );
+    }
+
+    .logo-lab [data-spec="speed"] .logo-type {
+        transform: skewX(-8deg);
+    }
+
+    /* Checker flag */
+    .logo-lab [data-spec="checker"] .swatch {
+        background-image: conic-gradient(
+            currentColor 25%,
+            transparent 0 50%,
+            currentColor 0 75%,
+            transparent 0
+        );
+        background-size: 2rem 2rem;
+    }
+
+    .logo-lab [data-spec="checker"] .logo-type {
+        background: var(--pal-bg, #fff);
+        padding: 0.14em 0.18em;
+    }
+
+    /* Outline */
+    .logo-lab [data-spec="outline"] .logo-type {
+        -webkit-text-stroke: 2px var(--ink);
+        -webkit-text-fill-color: transparent;
+    }
+
+    .logo-lab [data-spec="outline"] .logo-type svg path {
+        fill: none !important;
+        stroke: var(--ink) !important;
+        stroke-width: 22;
+    }
+
+    /* Offset shadow */
+    .logo-lab [data-spec="offset"] .logo-type {
+        text-shadow:
+            2px 2px 0 rgb(192 192 192 / 70%),
+            4px 4px 0 color-mix(in srgb, currentColor 55%, transparent);
+    }
+
+    .logo-lab [data-spec="offset"] .logo-type svg {
+        filter: drop-shadow(2px 2px 0 rgb(192 192 192 / 70%))
+            drop-shadow(
+                4px 4px 0 color-mix(in srgb, currentColor 55%, transparent)
+            );
+    }
+
+    /* Long shadow */
+    .logo-lab [data-spec="long"] .logo-type {
+        text-shadow: 10px 10px 0
+            color-mix(in srgb, currentColor 30%, transparent);
+    }
+
+    .logo-lab [data-spec="long"] .logo-type svg {
+        filter: drop-shadow(
+            10px 10px 0 color-mix(in srgb, currentColor 30%, transparent)
+        );
+    }
+
+    /* Blueprint */
+    .logo-lab [data-spec="blueprint"] .swatch {
+        background-image:
+            linear-gradient(
+                to right,
+                color-mix(in srgb, currentColor 18%, transparent) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                color-mix(in srgb, currentColor 18%, transparent) 1px,
+                transparent 1px
+            );
+        background-size: 1.25rem 1.25rem;
+    }
+
+    .logo-lab [data-spec="blueprint"] .logo-type {
+        -webkit-text-stroke: 1.5px var(--ink);
+        -webkit-text-fill-color: transparent;
+    }
+
+    .logo-lab [data-spec="blueprint"] .logo-type svg path {
+        fill: none !important;
+        stroke: var(--ink) !important;
+        stroke-width: 14;
+        stroke-dasharray: 48 30;
+    }
+
+    /* Repeat */
+    .logo-lab [data-spec="repeat"] .swatch {
+        padding-inline: 0;
+    }
+
+    .logo-lab [data-spec="repeat"] .rows {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .logo-lab [data-spec="repeat"] .row {
+        display: flex;
+        gap: 1.5rem;
+        opacity: 0.45;
+        transform: translateX(var(--shift, 0));
+    }
+
+    .logo-lab [data-spec="repeat"] .row:nth-child(2) {
+        opacity: 0.75;
+    }
+
+    .logo-lab [data-spec="repeat"] .logo-type--sm {
+        font-size: 1.35rem;
+    }
+
+    .logo-lab [data-spec="ticker"] .logo-type--sm {
+        font-size: 1.35rem;
+        margin-inline: 0 1.5rem;
+    }
+
+    /* Glow */
+    .logo-lab [data-spec="glow"] .swatch {
+        background-color: var(--pal-bg, #3d151d);
+    }
+
+    .logo-lab [data-spec="glow"] .logo-type {
+        color: var(--pal-fg, #fff);
+        text-shadow:
+            0 0 6px color-mix(in srgb, currentColor 85%, transparent),
+            0 0 22px color-mix(in srgb, currentColor 45%, transparent);
+    }
+
+    .logo-lab [data-spec="glow"] .logo-type svg {
+        filter: drop-shadow(
+                0 0 5px color-mix(in srgb, currentColor 90%, transparent)
+            )
+            drop-shadow(
+                0 0 14px color-mix(in srgb, currentColor 50%, transparent)
+            );
+    }
+
+    /* Halftone */
+    .logo-lab [data-spec="halftone"] .logo-type {
+        -webkit-mask-image: radial-gradient(circle, #000 42%, transparent 46%);
+        mask-image: radial-gradient(circle, #000 42%, transparent 46%);
+        -webkit-mask-size: 5px 5px;
+        mask-size: 5px 5px;
+    }
+
+    /* Neon tube */
+    .logo-lab [data-spec="neon"] .swatch {
+        background-color: var(--pal-bg, #17080b);
+    }
+
+    .logo-lab [data-spec="neon"] .logo-type {
+        -webkit-text-stroke: 2px var(--pal-fg, #fff);
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(
+                0 0 4px color-mix(in srgb, var(--pal-fg, #fff) 90%, transparent)
+            )
+            drop-shadow(
+                0 0 14px
+                    color-mix(in srgb, var(--pal-fg, #fff) 45%, transparent)
+            );
+    }
+
+    .logo-lab [data-spec="neon"] .logo-type svg path {
+        fill: none !important;
+        stroke: var(--pal-fg, #fff) !important;
+        stroke-width: 20;
+        stroke-linejoin: round;
+    }
+
+    /* Badge */
+    .logo-lab [data-spec="badge"] .swatch {
+        background: #c0c0c0;
+    }
+
+    .logo-lab [data-spec="badge"] .logo-type {
+        border-radius: 999px;
+        background: var(--pal-bg, #fff);
+        padding: 0.5em 0.9em 0.5em 0.75em;
+        box-shadow:
+            0 0 0 2px var(--ink),
+            0 0 0 6px var(--pal-bg, #fff),
+            0 0 0 8px var(--ink);
+        font-size: clamp(1.5rem, 4.5vw, 1.9rem);
+    }
+
+    /* Construction */
+    .logo-lab [data-spec="construction"] .swatch {
+        background-image:
+            radial-gradient(
+                circle at 50% 50%,
+                transparent 0 3.35rem,
+                color-mix(in srgb, currentColor 30%, transparent) 3.35rem
+                    calc(3.35rem + 1px),
+                transparent calc(3.35rem + 1px)
+            ),
+            linear-gradient(
+                to right,
+                transparent calc(50% - 0.5px),
+                color-mix(in srgb, currentColor 35%, transparent)
+                    calc(50% - 0.5px) calc(50% + 0.5px),
+                transparent calc(50% + 0.5px)
+            ),
+            linear-gradient(
+                to bottom,
+                transparent calc(50% - 0.5px),
+                color-mix(in srgb, currentColor 35%, transparent)
+                    calc(50% - 0.5px) calc(50% + 0.5px),
+                transparent calc(50% + 0.5px)
+            );
+    }
+
+    .logo-lab [data-spec="construction"] .logo-type {
+        -webkit-text-stroke: 1px var(--ink);
+        -webkit-text-fill-color: transparent;
+    }
+
+    .logo-lab [data-spec="construction"] .logo-type svg path {
+        fill: none !important;
+        stroke: var(--ink) !important;
+        stroke-width: 12;
+    }
+
+    /* Split fill */
+    .logo-lab [data-spec="split"] .logo-type {
+        background-image: linear-gradient(
+            100deg,
+            currentColor 0 50%,
+            #9aa1a7 50% 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .logo-lab [data-spec="split"] .logo-type svg path {
+        fill: url("#van-split") !important;
+    }
+
+    /* Ticker */
+    .logo-lab [data-spec="ticker"] .swatch,
+    .logo-lab [data-spec="repeat"] .swatch {
+        padding-inline: 0;
+    }
+
+    .logo-lab [data-spec="ticker"] .ticker {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .logo-lab [data-spec="ticker"] .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: van-ticker 20s linear infinite;
+    }
+
+    .logo-lab [data-spec="ticker"] .logo-type {
+        margin-inline: 0 1.5rem;
+    }
+
+    @keyframes van-ticker {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Tracked */
+    .logo-lab [data-spec="tracked"] .logo-type {
+        letter-spacing: 0.14em;
+    }
+
+    /* Stencil */
+    .logo-lab [data-spec="stencil"] .logo-type {
+        -webkit-mask-image: repeating-linear-gradient(
+            to bottom,
+            #000 0 0.11em,
+            transparent 0.11em 0.17em
+        );
+        mask-image: repeating-linear-gradient(
+            to bottom,
+            #000 0 0.11em,
+            transparent 0.11em 0.17em
+        );
+    }
+
+    /* Colorway picker */
+    .logo-lab.colorways .swatch {
+        min-height: 7rem;
+    }
+
+    .logo-lab.colorways .logo-type {
+        font-size: clamp(1.4rem, 4vw, 1.8rem);
+    }
+
+    .logo-lab .colorway--speedway .swatch {
+        padding-inline: 1rem;
+    }
+
+    .logo-lab .colorway--speedway .swatch::before {
+        position: absolute;
+        inset: 0 38% 0 0;
+        background-image: repeating-linear-gradient(
+            180deg,
+            transparent 0 9px,
+            rgb(255 255 255 / 30%) 9px 11px
+        );
+        -webkit-mask-image: linear-gradient(to right, #000 0 25%, transparent);
+        mask-image: linear-gradient(to right, #000 0 25%, transparent);
+        content: "";
+    }
+
+    .logo-lab .colorway--speedway .logo-type {
+        font-size: clamp(1.6rem, 4.5vw, 2rem);
+    }
+
+    .logo-lab .colorway--speedway .logo-type svg path {
+        fill: url("#van-checker") !important;
+    }
+
+    .palette-card {
+        display: block;
+        width: 100%;
+        border: 0;
+        background: var(--cw-bg);
+        padding: 0;
+        color: var(--cw-fg);
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .palette-card .swatch {
+        background-color: var(--cw-bg);
+        color: var(--cw-fg);
+    }
+
+    .palette-card:focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: -3px;
+    }
+
+    .colorway-item[data-selected] {
+        border-color: var(--ink);
+        box-shadow: 0 0 0 3px rgb(101 38 51 / 30%);
+    }
+</style>
+
+<script>
+    const treatments = document.querySelector("#treatment-list");
+    const picker = document.querySelector("#palette-picker");
+    const status = document.querySelector("#preview-status");
+    const reset = document.querySelector("#palette-reset");
+
+    if (treatments && picker && status) {
+        const buttons = Array.from(
+            picker.querySelectorAll("button[data-bg]"),
+        );
+
+        const select = (button) => {
+            buttons.forEach((candidate) => {
+                const isSelected = candidate === button;
+                candidate.setAttribute("aria-pressed", String(isSelected));
+                candidate
+                    .closest("li")
+                    ?.toggleAttribute("data-selected", isSelected);
+            });
+
+            if (button) {
+                treatments.style.setProperty("--pal-bg", button.dataset.bg);
+                treatments.style.setProperty("--pal-fg", button.dataset.fg);
+                treatments.classList.add("is-themed");
+                status.textContent = `Previewing ${button.dataset.name}.`;
+            } else {
+                treatments.style.removeProperty("--pal-bg");
+                treatments.style.removeProperty("--pal-fg");
+                treatments.classList.remove("is-themed");
+                status.textContent = "Previewing the site palette.";
+            }
+        };
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => select(button));
+        });
+
+        reset?.addEventListener("click", () => select(null));
+    }
+</script>

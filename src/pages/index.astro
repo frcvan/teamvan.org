@@ -3,22 +3,23 @@ import Alert from "@/components/Alert.astro";
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
+import VanName from "@/components/VanName.astro";
 ---
 
 <Layout
     title="FRC 12148"
     description="Team V.A.N. is a student-led FIRST Robotics Competition team in Palm Bay, Florida, serving students in southern Brevard and Indian River counties."
 >
-    <H class="mb-2">About Team V.A.N.</H>
-
-    <p class="mb-6 text-white font-semibold">
-        Team <i>Very Awesome Name</i> — FRC 12148
-    </p>
+    <H class="mb-2">
+        About <VanName full />
+    </H>
 
     <p>
-        Team V.A.N. (FRC 12148) is a student-led FIRST Robotics Competition team
-        based in Palm Bay, serving students in southern Brevard County and
-        Indian River County.
+        FIRST Robotics Competition Team <strong class="underline">V</strong>
+        ery <strong class="underline">A</strong>
+        wesome <strong class="underline">N</strong>ame (FRC 12148) is a
+        student-led FIRST Robotics Competition team based in Palm Bay, serving
+        students in southern Brevard County and Indian River County.
     </p>
 
     <Alert title="Student Kickoff" class="mt-6">

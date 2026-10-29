@@ -1,0 +1,22 @@
+---
+import VanLogo from "@/images/van-logo.svg";
+
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"span"> {
+    /** Prefix the name with "Team" */
+    full?: boolean;
+}
+
+const { full = true, class: className, ...props } = Astro.props as Props;
+---
+
+<span
+    class:list={["font-archivo-black font-normal whitespace-nowrap", className]}
+    {...props}
+>{full ? "Team " : ""}<VanLogo
+        width="1365.3333"
+        height="1365.3333"
+        class="inline-block h-[0.74em] w-[0.74em] align-baseline -mr-[0.11em]"
+        aria-hidden="true"
+    /><span class="sr-only">V</span>.A.N.</span>

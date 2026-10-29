@@ -3,8 +3,7 @@ import { Icon } from "astro-icon/components";
 
 import Navigation from "@/components/Navigation.astro";
 import Button from "@/components/Button.astro";
-
-import VanLogo from "@/images/van-logo.svg";
+import VanName from "@/components/VanName.astro";
 
 interface Props {
     navlinks: { href: string; label: string; labelClass?: string }[];
@@ -21,16 +20,11 @@ const navigationLinks = navlinks.map((navlink) => ({
 <header class="relative border-silver bg-secondary-background border-b-2">
     <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 lg:gap-6">
         <a
-            class="text-main flex min-w-0 flex-1 items-center text-base font-extrabold no-underline sm:text-xl lg:flex-none lg:text-2xl"
+            class="text-main flex h-11 min-w-0 flex-1 items-center ps-1 text-5xl no-underline lg:flex-none lg:text-6xl"
             href="/"
             aria-label="Team V.A.N. home"
         >
-            <VanLogo
-                width="1280"
-                height="448"
-                class="block h-auto w-36 shrink-0 sm:w-44 fill-main!"
-                aria-hidden="true"
-            />
+            <VanName full={false} class="leading-none" />
         </a>
 
         <div class="hidden lg:block">
