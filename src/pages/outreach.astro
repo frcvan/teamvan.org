@@ -7,6 +7,7 @@ import Section from "@/components/Section.astro";
 import List from "@/components/List.astro";
 import StatGrid from "@/components/StatGrid.astro";
 import tammyDennis from "@/images/2026/tammy-dennis.jpeg";
+import westShoreScrimmage from "@/images/2026/west-shore-fll-scrimmage.jpg";
 ---
 
 <Layout
@@ -111,12 +112,22 @@ import tammyDennis from "@/images/2026/tammy-dennis.jpeg";
             <summary class="showdown-summary cursor-pointer p-4 font-semibold">
                 West Shore FLL Scrimmage
             </summary>
+            <div class="px-4 pb-4">
+                <figure>
+                    <Image
+                        src={westShoreScrimmage}
+                        alt="Students gathered around an FLL robotics field at the West Shore FLL Scrimmage"
+                        class="h-auto w-full rounded-base border border-silver object-cover"
+                        loading="lazy"
+                    />
+                </figure>
+            </div>
         </details>
     </Section>
 
     <Section aria-labelledby="fll-competitions-heading">
         <H id="fll-competitions-heading" level="h2">
-            Upcoming possible FLL events
+            Upcoming FLL events
         </H>
         <List>
             <li>

@@ -2,7 +2,6 @@
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
-import List from "@/components/List.astro";
 import Timeline from "@/components/Timeline.astro";
 import StatGrid from "@/components/StatGrid.astro";
 ---
@@ -84,31 +83,5 @@ import StatGrid from "@/components/StatGrid.astro";
                 },
             ]}
         />
-    </Section>
-
-    <Section aria-labelledby="facilities-heading">
-        <H id="facilities-heading" level="h2">
-            Where we work
-        </H>
-        <p>
-            We meet and build in more than one place so the team is not
-            dependent on a single partnership.
-        </p>
-        <List>
-            <li>
-                <strong>Mind Forge Guild</strong> is a local makerspace and our
-                primary prototyping location, with woodworking and prototyping
-                facilities. The makerspace has offered free access and weekend
-                space to set up and practice on a field.
-            </li>
-            <li>
-                <strong>Eastern Florida State College</strong> has pledged
-                permanent space on campus for weekday meetings, planning, and
-                team activities. We have access to their machine shop, 3D
-                printer farm, tools, and storage. Metalworking faculty can
-                assist with machining custom metal components, while we supply
-                the raw materials.
-            </li>
-        </List>
     </Section>
 </Layout>
