@@ -65,6 +65,28 @@ main {
         0 0 8px rgb(255 255 255 / 12%);
 }
 
+@media (min-width: 1600px) {
+    #main-content {
+        max-width: 90rem;
+        padding-inline: 4rem;
+        font-size: clamp(1.25rem, 1.05vw, 1.75rem);
+        line-height: 1.85;
+        letter-spacing: 0.015em;
+    }
+
+    #main-content p {
+        word-spacing: 0.15em;
+    }
+
+    #main-content > section {
+        margin-top: 4.5rem;
+    }
+
+    #main-content > section > :not(:last-child) {
+        margin-bottom: 1.75rem;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
