@@ -4,6 +4,8 @@ import { Icon } from "astro-icon/components";
 import Navigation from "@/components/Navigation.astro";
 import Button from "@/components/Button.astro";
 
+import VanLogo from "@/images/van-logo.svg";
+
 interface Props {
     navlinks: { href: string; label: string; labelClass?: string }[];
 }
@@ -23,13 +25,10 @@ const navigationLinks = navlinks.map((navlink) => ({
             href="/"
             aria-label="Team V.A.N. home"
         >
-            <img
-                src="/team-van-logo.png?v=van-wordmark-red-1"
-                alt=""
+            <VanLogo
                 width="1280"
                 height="448"
-                loading="eager"
-                class="block h-auto w-36 shrink-0 sm:w-44"
+                class="block h-auto w-36 shrink-0 sm:w-44 fill-main!"
                 aria-hidden="true"
             />
         </a>
@@ -75,11 +74,13 @@ const navigationLinks = navlinks.map((navlink) => ({
         const target = event.target;
         if (!(target instanceof Node)) return;
 
-        document.querySelectorAll<HTMLDetailsElement>(".mobile-menu[open]").forEach((menu) => {
-            if (!menu.contains(target)) {
-                menu.open = false;
-            }
-        });
+        document
+            .querySelectorAll<HTMLDetailsElement>(".mobile-menu[open]")
+            .forEach((menu) => {
+                if (!menu.contains(target)) {
+                    menu.open = false;
+                }
+            });
     });
 </script>
 
