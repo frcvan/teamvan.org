@@ -70,6 +70,19 @@ const navigationLinks = navlinks.map((navlink) => ({
     </div>
 </header>
 
+<script>
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Node)) return;
+
+        document.querySelectorAll<HTMLDetailsElement>(".mobile-menu[open]").forEach((menu) => {
+            if (!menu.contains(target)) {
+                menu.open = false;
+            }
+        });
+    });
+</script>
+
 <style>
     .mobile-menu summary::-webkit-details-marker {
         display: none;
