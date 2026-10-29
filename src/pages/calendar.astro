@@ -1,5 +1,7 @@
 ---
+import { Icon } from "astro-icon/components";
 import Alert from "@/components/Alert.astro";
+import Button from "@/components/Button.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import H from "@/components/H.astro";
 import Iframe from "@/components/Iframe.astro";
@@ -27,16 +29,6 @@ import Section from "@/components/Section.astro";
                 Mind Forge Guild
             </a>
         </p>
-        <p>
-            The team calendar is shared publicly.{" "}
-            <a
-                href="https://calendar.google.com/calendar/u/0?cid=ZnJjMTIxNDhAZ21haWwuY29t"
-                class="text-blue-300 underline underline-offset-4"
-            >
-                <strong>click here</strong>
-            </a>{" "}
-            to add it to your own.
-        </p>
     </Alert>
     <Section>
         <Iframe
@@ -49,5 +41,14 @@ import Section from "@/components/Section.astro";
         >
             <Loader slot="loader" />
         </Iframe>
+        <div class="flex flex-wrap gap-4 mt-4">
+            <Button
+                href="https://calendar.google.com/calendar/u/0?cid=ZnJjMTIxNDhAZ21haWwuY29t"
+                variant="secondary"
+            >
+                <Icon name="tabler:plus" size={32} />
+                Add to my Calendar
+            </Button>
+        </div>
     </Section>
 </Layout>
