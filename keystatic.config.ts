@@ -1,11 +1,13 @@
 import { config, fields, singleton } from "@keystatic/core";
 import pages from "./src/content-schema/pages.json";
 
-// Local development edits files; the hosted editor authenticates with GitHub.
-const github = import.meta.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG;
+// Local development edits files; the deployed Worker authenticates with GitHub.
+const github = import.meta.env.PROD
+    ? import.meta.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
+    : undefined;
 if (import.meta.env.PROD && !github) {
     throw new Error(
-        "Set PUBLIC_KEYSTATIC_GITHUB_APP_SLUG before building the hosted editor. Local file editing must not be published.",
+        "Set PUBLIC_KEYSTATIC_GITHUB_APP_SLUG before building the deployed editor. Local file editing must not be published.",
     );
 }
 

@@ -5,8 +5,7 @@
         "**/*"
     ],
     "exclude": [
-        "dist",
-        "dist-editor"
+        "dist"
     ],
     "compilerOptions": {
         "paths": {

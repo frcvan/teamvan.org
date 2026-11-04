@@ -1,6 +1,6 @@
 # Team V.A.N. website
 
-Astro website for teamvan.org. The public site is built as static files and deployed to GitHub Pages when `main` changes.
+Astro website for teamvan.org. Public pages are prerendered at build time, and the Keystatic editor runs in the same Cloudflare Worker under `/keystatic/`.
 
 ## Editing text locally
 
@@ -18,31 +18,36 @@ The editor covers text on all seven pages and the footer: headings, paragraphs, 
 
 Content is in `src/content/site/*.json`. Field definitions and labels are in `src/content-schema/pages.json`; `keystatic.config.ts` creates the editor from those definitions. Field keys must remain stable because page templates reference them. Content is rendered as escaped text, not executable HTML.
 
-## Shared online editor
+`astro dev` runs on Astro's Node server without an adapter so Keystatic can write files. Builds use `@astrojs/cloudflare`, so the editor's API routes run in the Worker.
 
-GitHub Pages cannot run the server endpoints required for Keystatic authentication. Deploy a separate Node.js editor service from this repository (for example, at an editor subdomain). The public website can remain on GitHub Pages.
+## Deploying to Cloudflare
 
-1. Set up a Keystatic GitHub App for `frcvan/teamvan.org` using the [GitHub mode guide](https://keystatic.com/docs/github-mode). Use a local `.env` with `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` set to your intended app slug to enable the GitHub setup flow at `/keystatic/`. Complete GitHub's app installation for this repository.
-2. Copy the generated `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET`, and `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` into the editor host's environment settings. `.env.example` lists the names. Keep secrets out of Git and out of public environment variables. Use the same values for building and running the service.
-3. Configure the GitHub App's callback URL for the editor's final HTTPS address: `https://YOUR-EDITOR-HOST/api/keystatic/github/oauth/callback`.
-4. Install with `pnpm install --frozen-lockfile`, build with `pnpm build:editor`, and start with `HOST=0.0.0.0 PORT=3000 pnpm start:editor` (use the port supplied by your hosting service). The editor outputs to `dist-editor/`; public builds still output to `dist/`.
-5. Give teammates GitHub accounts with write access to this repository. They visit the editor's `/keystatic/` URL and sign in with GitHub. Edits saved on `main` trigger the existing GitHub Pages deployment. Changes on another branch need to be merged into `main` first.
+`pnpm build` writes the site and the Worker entry point to `dist/`. `pnpm preview` serves that build with the Cloudflare runtime, `pnpm exec wrangler deploy` uploads it, and `pnpm deploy` runs both commands.
 
-The hosted editor build requires a GitHub App slug and refuses to publish local file editing mode. No shared editor has been deployed or GitHub App authorized just by installing these files.
+The deployed editor uses GitHub storage. The build reads `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`, and the Worker reads these secrets at runtime:
+
+- `KEYSTATIC_GITHUB_CLIENT_ID`
+- `KEYSTATIC_GITHUB_CLIENT_SECRET`
+- `KEYSTATIC_SECRET` (at least 32 characters)
+
+Set the secrets with `pnpm exec wrangler secret put NAME` or in the Cloudflare dashboard. Keep local values in `.env`. To use the editor in `pnpm preview`, add the three secrets to `.dev.vars` before building; Cloudflare copies them into the preview output. A production build without `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` fails on purpose so local file editing is never published.
+
+`.github/workflows/deploy-cloudflare.yml` deploys on pushes to `main`. It expects `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` as a repository variable and `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_ACCOUNT_ID` as repository secrets.
+
+Add `teamvan.org` as a custom domain for the Worker in the Cloudflare dashboard. Once the zone is in the same account, the commented `[[routes]]` block in `wrangler.toml` can bind the domain during deploys instead.
+
+## GitHub app
+
+1. Create a Keystatic GitHub App for `frcvan/teamvan.org` using the [GitHub mode guide](https://keystatic.com/docs/github-mode). Grant Contents read/write, Metadata read-only, and Pull requests read-only. Set the callback URL to `https://teamvan.org/api/keystatic/github/oauth/callback`.
+2. Copy the app's values into the Worker secrets and the build variable described above.
+3. Give teammates GitHub accounts with write access to this repository. They visit `/keystatic/` on the deployed site and sign in with GitHub. Saves go to GitHub, and edits on `main` deploy through the workflow. Changes on another branch need to be merged into `main` first.
 
 ## Checks
 
 ```sh
 pnpm check:content
 pnpm exec astro check
-pnpm build
-pnpm build:editor # requires configured PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
+PUBLIC_KEYSTATIC_GITHUB_APP_SLUG=your-app-slug pnpm build
 ```
 
 Official integration documentation: https://keystatic.com/docs/installation-astro
-
-## Render editor deployment
-
-`render.yaml` defines a separate free Node.js web service for the editor. After these changes are pushed, sign in at https://dashboard.render.com/ and choose **New → Blueprint**, select `frcvan/teamvan.org`, and supply the four Keystatic environment variables when prompted. Review the service before deploying. Set the GitHub App callback URL to the resulting editor hostname as described above.
-
-The free editor sleeps after 15 minutes without traffic and can take about a minute to wake up. This does not affect the public website. Content is saved to GitHub, so it does not depend on Render's temporary filesystem. Render's free services have usage limits; see https://render.com/docs/free. No Render service is created by adding this configuration file.
