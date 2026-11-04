@@ -56,7 +56,7 @@ export default defineConfig({
     },
 
     site: "https://teamvan.org",
-    trailingSlash: development ? "ignore" : "always",
+    trailingSlash: "ignore",
 
     prefetch: {
         prefetchAll: true,
