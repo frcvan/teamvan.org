@@ -14,7 +14,7 @@ Open the address printed by that command followed by `/keystatic/`. Choose a pag
 
 Manage the server with `pnpm exec astro dev status`, `pnpm exec astro dev logs`, and `pnpm exec astro dev stop`.
 
-The editor edits the seven main pages as MDX. Each page has a title, description, and an MDX body stored in `src/content/pages/*.mdx`. The body supports Markdown plus these custom components: Alert, Collapsing item, Button, Button row, Facts grid, Season timeline, Figure, and Embed. Keystatic's MDX editor does not support import statements or raw HTML tags, so use Markdown and those components instead of inline HTML.
+The editor edits the seven main pages as MDX. Each page has a title, description, and an MDX body stored in `src/content/pages/*.mdx`. The body supports Markdown plus these custom components: Alert, Collapsible section, Button, Button row, Facts grid, Season timeline, Figure, and Embed. Each one explains itself in the editor's insert menu, and required fields cannot be left empty. Keystatic's MDX editor does not support import statements or raw HTML tags, so use Markdown and those components instead of inline HTML.
 
 Page layouts, navigation, the footer, and the component map in `src/components/mdx.ts` stay in code. Each `src/pages/*.astro` wrapper imports its matching MDX file and renders it through the shared page layout. The kickoff announcement currently appears in both Home and Calendar; update both pages when changing it.
 

@@ -12,27 +12,58 @@ const pageImages = {
     publicPath: "/images/pages/",
 };
 
+// Keep this list equal to the `include` allowlist in astro.config.mjs. An icon
+// outside that list is silently dropped at build time, so the editor only
+// offers the icons the site can actually render.
+const iconOptions = [
+    { label: "No icon", value: "" },
+    { label: "Download", value: "tabler:download" },
+    { label: "Email", value: "tabler:mail" },
+    { label: "Plus", value: "tabler:plus" },
+    { label: "Info", value: "tabler:info-circle" },
+    { label: "Menu", value: "tabler:menu" },
+    { label: "GitHub", value: "tabler:brand-github" },
+    { label: "Instagram", value: "tabler:brand-instagram" },
+    { label: "YouTube", value: "tabler:brand-youtube" },
+] as const;
+
 const contentComponents = {
     Alert: wrapper({
         label: "Alert",
+        description: "A highlighted notice for a date, time, or announcement.",
         schema: {
-            title: fields.text({ label: "Title" }),
+            title: fields.text({
+                label: "Title",
+                validation: { isRequired: true },
+            }),
         },
     }),
     Collapse: wrapper({
-        label: "Collapsing item",
+        label: "Collapsible section",
+        description: "A section readers open to see the details inside.",
         schema: {
-            title: fields.text({ label: "Title" }),
+            title: fields.text({
+                label: "Title",
+                validation: { isRequired: true },
+            }),
         },
     }),
     ButtonGroup: wrapper({
         label: "Button row",
+        description:
+            "Holds two or more buttons so they sit next to each other.",
         schema: {},
     }),
     Button: wrapper({
         label: "Button",
+        description: "A link that is styled as a button.",
         schema: {
-            href: fields.text({ label: "Link" }),
+            href: fields.text({
+                label: "Link",
+                description:
+                    "A page path such as /sponsors, a mailto: address, or a full https:// URL.",
+                validation: { isRequired: true },
+            }),
             variant: fields.select({
                 label: "Style",
                 options: [
@@ -41,49 +72,93 @@ const contentComponents = {
                 ],
                 defaultValue: "primary",
             }),
-            icon: fields.text({
+            icon: fields.select({
                 label: "Icon",
-                description: "Optional Tabler icon name, such as tabler:mail.",
+                description: "Shown before the button text.",
+                options: iconOptions,
+                defaultValue: "",
             }),
             newTab: fields.checkbox({
                 label: "Open in a new tab",
+                description:
+                    "Links to other websites open in a new tab on their own.",
                 defaultValue: false,
             }),
         },
     }),
     StatGrid: repeating({
         label: "Facts grid",
+        description: "A row of facts, up to four at a time.",
         children: ["Fact"],
+        validation: { children: { min: 1, max: 4 } },
         schema: {},
     }),
     Fact: block({
         label: "Fact",
+        description: "A large number or short fact with a caption.",
         schema: {
-            value: fields.text({ label: "Value" }),
-            label: fields.text({ label: "Label" }),
+            value: fields.text({
+                label: "Value",
+                description: "The large text, such as 3,700+.",
+                validation: { isRequired: true },
+            }),
+            label: fields.text({
+                label: "Label",
+                description: "The small caption under the value.",
+                validation: { isRequired: true },
+            }),
         },
     }),
     Timeline: repeating({
         label: "Season timeline",
+        description: "Season phases drawn as a vertical timeline.",
         children: ["Phase"],
+        validation: { children: { min: 1 } },
         schema: {},
     }),
     Phase: block({
         label: "Timeline phase",
+        description: "One point on the season timeline.",
         schema: {
-            period: fields.text({ label: "Period" }),
-            title: fields.text({ label: "Title" }),
-            description: fields.text({ label: "Description", multiline: true }),
+            period: fields.text({
+                label: "Period",
+                description: "Shown above the title, such as November 15.",
+                validation: { isRequired: true },
+            }),
+            title: fields.text({
+                label: "Title",
+                validation: { isRequired: true },
+            }),
+            description: fields.text({
+                label: "Description",
+                multiline: true,
+                validation: { isRequired: true },
+            }),
         },
     }),
     Figure: block({
         label: "Figure",
+        description: "An image with an optional caption.",
         schema: {
-            src: fields.image({ label: "Image", ...pageImages }),
-            alt: fields.text({ label: "Alt text" }),
-            caption: fields.text({ label: "Caption", multiline: true }),
+            src: fields.image({
+                label: "Image",
+                ...pageImages,
+                validation: { isRequired: true },
+            }),
+            alt: fields.text({
+                label: "Alt text",
+                description:
+                    "Describes the image for screen readers and when it does not load.",
+                validation: { isRequired: true },
+            }),
+            caption: fields.text({
+                label: "Caption",
+                description: "Optional. Shown under the image.",
+                multiline: true,
+            }),
             variant: fields.select({
                 label: "Crop",
+                description: "Wide crops the image to a 25:12 banner.",
                 options: [
                     { label: "Natural", value: "natural" },
                     { label: "Wide", value: "wide" },
@@ -94,11 +169,22 @@ const contentComponents = {
     }),
     Embed: block({
         label: "Embed",
+        description:
+            "Embeds another page inside this one, such as a calendar or a form.",
         schema: {
-            src: fields.url({ label: "Embed URL" }),
-            title: fields.text({ label: "Title" }),
+            src: fields.url({
+                label: "Embed URL",
+                validation: { isRequired: true },
+            }),
+            title: fields.text({
+                label: "Title",
+                description: "Names the embedded frame for screen readers.",
+                validation: { isRequired: true },
+            }),
             variant: fields.select({
                 label: "Height",
+                description:
+                    "Calendar gives the frame a fixed height. Form lets it size itself.",
                 options: [
                     { label: "Calendar", value: "calendar" },
                     { label: "Form", value: "form" },
