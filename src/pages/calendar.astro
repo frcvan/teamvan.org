@@ -11,12 +11,12 @@ import Section from "@/components/Section.astro";
 ---
 
 <Layout title={copy.text001} description={copy.text002}>
-    <H level="h1">{copy.text003}</H>
+    <H level="h1"><span class="editor-text">{copy.text003}</span></H>
     <Alert title={copy.text004} class="mt-6">
-        <p>{copy.text005}</p>
-        <p>{copy.text006}</p>
+        <p><span class="editor-text">{copy.text005}</span></p>
+        <p><span class="editor-text">{copy.text006}</span></p>
         <p>
-            {copy.text007}{" "}
+            <span class="editor-text">{copy.text007}</span>{" "}
             <a
                 href="https://maps.app.goo.gl/EZpkUnE5RZaprrsCA"
                 class="text-blue-300 underline underline-offset-4"
@@ -24,7 +24,7 @@ import Section from "@/components/Section.astro";
                 rel="noopener noreferrer"
                 aria-label="Open map to Mind Forge at 2475 Palm Bay Road, Suite 210, in a new tab"
             >
-                {copy.text008}
+                <span class="editor-text">{copy.text008}</span>
             </a>
         </p>
     </Alert>
@@ -45,7 +45,7 @@ import Section from "@/components/Section.astro";
                 variant="secondary"
             >
                 <Icon name="tabler:plus" size={32} />
-                {copy.text010}
+                <span class="editor-text">{copy.text010}</span>
             </Button>
         </div>
     </Section>

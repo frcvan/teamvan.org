@@ -9,12 +9,12 @@ import StatGrid from "@/components/StatGrid.astro";
 
 <Layout title={copy.text001} description={copy.text002}>
     <Section aria-labelledby="what-is-frc-heading" class="mt-0!">
-        <H id="what-is-frc-heading">{copy.text003}</H>
-        <p>{copy.text004}</p>
+        <H id="what-is-frc-heading"><span class="editor-text">{copy.text003}</span></H>
+        <p><span class="editor-text">{copy.text004}</span></p>
         <p>
-            {copy.text005} <strong>{copy.text006}</strong>
-            {copy.text007} <strong>{copy.text008}</strong>
-            {copy.text009}
+            <span class="editor-text">{copy.text005}</span> <strong><span class="editor-text">{copy.text006}</span></strong>
+            <span class="editor-text">{copy.text007}</span> <strong><span class="editor-text">{copy.text008}</span></strong>
+            <span class="editor-text">{copy.text009}</span>
         </p>
         <StatGrid
             stats={[
@@ -28,9 +28,9 @@ import StatGrid from "@/components/StatGrid.astro";
 
     <Section aria-labelledby="timeline-heading">
         <H id="timeline-heading" level="h2">
-            {copy.text010}
+            <span class="editor-text">{copy.text010}</span>
         </H>
-        <p>{copy.text011}</p>
+        <p><span class="editor-text">{copy.text011}</span></p>
         <Timeline
             phases={[
                 {
