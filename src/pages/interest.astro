@@ -8,13 +8,13 @@ import Section from "@/components/Section.astro";
 ---
 
 <Layout title={copy.text001} description={copy.text002}>
-    <H>{copy.text003}</H>
+    <H><span class="editor-text">{copy.text003}</span></H>
 
     <Section aria-labelledby="form-heading">
         <H id="form-heading" level="h2">
-            {copy.text004}
+            <span class="editor-text">{copy.text004}</span>
         </H>
-        <p class="mb-4">{copy.text005}</p>
+        <p class="mb-4"><span class="editor-text">{copy.text005}</span></p>
 
         <Iframe
             containerClass="w-full h-[800px] overflow-hidden rounded-base border-none shadow-none"
@@ -29,12 +29,12 @@ import Section from "@/components/Section.astro";
         </Iframe>
 
         <p class="mt-6">
-            {copy.text007}{" "}
+            <span class="editor-text">{copy.text007}</span>{" "}
             <a
                 href="mailto:contact@teamvan.org"
                 class="text-blue-300 underline underline-offset-4"
             >
-                {copy.text008}
+                <span class="editor-text">{copy.text008}</span>
             </a>
             .
         </p>

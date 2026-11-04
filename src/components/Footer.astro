@@ -17,9 +17,9 @@ const lastUpdated = new Date().toLocaleString("en-US", {
 <footer class="border-silver bg-white text-main mt-12 border-t-2 px-6 py-10 sm:px-10">
     <div class="mx-auto grid w-full max-w-6xl gap-8 sm:grid-cols-2">
         <section id="location">
-            <h2 class="mb-3 text-lg">{copy.text001}</h2>
+            <h2 class="mb-3 text-lg"><span class="editor-text">{copy.text001}</span></h2>
             <address class="mt-3 max-w-md text-sm leading-6 not-italic">
-                {copy.text002}
+                <span class="editor-text">{copy.text002}</span>
                 <br />
                 <a
                     class="text-blue-700 underline underline-offset-4 hover:text-blue-900"
@@ -28,10 +28,10 @@ const lastUpdated = new Date().toLocaleString("en-US", {
                     rel="noopener noreferrer"
                     aria-label="Open map to Mind Forge at 2475 Palm Bay Road, Suite 210, in a new tab"
                 >
-                    {copy.text003}
+                    <span class="editor-text">{copy.text003}</span>
                 </a>
                 <br />
-                {copy.text004}
+                <span class="editor-text">{copy.text004}</span>
                 <br />
                 <a
                     class="text-blue-700 underline underline-offset-4 hover:text-blue-900"
@@ -40,13 +40,13 @@ const lastUpdated = new Date().toLocaleString("en-US", {
                     rel="noopener noreferrer"
                     aria-label="Open map to Eastern Florida State College Palm Bay campus in a new tab"
                 >
-                    {copy.text005}
+                    <span class="editor-text">{copy.text005}</span>
                 </a>
             </address>
         </section>
 
         <section class="sm:justify-self-end">
-            <h2 class="mb-3 text-lg">{copy.text006}</h2>
+            <h2 class="mb-3 text-lg"><span class="editor-text">{copy.text006}</span></h2>
             <address class="flex flex-col gap-2 text-sm not-italic">
                 <SocialLink
                     href="mailto:contact@teamvan.org"
@@ -80,12 +80,12 @@ const lastUpdated = new Date().toLocaleString("en-US", {
         aria-labelledby="sponsor-banners-heading"
     >
         <h2 id="sponsor-banners-heading" class="mb-6 text-lg">
-            {copy.text007}{" "}
+            <span class="editor-text">{copy.text007}</span>{" "}
             <a
                 href="/sponsors"
                 class="underline decoration-silver underline-offset-4 hover:text-black"
             >
-                {copy.text008}
+                <span class="editor-text">{copy.text008}</span>
             </a>
         </h2>
         <SponsorGallery />
@@ -93,10 +93,10 @@ const lastUpdated = new Date().toLocaleString("en-US", {
 
     <div class="mx-auto mt-8 flex w-full max-w-6xl items-center justify-between gap-4 border-silver border-t pt-4 text-xs">
         <p>
-            {copy.text009} {new Date().getFullYear()} {copy.text010}
+            <span class="editor-text">{copy.text009}</span> {new Date().getFullYear()} <span class="editor-text">{copy.text010}</span>
         </p>
         <p>
-            {copy.text011} {lastUpdated}
+            <span class="editor-text">{copy.text011}</span> {lastUpdated}
         </p>
     </div>
 </footer>

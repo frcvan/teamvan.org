@@ -308,38 +308,13 @@
                 "multiline": false
             },
             {
-                "key": "text016",
-                "label": "What We Do · Heading: What We Do",
-                "multiline": false
-            },
-            {
-                "key": "text017",
-                "label": "What We Do · Text: Founded in 2026, Team V.A.N. (FRC 12148) is in its first FRC seas…",
-                "multiline": true
-            },
-            {
-                "key": "text018",
-                "label": "What We Do · Link text: What Is FIRST",
-                "multiline": false
-            },
-            {
-                "key": "text019",
-                "label": "What We Do · Text: page.",
-                "multiline": false
-            },
-            {
-                "key": "text020",
-                "label": "What We Do · Text: Our main build space is in Palm Bay, near Palm Bay Magnet, Baysid…",
-                "multiline": true
-            },
-            {
                 "key": "text021",
                 "label": "Mission · Heading: Mission",
                 "multiline": false
             },
             {
                 "key": "text022",
-                "label": "Mission · Text: We started the team because southern Brevard County and Indian Ri…",
+                "label": "Mission · Text: We started the team because southern Brevard County and Indian River County have had limited access to FRC.",
                 "multiline": true
             },
             {
