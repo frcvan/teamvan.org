@@ -1,0 +1,26 @@
+---
+interface Props {
+    src: string;
+    title: string;
+    variant?: "calendar" | "form";
+}
+
+const { src, title, variant = "calendar" } = Astro.props as Props;
+const containerClass =
+    variant === "calendar"
+        ? "w-full overflow-hidden rounded-base border border-black/15 bg-white shadow-sm"
+        : "w-full h-[800px] overflow-hidden rounded-base border-none shadow-none";
+const frameClass =
+    variant === "calendar"
+        ? "h-150 w-full border-0 max-[600px]:h-[70vh]"
+        : "w-full h-full border-none outline-none shadow-none";
+---
+
+<div class:list={["relative", containerClass]}>
+    <iframe
+        class:list={["block", frameClass]}
+        src={src}
+        title={title}
+        loading="eager"
+    ></iframe>
+</div>

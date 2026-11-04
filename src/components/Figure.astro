@@ -1,0 +1,35 @@
+---
+interface Props {
+    src?: string | null;
+    alt: string;
+    caption?: string;
+    variant?: "natural" | "wide";
+}
+
+const {
+    src,
+    alt,
+    caption,
+    variant = "natural",
+} = Astro.props as Props;
+---
+
+{
+    src && (
+        <figure class="my-6">
+            <img
+                src={src}
+                alt={alt}
+                loading="lazy"
+                class:list={[
+                    "h-auto w-full rounded-base border border-silver object-cover",
+                    variant === "wide" &&
+                        "aspect-[25/12] object-bottom",
+                ]}
+            />
+            {caption && (
+                <figcaption class="mt-2 text-sm">{caption}</figcaption>
+            )}
+        </figure>
+    )
+}

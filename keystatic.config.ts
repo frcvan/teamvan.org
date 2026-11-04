@@ -1,33 +1,209 @@
 import { config, fields, singleton } from "@keystatic/core";
-import pages from "./src/content-schema/pages.json";
+import { createElement } from "react";
+import {
+    block,
+    repeating,
+    wrapper,
+} from "@keystatic/core/content-components";
 
 // Local development edits files; the deployed Worker authenticates with GitHub.
 // Do not throw from this module: Keystatic bundles it into the browser too.
 // The build-time check for PUBLIC_KEYSTATIC_GITHUB_APP_SLUG lives in
 // astro.config.mjs, which only runs in Node.
+
+const pageImages = {
+    directory: "public/images/pages",
+    publicPath: "/images/pages/",
+};
+
+const contentComponents = {
+    Alert: wrapper({
+        label: "Alert",
+        schema: {
+            title: fields.text({ label: "Title" }),
+        },
+    }),
+    Collapse: wrapper({
+        label: "Collapsing item",
+        schema: {
+            title: fields.text({ label: "Title" }),
+        },
+    }),
+    ButtonGroup: wrapper({
+        label: "Button row",
+        schema: {},
+    }),
+    Button: wrapper({
+        label: "Button",
+        schema: {
+            href: fields.text({ label: "Link" }),
+            variant: fields.select({
+                label: "Style",
+                options: [
+                    { label: "Primary", value: "primary" },
+                    { label: "Secondary", value: "secondary" },
+                ],
+                defaultValue: "primary",
+            }),
+            icon: fields.text({
+                label: "Icon",
+                description: "Optional Tabler icon name, such as tabler:mail.",
+            }),
+            newTab: fields.checkbox({
+                label: "Open in a new tab",
+                defaultValue: false,
+            }),
+        },
+    }),
+    StatGrid: repeating({
+        label: "Facts grid",
+        children: ["Fact"],
+        schema: {},
+    }),
+    Fact: block({
+        label: "Fact",
+        schema: {
+            value: fields.text({ label: "Value" }),
+            label: fields.text({ label: "Label" }),
+        },
+    }),
+    Timeline: repeating({
+        label: "Season timeline",
+        children: ["Phase"],
+        schema: {},
+    }),
+    Phase: block({
+        label: "Timeline phase",
+        schema: {
+            period: fields.text({ label: "Period" }),
+            title: fields.text({ label: "Title" }),
+            description: fields.text({ label: "Description", multiline: true }),
+        },
+    }),
+    Figure: block({
+        label: "Figure",
+        schema: {
+            src: fields.image({ label: "Image", ...pageImages }),
+            alt: fields.text({ label: "Alt text" }),
+            caption: fields.text({ label: "Caption", multiline: true }),
+            variant: fields.select({
+                label: "Crop",
+                options: [
+                    { label: "Natural", value: "natural" },
+                    { label: "Wide", value: "wide" },
+                ],
+                defaultValue: "natural",
+            }),
+        },
+    }),
+    Embed: block({
+        label: "Embed",
+        schema: {
+            src: fields.url({ label: "Embed URL" }),
+            title: fields.text({ label: "Title" }),
+            variant: fields.select({
+                label: "Height",
+                options: [
+                    { label: "Calendar", value: "calendar" },
+                    { label: "Form", value: "form" },
+                ],
+                defaultValue: "calendar",
+            }),
+        },
+    }),
+};
+
+const pageDefinitions = [
+    { key: "index", label: "Home" },
+    { key: "about", label: "What Is FIRST" },
+    { key: "calendar", label: "Calendar" },
+    { key: "competitions", label: "Competitions" },
+    { key: "outreach", label: "Outreach" },
+    { key: "sponsors", label: "Sponsors" },
+    { key: "interest", label: "Join" },
+] as const;
+
+const pageSingletons = Object.fromEntries(
+    pageDefinitions.map(({ key, label }) => [
+        key,
+        singleton({
+            label,
+            path: `src/content/pages/${key}`,
+            format: { contentField: "content" },
+            schema: {
+                title: fields.text({
+                    label: "Page title",
+                    validation: { isRequired: true },
+                }),
+                description: fields.text({
+                    label: "Page description",
+                    multiline: true,
+                    validation: { isRequired: true },
+                }),
+                content: fields.mdx({
+                    label: "Page content",
+                    components: contentComponents,
+                    options: { image: pageImages },
+                }),
+            },
+        }),
+    ]),
+);
+
+const production =
+    typeof import.meta.env !== "undefined" && import.meta.env.PROD;
+
+const brandMark = ({ colorScheme }: { colorScheme: "light" | "dark" }) =>
+    createElement("img", {
+        src: "/favicon.svg",
+        alt: "",
+        height: 24,
+        style: {
+            display: "block",
+            width: "auto",
+            height: "24px",
+            filter:
+                colorScheme === "dark"
+                    ? "brightness(0) invert(1)"
+                    : undefined,
+        },
+    });
+
 export default config({
-    storage: import.meta.env.PROD
+    storage: production
         ? { kind: "github", repo: "frcvan/teamvan.org" }
         : { kind: "local" },
-    ui: { brand: { name: "Team V.A.N. Website" } },
-    singletons: Object.fromEntries(
-        Object.entries(pages).map(([key, page]) => [
-            key,
-            singleton({
-                label: page.label,
-                path: `src/content/site/${key}`,
-                format: { data: "json" },
-                schema: Object.fromEntries(
-                    page.fields.map((field) => [
-                        field.key,
-                        fields.text({
-                            label: field.label,
-                            multiline: field.multiline,
-                            validation: { isRequired: true },
-                        }),
-                    ]),
-                ),
-            }),
-        ]),
-    ),
+    ui: {
+        brand: {
+            name: "Team V.A.N.",
+            mark: brandMark,
+        },
+    },
+    singletons: {
+        ...pageSingletons,
+        footer: singleton({
+            label: "Footer",
+            path: "src/content/site/footer",
+            format: { data: "json" },
+            schema: {
+                text001: fields.text({ label: "Location" }),
+                text002: fields.text({ label: "Mind Forge Guild" }),
+                text003: fields.text({ label: "2475 Palm Bay Rd, Suite 210" }),
+                text004: fields.text({
+                    label: "Eastern Florida State College — Palm Bay Campus",
+                }),
+                text005: fields.text({
+                    label: "250 Community College Pkwy, Palm Bay, FL",
+                }),
+                text006: fields.text({ label: "Connect" }),
+                text007: fields.text({ label: "Want to Appear Here?" }),
+                text008: fields.text({ label: "Sponsor Our Team!" }),
+                text009: fields.text({ label: "©" }),
+                text010: fields.text({
+                    label: "Team V.A.N. All rights reserved.",
+                }),
+                text011: fields.text({ label: "Website last updated:" }),
+            },
+        }),
+    },
 });

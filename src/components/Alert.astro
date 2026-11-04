@@ -13,7 +13,7 @@ const { title, class: className, ...props } = Astro.props as Props;
 <div
     role="status"
     class:list={[
-        "flex gap-4 rounded-base border border-white/20 bg-white/5 p-4",
+        "grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 rounded-base border border-white/20 bg-white/5 p-4",
         className,
     ]}
     {...props}
@@ -21,13 +21,11 @@ const { title, class: className, ...props } = Astro.props as Props;
     <Icon
         name="tabler:info-circle"
         size={20}
-        class="mt-0.5 shrink-0"
+        class="shrink-0 self-center"
         aria-hidden="true"
     />
-    <div class="space-y-2">
-        {title && <p class="font-bold">{title}</p>}
-        <div class="text-sm">
-            <slot />
-        </div>
+    <p class="font-bold">{title}</p>
+    <div class="col-start-2 space-y-2 text-sm">
+        <slot />
     </div>
 </div>

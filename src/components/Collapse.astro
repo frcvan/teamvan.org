@@ -1,0 +1,51 @@
+---
+interface Props {
+    title: string;
+    class?: string;
+    open?: boolean;
+}
+
+const { title, class: className, open = false } = Astro.props as Props;
+---
+
+<details
+    class:list={[
+        "rounded-base border border-white/20 bg-white/5",
+        className,
+    ]}
+    open={open}
+>
+    <summary class="collapse-summary cursor-pointer p-4 font-semibold">
+        {title}
+    </summary>
+    <div class="space-y-4 px-4 pb-4">
+        <slot />
+    </div>
+</details>
+
+<style>
+    .collapse-summary {
+        display: flex;
+        align-items: center;
+        list-style: none;
+    }
+
+    .collapse-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .collapse-summary::before {
+        width: 0;
+        height: 0;
+        margin-right: 0.6rem;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 6px solid currentColor;
+        content: "";
+        transition: transform 150ms ease;
+    }
+
+    details[open] > .collapse-summary::before {
+        transform: rotate(90deg);
+    }
+</style>

@@ -69,6 +69,18 @@ main {
         0 0 8px rgb(255 255 255 / 12%);
 }
 
+#main-content > * + * {
+    margin-top: 1.5rem;
+}
+
+#main-content .btn > p {
+    margin: 0;
+}
+
+#main-content > * + [data-heading-level="h2"] {
+    margin-top: 3rem;
+}
+
 @media (min-width: 1600px) {
     #main-content {
         max-width: 90rem;
@@ -82,12 +94,12 @@ main {
         word-spacing: 0.15em;
     }
 
-    #main-content > section {
-        margin-top: 4.5rem;
+    #main-content > * + * {
+        margin-top: 1.75rem;
     }
 
-    #main-content > section > :not(:last-child) {
-        margin-bottom: 1.75rem;
+    #main-content > * + [data-heading-level="h2"] {
+        margin-top: 4.5rem;
     }
 }
 

@@ -1,0 +1,20 @@
+---
+interface Props {
+    period: string;
+    title: string;
+    description: string;
+}
+
+const { period, title, description } = Astro.props as Props;
+---
+
+<li class="relative">
+    <span
+        class="absolute top-1 -left-7.25 size-3 rounded-full border-2 border-white bg-main"
+    ></span>
+    <div class="text-xs font-bold tracking-wide uppercase opacity-80">
+        {period}
+    </div>
+    <div class="mt-0.5 text-lg font-bold">{title}</div>
+    <p class="mt-1">{description}</p>
+</li>

@@ -1,42 +1,10 @@
 ---
-import copy from "@/content/site/interest.json";
+import { Content, frontmatter } from "@/content/pages/interest.mdx";
+
 import Layout from "@/layouts/PageLayout.astro";
-import H from "@/components/H.astro";
-import Iframe from "@/components/Iframe.astro";
-import Loader from "@/components/Loader.astro";
-import Section from "@/components/Section.astro";
+import components from "@/components/mdx";
 ---
 
-<Layout title={copy.text001} description={copy.text002}>
-    <H><span class="editor-text">{copy.text003}</span></H>
-
-    <Section aria-labelledby="form-heading">
-        <H id="form-heading" level="h2">
-            <span class="editor-text">{copy.text004}</span>
-        </H>
-        <p class="mb-4"><span class="editor-text">{copy.text005}</span></p>
-
-        <Iframe
-            containerClass="w-full h-[800px] overflow-hidden rounded-base border-none shadow-none"
-            class="w-full h-full border-none outline-none shadow-none"
-            src="https://tally.so/embed/KYbz6k?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-            title={copy.text006}
-            loaderClass="bg-transparent items-start mt-12"
-            loading="eager"
-            scrolling="no"
-        >
-            <Loader slot="loader" class="border-white/30 border-t-white" />
-        </Iframe>
-
-        <p class="mt-6">
-            <span class="editor-text">{copy.text007}</span>{" "}
-            <a
-                href="mailto:contact@teamvan.org"
-                class="text-blue-300 underline underline-offset-4"
-            >
-                <span class="editor-text">{copy.text008}</span>
-            </a>
-            .
-        </p>
-    </Section>
+<Layout title={frontmatter.title} description={frontmatter.description}>
+    <Content components={components} />
 </Layout>

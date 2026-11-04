@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Button from "@/components/Button.astro";
+
+interface Props {
+    href: string;
+    variant?: "primary" | "secondary";
+    icon?: string;
+    newTab?: boolean;
+}
+
+const {
+    href,
+    variant = "primary",
+    icon,
+    newTab = false,
+} = Astro.props as Props;
+const openInNewTab = newTab || /^https?:\/\//.test(href);
+---
+
+<Button
+    class="w-fit"
+    href={href}
+    variant={variant}
+    target={openInNewTab ? "_blank" : undefined}
+    rel={openInNewTab ? "noopener noreferrer" : undefined}
+>
+    {icon && <Icon name={icon} size={32} />}
+    <slot />
+</Button>

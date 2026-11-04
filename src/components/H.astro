@@ -17,7 +17,7 @@ const headerSizes = {
 };
 ---
 
-<div class:list={["space-y-1", className]}>
+<div class:list={["space-y-1", className]} data-heading-level={level}>
     <Tag class:list={["scroll-m-20 font-bold", headerSizes[level]]} {...props}>
         <slot />
     </Tag>

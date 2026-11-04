@@ -1,58 +1,10 @@
 ---
-import copy from "@/content/site/index.json";
-import Alert from "@/components/Alert.astro";
-import H from "@/components/H.astro";
+import { Content, frontmatter } from "@/content/pages/index.mdx";
+
 import Layout from "@/layouts/PageLayout.astro";
-import Section from "@/components/Section.astro";
+import components from "@/components/mdx";
 ---
 
-<Layout title={copy.text001} description={copy.text002}>
-    <H class="mb-2"><span class="editor-text">{copy.text003}</span></H>
-
-    <p class="mb-6 text-white font-semibold">
-        <span class="editor-text">{copy.text004}</span> <i><span class="editor-text">{copy.text005}</span></i> <span class="editor-text">{copy.text006}</span>
-    </p>
-
-    <Alert title={copy.text008} class="mb-6">
-        <p><span class="editor-text">{copy.text009}</span></p>
-        <p><span class="editor-text">{copy.text010}</span></p>
-        <p>
-            <span class="editor-text">{copy.text011}</span>{" "}
-            <a
-                href="https://maps.app.goo.gl/EZpkUnE5RZaprrsCA"
-                class="text-blue-300 underline underline-offset-4"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open map to Mind Forge at 2475 Palm Bay Road, Suite 210, in a new tab"
-            >
-                <span class="editor-text">{copy.text012}</span>
-            </a>
-        </p>
-    </Alert>
-
-    <p><span class="editor-text">{copy.text007}</span></p>
-
-    <Section>
-        <H level="h2"><span class="editor-text">{copy.text021}</span></H>
-        <p><span class="editor-text">{copy.text022}</span></p>
-
-        <H level="h2">
-            <a
-                href="/interest/"
-                class="text-inherit underline decoration-silver underline-offset-4"
-            >
-                <span class="editor-text">{copy.text023}</span>
-            </a>
-        </H>
-        <p>
-            <span class="editor-text">{copy.text024}</span>{" "}
-            <a
-                href="/interest/"
-                class="text-blue-300 underline underline-offset-4"
-            >
-                <span class="editor-text">{copy.text025}</span>
-            </a>
-            .
-        </p>
-    </Section>
+<Layout title={frontmatter.title} description={frontmatter.description}>
+    <Content components={components} />
 </Layout>

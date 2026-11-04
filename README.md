@@ -2,7 +2,7 @@
 
 Astro website for teamvan.org. Public pages are prerendered at build time, and the Keystatic editor runs in the same Cloudflare Worker under `/keystatic/`.
 
-## Editing text locally
+## Editing pages locally
 
 Use Node.js 22.12 or newer and pnpm. Install with `pnpm install`, then run:
 
@@ -14,9 +14,11 @@ Open the address printed by that command followed by `/keystatic/`. Choose a pag
 
 Manage the server with `pnpm exec astro dev status`, `pnpm exec astro dev logs`, and `pnpm exec astro dev stop`.
 
-The editor covers text on all seven pages and the footer: headings, paragraphs, buttons, event details, timeline entries, captions, and image descriptions. Text that has inline links or bold formatting is split into adjacent fields to preserve that formatting. Layouts, link destinations, images, navigation configuration, and embedded forms/calendar remain in code. The kickoff announcement currently appears in both Home and Calendar; update both entries when changing it.
+The editor edits the seven main pages as MDX. Each page has a title, description, and an MDX body stored in `src/content/pages/*.mdx`. The body supports Markdown plus these custom components: Alert, Collapsing item, Button, Button row, Facts grid, Season timeline, Figure, and Embed. Keystatic's MDX editor does not support import statements or raw HTML tags, so use Markdown and those components instead of inline HTML.
 
-Content is in `src/content/site/*.json`. Field definitions and labels are in `src/content-schema/pages.json`; `keystatic.config.ts` creates the editor from those definitions. Field keys must remain stable because page templates reference them. Content is rendered as escaped text, not executable HTML.
+Page layouts, navigation, the footer, and the component map in `src/components/mdx.ts` stay in code. Each `src/pages/*.astro` wrapper imports its matching MDX file and renders it through the shared page layout. The kickoff announcement currently appears in both Home and Calendar; update both pages when changing it.
+
+The footer remains a JSON singleton in `src/content/site/footer.json`. Page and component definitions live in `keystatic.config.ts`. Images added through the editor are written to `public/images/pages/`.
 
 `astro dev` runs on Astro's Node server without an adapter so Keystatic can write files. Builds use `@astrojs/cloudflare`, so the editor's API routes run in the Worker.
 
