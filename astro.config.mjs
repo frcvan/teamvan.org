@@ -62,5 +62,27 @@ export default defineConfig({
         prefetchAll: true,
     },
 
-    integrations: [icon(), sitemap(), react(), keystatic(), mdx()],
+    integrations: [
+        // Load only the Tabler icons the site uses. Without an allowlist,
+        // astro-icon treats every installed collection as "*" and parses all
+        // 6,268 icons into the build on every run.
+        icon({
+            include: {
+                tabler: [
+                    "brand-github",
+                    "brand-instagram",
+                    "brand-youtube",
+                    "download",
+                    "info-circle",
+                    "mail",
+                    "menu",
+                    "plus",
+                ],
+            },
+        }),
+        sitemap(),
+        react(),
+        keystatic(),
+        mdx(),
+    ],
 });

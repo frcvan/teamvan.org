@@ -51,26 +51,4 @@ for (const page of pages) {
     }
 }
 
-const footer = JSON.parse(
-    await readFile("src/content/site/footer.json", "utf8"),
-);
-const footerTemplate = await readFile("src/components/Footer.astro", "utf8");
-const footerKeys = Object.keys(footer);
-const footerReferences = new Set(
-    [...footerTemplate.matchAll(/copy\.(text\d+)/g)].map((match) => match[1]),
-);
-assert.deepEqual(
-    [...footerReferences].sort(),
-    [...footerKeys].sort(),
-    "footer: fields must be connected to the website",
-);
-for (const key of footerKeys) {
-    assert.ok(
-        typeof footer[key] === "string" && footer[key].trim(),
-        `footer.${key}: missing text`,
-    );
-}
-
-console.log(
-    `Checked ${pages.length} MDX pages and ${footerKeys.length} footer fields.`,
-);
+console.log(`Checked ${pages.length} MDX pages.`);

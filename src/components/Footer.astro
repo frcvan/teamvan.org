@@ -1,25 +1,61 @@
 ---
-import copy from "@/content/site/footer.json";
 import SocialLink from "@/components/SocialLink.astro";
 import SponsorGallery from "@/components/SponsorGallery.astro";
+import { execFileSync } from "node:child_process";
 
-const lastUpdated = new Date().toLocaleString("en-US", {
+// Take the date from the last commit that touched the site's inputs instead of
+// the clock. Rebuilding the same commit then produces byte-identical HTML, so
+// unchanged pages are not re-uploaded on deploy and keep their cached copies.
+const siteInputs = [
+    "src",
+    "public",
+    "astro.config.mjs",
+    "keystatic.config.ts",
+    "wrangler.toml",
+    "package.json",
+];
+
+const commitDate = (...args: string[]) => {
+    try {
+        const date = execFileSync(
+            "git",
+            ["log", "-1", "--format=%cs", ...args],
+            { encoding: "utf8" },
+        ).trim();
+        return date || undefined;
+    } catch {
+        return undefined;
+    }
+};
+
+// A shallow clone may not reach the last commit that touched these paths, so
+// fall back to HEAD's date before falling back to the clock.
+const committedOn = commitDate("--", ...siteInputs) ?? commitDate();
+
+// Noon UTC keeps the calendar date stable when formatted in New York.
+const updatedOn = committedOn
+    ? new Date(`${committedOn}T12:00:00Z`)
+    : new Date();
+
+const lastUpdated = updatedOn.toLocaleDateString("en-US", {
     year: "numeric",
     month: "numeric",
     day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short",
     timeZone: "America/New_York",
+});
+
+const copyrightYear = updatedOn.toLocaleDateString("en-US", {
+    year: "numeric",
+    timeZone: "UTC",
 });
 ---
 
 <footer class="border-silver bg-white text-main mt-12 border-t-2 px-6 py-10 sm:px-10">
     <div class="mx-auto grid w-full max-w-6xl gap-8 sm:grid-cols-2">
         <section id="location">
-            <h2 class="mb-3 text-lg">{copy.text001}</h2>
+            <h2 class="mb-3 text-lg">Location</h2>
             <address class="mt-3 max-w-md text-sm leading-6 not-italic">
-                {copy.text002}
+                Mind Forge Guild
                 <br />
                 <a
                     class="text-blue-700 underline underline-offset-4 hover:text-blue-900"
@@ -28,25 +64,13 @@ const lastUpdated = new Date().toLocaleString("en-US", {
                     rel="noopener noreferrer"
                     aria-label="Open map to Mind Forge at 2475 Palm Bay Road, Suite 210, in a new tab"
                 >
-                    {copy.text003}
-                </a>
-                <br />
-                {copy.text004}
-                <br />
-                <a
-                    class="text-blue-700 underline underline-offset-4 hover:text-blue-900"
-                    href="https://maps.app.goo.gl/Rz1pHYC77zdqv4mW6"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Open map to Eastern Florida State College Palm Bay campus in a new tab"
-                >
-                    {copy.text005}
+                    2475 Palm Bay Rd, Suite 210
                 </a>
             </address>
         </section>
 
         <section class="sm:justify-self-end">
-            <h2 class="mb-3 text-lg">{copy.text006}</h2>
+            <h2 class="mb-3 text-lg">Connect</h2>
             <address class="flex flex-col gap-2 text-sm not-italic">
                 <SocialLink
                     href="mailto:contact@teamvan.org"
@@ -80,23 +104,19 @@ const lastUpdated = new Date().toLocaleString("en-US", {
         aria-labelledby="sponsor-banners-heading"
     >
         <h2 id="sponsor-banners-heading" class="mb-6 text-lg">
-            {copy.text007}{" "}
+            Want to Appear Here?{" "}
             <a
                 href="/sponsors"
                 class="underline decoration-silver underline-offset-4 hover:text-black"
             >
-                {copy.text008}
+                Sponsor Our Team!
             </a>
         </h2>
         <SponsorGallery />
     </section>
 
     <div class="mx-auto mt-8 flex w-full max-w-6xl items-center justify-between gap-4 border-silver border-t pt-4 text-xs">
-        <p>
-            {copy.text009} {new Date().getFullYear()} {copy.text010}
-        </p>
-        <p>
-            {copy.text011} {lastUpdated}
-        </p>
+        <p>&copy; {copyrightYear} Team V.A.N. All rights reserved.</p>
+        <p>Website last updated: {lastUpdated}</p>
     </div>
 </footer>

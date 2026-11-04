@@ -1,10 +1,6 @@
 import { config, fields, singleton } from "@keystatic/core";
 import { createElement } from "react";
-import {
-    block,
-    repeating,
-    wrapper,
-} from "@keystatic/core/content-components";
+import { block, repeating, wrapper } from "@keystatic/core/content-components";
 
 // Local development edits files; the deployed Worker authenticates with GitHub.
 // Do not throw from this module: Keystatic bundles it into the browser too.
@@ -163,9 +159,7 @@ const brandMark = ({ colorScheme }: { colorScheme: "light" | "dark" }) =>
             width: "auto",
             height: "24px",
             filter:
-                colorScheme === "dark"
-                    ? "brightness(0) invert(1)"
-                    : undefined,
+                colorScheme === "dark" ? "brightness(0) invert(1)" : undefined,
         },
     });
 
@@ -179,31 +173,5 @@ export default config({
             mark: brandMark,
         },
     },
-    singletons: {
-        ...pageSingletons,
-        footer: singleton({
-            label: "Footer",
-            path: "src/content/site/footer",
-            format: { data: "json" },
-            schema: {
-                text001: fields.text({ label: "Location" }),
-                text002: fields.text({ label: "Mind Forge Guild" }),
-                text003: fields.text({ label: "2475 Palm Bay Rd, Suite 210" }),
-                text004: fields.text({
-                    label: "Eastern Florida State College — Palm Bay Campus",
-                }),
-                text005: fields.text({
-                    label: "250 Community College Pkwy, Palm Bay, FL",
-                }),
-                text006: fields.text({ label: "Connect" }),
-                text007: fields.text({ label: "Want to Appear Here?" }),
-                text008: fields.text({ label: "Sponsor Our Team!" }),
-                text009: fields.text({ label: "©" }),
-                text010: fields.text({
-                    label: "Team V.A.N. All rights reserved.",
-                }),
-                text011: fields.text({ label: "Website last updated:" }),
-            },
-        }),
-    },
+    singletons: pageSingletons,
 });

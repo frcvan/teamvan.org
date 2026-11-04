@@ -15,7 +15,6 @@
         "check:content": "node scripts/check-content.mjs"
     },
     "dependencies": {
-        "@astrojs/check": "^0.9.10",
         "@astrojs/cloudflare": "^14.4.4",
         "@astrojs/mdx": "^8.1.2",
         "@astrojs/react": "^7.1.2",
@@ -30,16 +29,17 @@
         "react": "^19.3.1",
         "react-dom": "^19.3.1",
         "sharp": "^0.35.4",
-        "tailwindcss": "^4.3.3"
+        "tailwindcss": "^4.3.3",
+        "wrangler": "^4.157.0"
     },
     "allowScripts": {
         "esbuild": true
     },
     "devDependencies": {
+        "@astrojs/check": "^0.9.10",
         "@types/react": "^19.3.0",
         "prettier": "^3.9.8",
         "prettier-plugin-astro": "^1.0.1",
-        "typescript": "^6.0.3",
-        "wrangler": "^4.157.0"
+        "typescript": "^6.0.3"
     }
 }

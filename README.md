@@ -18,7 +18,7 @@ The editor edits the seven main pages as MDX. Each page has a title, description
 
 Page layouts, navigation, the footer, and the component map in `src/components/mdx.ts` stay in code. Each `src/pages/*.astro` wrapper imports its matching MDX file and renders it through the shared page layout. The kickoff announcement currently appears in both Home and Calendar; update both pages when changing it.
 
-The footer remains a JSON singleton in `src/content/site/footer.json`. Page and component definitions live in `keystatic.config.ts`. Images added through the editor are written to `public/images/pages/`.
+Footer copy lives in `src/components/Footer.astro` and is not editable in Keystatic. Page and component definitions live in `keystatic.config.ts`. Images added through the editor are written to `public/images/pages/`.
 
 `astro dev` runs on Astro's Node server without an adapter so Keystatic can write files. Builds use `@astrojs/cloudflare`, so the editor's API routes run in the Worker.
 
@@ -34,7 +34,14 @@ The deployed editor uses GitHub storage. The build reads `PUBLIC_KEYSTATIC_GITHU
 
 Set the secrets with `pnpm exec wrangler secret put NAME` or in the Cloudflare dashboard. Keep local values in `.env`. To use the editor in `pnpm preview`, add the three secrets to `.dev.vars` before building; Cloudflare copies them into the preview output. A production build without `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` fails on purpose so local file editing is never published.
 
-`.github/workflows/deploy-cloudflare.yml` deploys on pushes to `main`. It expects `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` as a repository variable and `CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_ACCOUNT_ID` as repository secrets.
+Deploys run through Cloudflare Workers Builds on pushes to `main`. The dashboard settings are:
+
+- Install command: `pnpm install --frozen-lockfile --prod`
+- Build command: `pnpm run build`
+- Deploy command: `pnpm exec wrangler deploy`
+- Build variable: `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`
+
+`--prod` keeps `devDependencies` — local-only tools such as `typescript`, `prettier`, `@astrojs/check`, and `@types/react` — out of the build image. Anything the build or the deploy needs belongs in `dependencies`, which is why `wrangler` lives there. `pnpm exec` skips the extra npm startup that `npx` adds, and dependency install plus the deploy call are the two largest fixed costs of a Workers build.
 
 Add `teamvan.org` as a custom domain for the Worker in the Cloudflare dashboard. Once the zone is in the same account, the commented `[[routes]]` block in `wrangler.toml` can bind the domain during deploys instead.
 

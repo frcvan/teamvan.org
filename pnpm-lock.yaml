@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@astrojs/check':
-        specifier: ^0.9.10
-        version: 0.9.10(@emnapi/runtime@1.11.3)(prettier-plugin-astro@1.0.1(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(prettier@3.9.8))(prettier@3.9.8)(typescript@6.0.3)
       '@astrojs/cloudflare':
         specifier: ^14.4.4
         version: 14.4.4(@types/node@24.13.6)(astro@7.4.5(@types/node@24.13.6)(esbuild@0.28.2)(idb-keyval@6.3.0)(jiti@2.7.0)(yaml@2.9.1))(esbuild@0.28.2)(jiti@2.7.0)(workerd@1.20261103.1)(wrangler@4.157.0(@types/node@24.13.6))(yaml@2.9.1)
@@ -56,7 +53,13 @@ importers:
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
+      wrangler:
+        specifier: ^4.157.0
+        version: 4.157.0(@types/node@24.13.6)
     devDependencies:
+      '@astrojs/check':
+        specifier: ^0.9.10
+        version: 0.9.10(@emnapi/runtime@1.11.3)(prettier-plugin-astro@1.0.1(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)(prettier@3.9.8))(prettier@3.9.8)(typescript@6.0.3)
       '@types/react':
         specifier: ^19.3.0
         version: 19.3.0
@@ -69,9 +72,6 @@ importers:
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
-      wrangler:
-        specifier: ^4.157.0
-        version: 4.157.0(@types/node@24.13.6)
 
 packages:
 
