@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # local API response cache
 .cache/
+
+# Hosted Keystatic editor output
+dist-editor/

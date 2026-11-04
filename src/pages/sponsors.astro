@@ -1,4 +1,5 @@
 ---
+import copy from "@/content/site/sponsors.json";
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Button from "@/components/Button.astro";
@@ -6,166 +7,104 @@ import Section from "@/components/Section.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<Layout
-    title="For Sponsors"
-    description="Support Team V.A.N., a first-year FIRST Robotics team helping students in Brevard and Indian River counties gain hands-on STEM experience."
->
-    <H>For Sponsors</H>
+<Layout title={copy.text001} description={copy.text002}>
+    <H>{copy.text003}</H>
 
     <Section aria-labelledby="sponsorship-heading">
         <H id="sponsorship-heading" level="h2">
-            Sponsorship
+            {copy.text004}
         </H>
-        <p>
-            As a first-year team we are still putting operations, travel,
-            registration, and a robot in place at the same time. Sponsor support
-            helps cover those operating costs, and sponsors are featured on team
-            shirts and the website.
-        </p>
+        <p>{copy.text005}</p>
     </Section>
 
     <Section aria-labelledby="rookie-partner-heading">
         <H id="rookie-partner-heading" level="h2">
-            Partner with a First-Year Team
+            {copy.text006}
         </H>
+        <p>{copy.text007}</p>
+        <p>{copy.text008}</p>
         <p>
-            Team V.A.N. is a first-year FIRST Robotics Competition team still
-            putting operations, outreach, and a robot in place. Because the
-            program is being built as we go, we can work with you on a
-            sponsorship that fits your organization, whether that means
-            branding, a team showcase at an event, or another community
-            initiative you already have in mind.
-        </p>
-        <p>
-            Students handle design decisions, fundraising, and much of the
-            outreach, so sponsor support goes toward the operating costs of a
-            competition season: parts, tools, travel, registration, and the
-            day-to-day work of running the team. Sponsors are featured on team
-            shirts, the website, and the competition robot.
-        </p>
-        <p>
-            <strong class="underline underline-offset-4">
-                Anything helps.
-            </strong>{" "}
-            We operate as a program of the{" "}
+            <strong class="underline underline-offset-4">{copy.text009}</strong>{" "}
+            {copy.text010}{" "}
             <a
                 href="https://themindforgeguild.org"
                 class="text-blue-300 underline underline-offset-4"
             >
-                Mind Forge Guild
+                {copy.text011}
             </a>
-            , the nonprofit makerspace that hosts our team, so sponsorships and
-            donations are made to them on our behalf.
+            {copy.text012}
         </p>
     </Section>
 
     <Section aria-labelledby="impact-heading">
         <H id="impact-heading" level="h2">
-            Why FIRST Robotics Is Worth Backing
+            {copy.text013}
         </H>
-        <p>
-            Team V.A.N. competes in FIRST Robotics Competition (FRC), a program
-            with a long track record of measurable outcomes for students who
-            might not otherwise have access to hands-on engineering. Nationally,
-            FIRST alumni report:
-        </p>
+        <p>{copy.text014}</p>
         <ul class="list-disc pl-6 space-y-2">
             <li>
-                <strong>~90% college degree attainment</strong>, compared with
-                roughly 55% nationally, according to Brandeis University's
-                10-year FIRST Longitudinal Study.
+                <strong>{copy.text015}</strong>
+                {copy.text016}
             </li>
             <li>
-                <strong>83%</strong> declare a STEM major by their fourth year
-                of college.
+                <strong>{copy.text017}</strong> {copy.text018}
             </li>
             <li>
-                <strong>63%</strong> are currently employed in a STEM field.
+                <strong>{copy.text019}</strong> {copy.text020}
             </li>
             <li>
-                Access to{" "}
-                <strong>
-                    200+ scholarship, university, and workforce partners
-                </strong>{" "}
-                offering exclusive scholarship opportunities to FIRST
-                participants.
+                {copy.text021} <strong>{copy.text022}</strong> {copy.text023}
             </li>
         </ul>
-        <p>
-            Sponsor support turns those outcomes into opportunities for students
-            in Palm Bay and Indian River County who currently have little or no
-            local access to an FRC program.
-        </p>
+        <p>{copy.text024}</p>
     </Section>
 
     <Section aria-labelledby="community-heading">
         <H id="community-heading" level="h2">
-            Where We Are
+            {copy.text025}
         </H>
-        <p>
-            We are based in Palm Bay, which makes Team V.A.N. the southernmost
-            FRC team in Brevard County and the only FRC team serving northern
-            Indian River County. Indian River County currently has no local FRC
-            team. Our main build space is near Palm Bay Magnet, Bayside High,
-            and Heritage High, and we are the closest FRC team to Sebastian
-            River High, Vero Beach High, and Indian River Charter High.
-        </p>
-        <p>
-            Palm Bay Magnet Senior High operates under a Title I schoolwide
-            program, and Bayside High and Heritage High serve significant
-            populations of economically disadvantaged students.
-        </p>
+        <p>{copy.text026}</p>
+        <p>{copy.text027}</p>
     </Section>
 
     <Section aria-labelledby="how-we-operate-heading">
         <H id="how-we-operate-heading" level="h2">
-            Where the Team Works
+            {copy.text028}
         </H>
         <p>
-            Eastern Florida State College has pledged campus space and access to
-            a machine shop, 3D printers, tools, and storage. Mind Forge Guild's
-            makerspace is a second workspace for prototyping and weekend field
-            practice. More about those partnerships is on the{" "}
+            {copy.text029}{" "}
             <a
                 href="/about/"
                 class="text-blue-300 underline underline-offset-4"
             >
-                About
+                {copy.text030}
             </a>{" "}
-            page.
+            {copy.text031}
         </p>
     </Section>
 
     <Section aria-labelledby="ways-to-support-heading">
         <H id="ways-to-support-heading" level="h2">
-            Ways You Can Support Us
+            {copy.text032}
         </H>
         <ul class="list-disc pl-6 space-y-2">
             <li>
-                <strong>Monetary sponsorships:</strong> Flexible tiers with logo
-                placement on our competition robot, team apparel, pit displays,
-                and digital media.
+                <strong>{copy.text033}</strong> {copy.text034}
             </li>
             <li>
-                <strong>In-kind material and services:</strong> Raw aluminum,
-                electrical hardware, fasteners, shop tools, 3D printing filament
-                (PLA, PETG, TPU), or practice-field carpet.
+                <strong>{copy.text035}</strong> {copy.text036}
             </li>
             <li>
-                <strong>Community introductions:</strong> Connections to local
-                businesses, civic groups, or others who may want to help.
+                <strong>{copy.text037}</strong> {copy.text038}
             </li>
         </ul>
     </Section>
 
     <Section aria-labelledby="donations-heading">
         <H id="donations-heading" level="h2">
-            Get in Touch
+            {copy.text039}
         </H>
-        <p>
-            If you are interested in investing in the team, we would be glad to
-            talk through what a partnership could look like.
-        </p>
+        <p>{copy.text040}</p>
         <div class="flex flex-wrap gap-4 mt-4">
             <Button
                 target="_blank"
@@ -173,14 +112,14 @@ import { Icon } from "astro-icon/components";
                 variant="secondary"
             >
                 <Icon name="tabler:download" size={32} />
-                Download Investment Packet
+                {copy.text041}
             </Button>
             <Button
                 href="mailto:contact@teamvan.org?subject=Sponsorship%20Inquiry%20-%20Team%20V.A.N."
                 variant="secondary"
             >
                 <Icon name="tabler:mail" size={32} />
-                Contact Us For Sponsorship
+                {copy.text042}
             </Button>
         </div>
     </Section>

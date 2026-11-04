@@ -10,16 +10,25 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "build:editor": "KEYSTATIC_EDITOR=true astro build",
+        "start:editor": "node ./dist-editor/server/entry.mjs",
+        "check:content": "node scripts/check-content.mjs"
     },
     "dependencies": {
         "@astrojs/check": "^0.9.10",
+        "@astrojs/node": "^11.1.9",
+        "@astrojs/react": "^7.1.2",
         "@astrojs/sitemap": "^3.7.4",
         "@iconify-json/tabler": "^1.2.40",
+        "@keystatic/astro": "^6.0.0",
+        "@keystatic/core": "^0.6.9",
         "@tailwindcss/vite": "^4.3.3",
         "astro": "^7.3.4",
         "astro-icon": "^1.2.0",
         "basecoat-css": "^1.0.2",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1",
         "sharp": "^0.35.4",
         "tailwindcss": "^4.3.3"
     },

@@ -1,4 +1,5 @@
 ---
+import copy from "@/content/site/calendar.json";
 import { Icon } from "astro-icon/components";
 import Alert from "@/components/Alert.astro";
 import Button from "@/components/Button.astro";
@@ -9,16 +10,13 @@ import Loader from "@/components/Loader.astro";
 import Section from "@/components/Section.astro";
 ---
 
-<Layout
-    title="Team Calendar"
-    description="See upcoming Team V.A.N. meetings, events, and activities in the Palm Bay and Space Coast area."
->
-    <H level="h1">Team Calendar</H>
-    <Alert title="Student Kickoff" class="mt-6">
-        <p>Date: November 2nd</p>
-        <p>Time: 6:00 PM to 8:00 PM</p>
+<Layout title={copy.text001} description={copy.text002}>
+    <H level="h1">{copy.text003}</H>
+    <Alert title={copy.text004} class="mt-6">
+        <p>{copy.text005}</p>
+        <p>{copy.text006}</p>
         <p>
-            Location:{" "}
+            {copy.text007}{" "}
             <a
                 href="https://maps.app.goo.gl/EZpkUnE5RZaprrsCA"
                 class="text-blue-300 underline underline-offset-4"
@@ -26,7 +24,7 @@ import Section from "@/components/Section.astro";
                 rel="noopener noreferrer"
                 aria-label="Open map to Mind Forge at 2475 Palm Bay Road, Suite 210, in a new tab"
             >
-                Mind Forge Guild
+                {copy.text008}
             </a>
         </p>
     </Alert>
@@ -35,7 +33,7 @@ import Section from "@/components/Section.astro";
             containerClass="w-full overflow-hidden rounded-base border border-black/15 bg-white shadow-sm"
             class="h-150 w-full border-0 max-[600px]:h-[70vh]"
             src="https://calendar.google.com/calendar/embed?wkst=2&ctz=America%2FNew_York&showPrint=0&title=FRC%2012148%20Calendar&src=ZnJjMTIxNDhAZ21haWwuY29t&color=%23652633"
-            title="Team V.A.N. Calendar"
+            title={copy.text009}
             loading="eager"
             scrolling="no"
         >
@@ -47,7 +45,7 @@ import Section from "@/components/Section.astro";
                 variant="secondary"
             >
                 <Icon name="tabler:plus" size={32} />
-                Add to my Calendar
+                {copy.text010}
             </Button>
         </div>
     </Section>

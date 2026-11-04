@@ -1,31 +1,25 @@
 ---
+import copy from "@/content/site/index.json";
 import Alert from "@/components/Alert.astro";
 import H from "@/components/H.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import Section from "@/components/Section.astro";
 ---
 
-<Layout
-    title="FRC 12148"
-    description="Team V.A.N. is a student-led FIRST Robotics Competition team in Palm Bay, Florida, serving students in southern Brevard and Indian River counties."
->
-    <H class="mb-2">About Team V.A.N.</H>
+<Layout title={copy.text001} description={copy.text002}>
+    <H class="mb-2">{copy.text003}</H>
 
     <p class="mb-6 text-white font-semibold">
-        Team <i>Very Awesome Name</i> — FRC 12148
+        {copy.text004} <i>{copy.text005}</i> {copy.text006}
     </p>
 
-    <p>
-        Team V.A.N. (FRC 12148) is a student-led FIRST Robotics Competition team
-        based in Palm Bay, serving students in southern Brevard County and
-        Indian River County.
-    </p>
+    <p>{copy.text007}</p>
 
-    <Alert title="Student Kickoff" class="mt-6">
-        <p>Date: November 2nd</p>
-        <p>Time: 6:00 PM to 8:00 PM</p>
+    <Alert title={copy.text008} class="mt-6">
+        <p>{copy.text009}</p>
+        <p>{copy.text010}</p>
         <p>
-            Location:{" "}
+            {copy.text011}{" "}
             <a
                 href="https://maps.app.goo.gl/EZpkUnE5RZaprrsCA"
                 class="text-blue-300 underline underline-offset-4"
@@ -33,81 +27,49 @@ import Section from "@/components/Section.astro";
                 rel="noopener noreferrer"
                 aria-label="Open map to Mind Forge at 2475 Palm Bay Road, Suite 210, in a new tab"
             >
-                Mind Forge Guild
+                {copy.text012}
             </a>
         </p>
     </Alert>
 
     <Section>
-        <p>
-            Team V.A.N. is student-run, with adult mentors coaching rather than
-            directing. Four team leads manage organization and business,
-            ensuring the team runs smoothly and that responsibilities are
-            clearly defined.
-        </p>
-        <p>
-            Beyond that, membership is not divided into fixed subteams. Students
-            are free to work wherever they're most interested or most useful
-            that week, whether that's wiring one day and CAD the next, and
-            nobody is locked into one group for the season. Team leads
-            coordinate the work and mentors provide technical guidance and
-            safety oversight, but day-to-day problem solving is student-driven.
-        </p>
-        <p>
-            Experienced students train new members and keep notes on both the
-            technical work and how the team is run, so responsibilities and
-            institutional knowledge can be handed off to future leaders as the
-            team grows.
-        </p>
+        <p>{copy.text013}</p>
+        <p>{copy.text014}</p>
+        <p>{copy.text015}</p>
     </Section>
 
     <Section>
-        <H level="h2">What We Do</H>
+        <H level="h2">{copy.text016}</H>
         <p>
-            Founded in 2026, Team V.A.N. (FRC 12148) is in its first FRC season.
-            Students run the technical work and the day-to-day organization of
-            the team, with four leads managing organization and business. Where
-            we meet and build is on the{" "}
+            {copy.text017}{" "}
             <a
                 href="/about/"
                 class="text-blue-300 underline underline-offset-4"
             >
-                What Is FIRST
+                {copy.text018}
             </a>{" "}
-            page.
+            {copy.text019}
         </p>
-        <p>
-            Our main build space is in Palm Bay, near Palm Bay Magnet, Bayside
-            High, and Heritage High. We are also the closest FRC team to
-            Sebastian River High, Vero Beach High, and Indian River Charter
-            High.
-        </p>
+        <p>{copy.text020}</p>
 
-        <H level="h2">Mission</H>
-        <p>
-            We started the team because southern Brevard County and Indian River
-            County have had limited access to FRC. Indian River County currently
-            has no FRC teams, and students in southern Brevard often have to
-            travel a long way to join an existing program.
-        </p>
+        <H level="h2">{copy.text021}</H>
+        <p>{copy.text022}</p>
 
         <H level="h2">
             <a
                 href="/interest/"
                 class="text-inherit underline decoration-silver underline-offset-4"
             >
-                Join Us
+                {copy.text023}
             </a>
         </H>
         <p>
-            We are always looking for passionate students to join our team.
-            Whether you're interested in the engineering or business side of
-            things, you would make an impact! No matter your experience.{" "}
+            {copy.text024}{" "}
             <a
                 href="/interest/"
                 class="text-blue-300 underline underline-offset-4"
             >
-                Fill out the interest form
+                {copy.text025}
             </a>
             .
         </p>

@@ -1,4 +1,5 @@
 ---
+import copy from "@/content/site/outreach.json";
 import { Image } from "astro:assets";
 
 import H from "@/components/H.astro";
@@ -10,184 +11,126 @@ import tammyDennis from "@/images/2026/tammy-dennis.jpeg";
 import westShoreScrimmage from "@/images/2026/west-shore-fll-scrimmage.jpg";
 ---
 
-<Layout
-    title="Outreach"
-    description="Learn how Team V.A.N. connects students with community leaders, educators, engineers, and STEM opportunities across Central Florida."
->
-    <H>Outreach</H>
+<Layout title={copy.text001} description={copy.text002}>
+    <H>{copy.text003}</H>
 
     <Section>
-        <p>
-            For us, outreach also means introducing the program itself to a part of Florida that
-            doesn't have an established FRC presence yet: hosting tours at
-            competitions, mentoring younger FIRST LEGO League (FLL) teams, and
-            talking with local leaders about what hands-on robotics can do for
-            students here.
-        </p>
+        <p>{copy.text004}</p>
     </Section>
 
     <Section aria-labelledby="community-leadership-heading">
         <H id="community-leadership-heading" level="h2">
-            Community Leadership & Advocacy
+            {copy.text005}
         </H>
         <details class="rounded-base border border-white/20 bg-white/5">
             <summary class="showdown-summary cursor-pointer p-4 font-semibold">
-                Space Coast Showdown
+                {copy.text006}
             </summary>
             <div class="space-y-4 px-4 pb-4">
                 <p>
-                    <strong>September 26, 2026</strong> — Valiant Air Command
-                    Warbird Museum:{" "}
+                    <strong>{copy.text007}</strong> {copy.text008}{" "}
                     <a
                         class="text-blue-300 underline underline-offset-4"
                         href="https://maps.app.goo.gl/7Jz1C8Vz5oYsiKVJ9"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        6600 Tico Rd, Titusville, FL
+                        {copy.text009}
                     </a>
                 </p>
-                <p>
-                    Our team had an extremely successful day volunteering at the
-                    Space Coast Showdown! In addition to keeping matches running
-                    smoothly as field resetters in the morning hours of the
-                    competition, our members proudly served as ambassadors for
-                    Team V.A.N. and FIRST Florida, engaging with NASA employees,
-                    Eastern Florida State College (EFSC) directors, and school
-                    board member candidates.
-                </p>
-                <p class="mb-0">
-                    At the Space Coast Showdown, Team V.A.N. invited and hosted
-                    guided tours for community leaders, educational advocates,
-                    and industry professionals. We talked about what it's like
-                    to be a rookie FRC team and how hands-on STEM through FIRST
-                    reaches local youth across Brevard:
-                </p>
+                <p>{copy.text010}</p>
+                <p class="mb-0">{copy.text011}</p>
                 <figure class="my-6">
                     <Image
                         src={tammyDennis}
-                        alt="Team V.A.N. members talking with Tammy Dennis at the Space Coast Showdown"
+                        alt={copy.text012}
                         class="h-auto w-full rounded-base border border-silver object-cover"
                         loading="lazy"
                     />
-                    <figcaption class="mt-2 text-sm">
-                        Team V.A.N. members introduce District 5 school board
-                        candidate Tammy Dennis to the FIRST Robotics Competition
-                        program and show her the competition at Space Coast
-                        Showdown on Saturday, Sept. 26.
-                    </figcaption>
+                    <figcaption class="mt-2 text-sm">{copy.text013}</figcaption>
                 </figure>
                 <ul class="list-disc pl-6 space-y-3 mb-6">
                     <li>
-                        <strong>Tammy Dennis</strong> (Brevard District 5 School
-                        Board Candidate) — Toured our setup and expressed strong
-                        support for the FIRST vision and the expansion of
-                        robotics programs across Brevard County schools. Viewed
-                        and interacted with most Brevard teams.
+                        <strong>{copy.text014}</strong> {copy.text015}
                     </li>
                     <li>
-                        <strong>Gordon B. Coffey</strong> (NASA Mechanical
-                        Engineer) — Enthusiastically viewed Florida teams'
-                        robots and offered to connect Team V.A.N. with
-                        professional engineering networks across Florida,
-                        including contacts at aerospace leaders like Lockheed
-                        Martin.
+                        <strong>{copy.text016}</strong> {copy.text017}
                     </li>
                     <li>
-                        <strong>Daniel Mondshein</strong> (Eastern Florida State
-                        College Collegewide Chair) — Toured with our members and
-                        offered full access to EFSC resources, to the best of
-                        his ability, to support our students' technical
-                        development and post-secondary STEM pathways.
+                        <strong>{copy.text018}</strong> {copy.text019}
                     </li>
                 </ul>
             </div>
         </details>
         <details class="rounded-base border border-white/20 bg-white/5">
             <summary class="showdown-summary cursor-pointer p-4 font-semibold">
-                West Shore FLL Scrimmage
+                {copy.text020}
             </summary>
             <div class="px-4 pb-4">
-                <p class="mb-4">
-                    This October, Team V.A.N. enjoyed volunteering to help run an
-                    FLL scrimmage in Brevard County. Our members served as
-                    referees and judges while helping with event setup and
-                    teardown to make sure everything ran smoothly.
-                </p>
+                <p class="mb-4">{copy.text021}</p>
                 <figure>
                     <Image
                         src={westShoreScrimmage}
-                        alt="Students gathered around an FLL robotics field at the West Shore FLL Scrimmage"
+                        alt={copy.text022}
                         class="aspect-[25/12] h-auto w-full rounded-base border border-silver object-cover object-bottom"
                         loading="lazy"
                     />
                 </figure>
-                <p class="mt-4">
-                    We were so impressed by how much these elementary school
-                    students were able to prepare for competition in just a
-                    couple months. It was heartwarming to see several teams we’ve
-                    mentored succeeding at competition. We’re proud to support
-                    the next generation of robotics students and help grow STEM
-                    opportunities in our community. We wish all of these teams
-                    good luck at qualifiers!
-                </p>
+                <p class="mt-4">{copy.text023}</p>
             </div>
         </details>
     </Section>
 
     <Section aria-labelledby="fll-competitions-heading">
         <H id="fll-competitions-heading" level="h2">
-            Upcoming FLL Events
+            {copy.text024}
         </H>
         <List>
             <li>
                 <p>
-                    <strong>FLL Challenge Scrimmage (Pinellas)</strong> —
-                    October 17, 2026
+                    <strong>{copy.text025}</strong> {copy.text026}
                 </p>
                 <p class="pl-4">
-                    Azalea Middle School:{" "}
+                    {copy.text027}{" "}
                     <a
                         href="https://maps.app.goo.gl/FEYV6Uz1gfULo1XdA"
                         class="text-blue-300 underline underline-offset-4"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        7855 22nd Ave N., St. Petersburg, FL
+                        {copy.text028}
                     </a>
                 </p>
             </li>
             <li>
                 <p>
-                    <strong>FLL Challenge Scrimmage (Lake)</strong> — October
-                    24, 2026
+                    <strong>{copy.text029}</strong> {copy.text030}
                 </p>
                 <p class="pl-4">
-                    Montverde Academy:{" "}
+                    {copy.text031}{" "}
                     <a
                         href="https://maps.app.goo.gl/RttnUE39cU8JfbF98"
                         class="text-blue-300 underline underline-offset-4"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        17235 7th St, Montverde, FL
+                        {copy.text032}
                     </a>
                 </p>
             </li>
             <li>
                 <p>
-                    <strong>FLL Challenge Scrimmage (Hillsborough)</strong> —
-                    October 24, 2026
+                    <strong>{copy.text033}</strong> {copy.text034}
                 </p>
                 <p class="pl-4">
-                    Corbett Preparatory School:{" "}
+                    {copy.text035}{" "}
                     <a
                         href="https://maps.app.goo.gl/K9wdUbZsbcURHPYp7"
                         class="text-blue-300 underline underline-offset-4"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        12015 Orange Grove Drive, Tampa, FL
+                        {copy.text036}
                     </a>
                 </p>
             </li>
