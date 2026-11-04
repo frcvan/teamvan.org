@@ -308,21 +308,6 @@
                 "multiline": false
             },
             {
-                "key": "text013",
-                "label": "About Team V.A.N. · Text: Team V.A.N. is student-run, with adult mentors coaching rather th…",
-                "multiline": true
-            },
-            {
-                "key": "text014",
-                "label": "About Team V.A.N. · Text: Beyond that, membership is not divided into fixed subteams. Stude…",
-                "multiline": true
-            },
-            {
-                "key": "text015",
-                "label": "About Team V.A.N. · Text: Experienced students train new members and keep notes on both the…",
-                "multiline": true
-            },
-            {
                 "key": "text016",
                 "label": "What We Do · Heading: What We Do",
                 "multiline": false
