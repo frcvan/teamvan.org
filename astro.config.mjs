@@ -33,6 +33,26 @@ export default defineConfig({
     session: false,
     vite: {
         plugins: [tailwindcss()],
+        environments: {
+            client: {
+                build: {
+                    rolldownOptions: {
+                        output: {
+                            strictExecutionOrder: true,
+                            codeSplitting: {
+                                groups: [
+                                    {
+                                        name: "vendor",
+                                        test: /node_modules[\\/]/,
+                                        maxSize: 400_000,
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                },
+            },
+        },
     },
 
     site: "https://teamvan.org",

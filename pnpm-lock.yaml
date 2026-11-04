@@ -57,6 +57,9 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
     devDependencies:
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
       prettier:
         specifier: ^3.9.8
         version: 3.9.8

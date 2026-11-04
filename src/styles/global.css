@@ -77,7 +77,125 @@ main {
     margin: 0;
 }
 
-#main-content > * + [data-heading-level="h2"] {
+#main-content h1,
+#main-content h2,
+#main-content h3,
+#main-content h4,
+#main-content h5,
+#main-content h6 {
+    scroll-margin-top: 5rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+#main-content h1 {
+    font-size: 2.25rem;
+}
+
+#main-content h2 {
+    font-size: 1.875rem;
+}
+
+#main-content h3 {
+    font-size: 1.5rem;
+}
+
+#main-content h4 {
+    font-size: 1.25rem;
+}
+
+#main-content h5 {
+    font-size: 1.125rem;
+}
+
+#main-content h6 {
+    font-size: 1rem;
+}
+
+@media (min-width: 64rem) {
+    #main-content h1 {
+        font-size: 3rem;
+    }
+}
+
+#main-content :not(pre) > code {
+    padding: 0.1em 0.35em;
+    border: 1px solid rgb(255 255 255 / 22%);
+    border-radius: 5px;
+    background: rgb(0 0 0 / 20%);
+    font-size: 0.9em;
+    overflow-wrap: anywhere;
+}
+
+#main-content pre {
+    padding: 1rem 1.25rem;
+    border: 1px solid rgb(255 255 255 / 25%);
+    border-radius: 5px;
+    background-color: #2a1218 !important;
+    font-size: 0.9em;
+    line-height: 1.7;
+    tab-size: 4;
+}
+
+#main-content blockquote {
+    padding-left: 1.25rem;
+    border-left: 4px solid #c0c0c0;
+    font-style: italic;
+}
+
+#main-content blockquote > * + * {
+    margin-top: 1rem;
+}
+
+#main-content hr {
+    height: 1px;
+    border: 0;
+    background: #c0c0c0;
+}
+
+#main-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#main-content th,
+#main-content td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgb(255 255 255 / 28%);
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: break-word;
+}
+
+#main-content th {
+    background: rgb(0 0 0 / 18%);
+    font-weight: 800;
+}
+
+#main-content p img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+}
+
+#main-content ul.contains-task-list {
+    padding-left: 0;
+    list-style: none;
+}
+
+#main-content .task-list-item {
+    list-style: none;
+}
+
+#main-content .task-list-item > input[type="checkbox"] {
+    margin-right: 0.5rem;
+    vertical-align: -0.1em;
+    accent-color: #ffffff;
+}
+
+#main-content > * + h2 {
     margin-top: 3rem;
 }
 
@@ -98,7 +216,7 @@ main {
         margin-top: 1.75rem;
     }
 
-    #main-content > * + [data-heading-level="h2"] {
+    #main-content > * + h2 {
         margin-top: 4.5rem;
     }
 }
