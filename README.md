@@ -24,7 +24,7 @@ Content is in `src/content/site/*.json`. Field definitions and labels are in `sr
 
 `pnpm build` writes the site and the Worker entry point to `dist/`. `pnpm preview` serves that build with the Cloudflare runtime, `pnpm exec wrangler deploy` uploads it, and `pnpm deploy` runs both commands.
 
-The deployed editor uses GitHub storage. The build reads `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG`, and the Worker reads these secrets at runtime:
+The deployed editor uses GitHub storage. The build reads `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` — the GitHub App slug, which is the last segment of the app's settings URL (`https://github.com/settings/apps/<slug>`) — and the Worker reads these secrets at runtime:
 
 - `KEYSTATIC_GITHUB_CLIENT_ID`
 - `KEYSTATIC_GITHUB_CLIENT_SECRET`

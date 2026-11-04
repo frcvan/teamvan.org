@@ -16,6 +16,17 @@ import sitemap from "@astrojs/sitemap";
 // Node server without an adapter; builds target Cloudflare so the editor API
 // routes run inside the Worker.
 const development = process.argv.includes("dev");
+const building = process.argv.includes("build");
+
+// This config runs in Node, unlike keystatic.config.ts, which is also bundled
+// into the browser. Failing here keeps a slug-less build from deploying an
+// editor that cannot link to its GitHub App.
+if (building && !process.env.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG) {
+    throw new Error(
+        "Set PUBLIC_KEYSTATIC_GITHUB_APP_SLUG to the GitHub App slug (the last segment of https://github.com/settings/apps/<slug>) before building.",
+    );
+}
+
 export default defineConfig({
     adapter: development ? undefined : cloudflare(),
     session: false,
