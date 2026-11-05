@@ -2,11 +2,6 @@ import { config, fields, singleton } from "@keystatic/core";
 import { createElement } from "react";
 import { block, repeating, wrapper } from "@keystatic/core/content-components";
 
-// Local development edits files; the deployed Worker authenticates with GitHub.
-// Do not throw from this module: Keystatic bundles it into the browser too.
-// The build-time check for PUBLIC_KEYSTATIC_GITHUB_APP_SLUG lives in
-// astro.config.mjs, which only runs in Node.
-
 const pageImages = {
     directory: "public/images/pages",
     publicPath: "/images/pages/",

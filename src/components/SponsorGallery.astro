@@ -1,49 +1,85 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 import firstLogo from "@/images/sponsors/first-logo.svg";
-import argosyFoundation from "@/images/sponsors/argosy-foundation-logo.png";
-import hcb from "@/images/sponsors/hcb-logo.png";
+import argosyFoundationLogo from "@/images/sponsors/argosy-foundation-logo.png";
+import hcbLogo from "@/images/sponsors/hcb-logo.png";
 
-interface Props {}
+type Logo =
+    | { asset: ImageMetadata }
+    | { url: string; width: number; height: number };
 
-const sponsors = [
+interface Sponsor {
+    name: string;
+    href: string;
+    logo: Logo;
+}
+
+const sponsors: Sponsor[] = [
     {
+        name: "FIRST Robotics Competition",
         href: "https://www.firstinspires.org/",
-        ariaLabel: "FIRST robotics competition website (opens in a new tab)",
-        src: firstLogo,
-        alt: "FIRST Robotics Competition logo",
+        logo: { asset: firstLogo },
     },
     {
+        name: "Argosy Foundation",
         href: "https://www.argosyfnd.org/",
-        ariaLabel: "Argosy Foundation website (opens in a new tab)",
-        src: argosyFoundation,
-        alt: "Argosy Foundation logo",
+        logo: { asset: argosyFoundationLogo },
     },
     {
+        name: "HCB",
         href: "https://hackclub.com/hcb",
-        ariaLabel: "HCB website (opens in a new tab)",
-        src: hcb,
-        alt: "HCB logo",
+        logo: { asset: hcbLogo },
+    },
+    {
+        name: "RMFG",
+        href: "https://www.rmfg.com",
+        // Hotlinked because we have no local copy of their logo; the intrinsic
+        // size keeps the card from shifting while the image loads.
+        logo: {
+            url: "https://www.rmfg.com/RMFG-V2-Wordmark-Green-On-Black.png",
+            width: 1337,
+            height: 467,
+        },
     },
 ];
+
+const logoClass = "max-h-16 w-auto max-w-full object-contain";
 ---
 
-<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {sponsors.map((sponsor) => (
-        <a
-            href={sponsor.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={sponsor.ariaLabel}
-            class="flex min-h-28 w-full max-w-sm items-center justify-center rounded-base border border-silver bg-white p-3"
-        >
-            <Image
-                src={sponsor.src}
-                alt={sponsor.alt}
-                loading="lazy"
-                class="max-h-16 w-auto max-w-full object-contain"
-            />
-        </a>
-    ))}
-</div>
+<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {
+        sponsors.map(({ name, href, logo }) => (
+            <li>
+                <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${name} (opens in a new tab)`}
+                    class="flex min-h-28 w-full items-center justify-center rounded-base border border-silver bg-white p-3"
+                >
+                    {"asset" in logo ? (
+                        <Image
+                            src={logo.asset}
+                            alt=""
+                            loading="lazy"
+                            class={logoClass}
+                        />
+                    ) : (
+                        <img
+                            src={logo.url}
+                            width={logo.width}
+                            height={logo.height}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                            referrerpolicy="no-referrer"
+                            class={logoClass}
+                        />
+                    )}
+                </a>
+            </li>
+        ))
+    }
+</ul>
