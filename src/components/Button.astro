@@ -26,10 +26,12 @@ const {
 } = Astro.props as Props;
 
 const variantClasses = {
-    primary: "bg-main text-white hover:bg-main/85",
-    secondary: "bg-white text-main hover:bg-white/90",
-    ghost: "text-main hover:bg-main hover:text-white",
-    outline: "border border-main text-main hover:bg-main hover:text-white",
+    primary: "bg-brand text-white hover:bg-brand/85",
+    secondary:
+        "bg-secondary-background text-main hover:bg-secondary-background/90",
+    ghost: "text-main hover:bg-main hover:text-secondary-background",
+    outline:
+        "border border-main text-main hover:bg-main hover:text-secondary-background",
 };
 
 const sizeClasses = {

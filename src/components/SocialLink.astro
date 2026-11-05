@@ -12,7 +12,7 @@ const { href, icon, label, ariaLabel } = Astro.props as Props;
 ---
 
 <a
-    class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-black"
+    class="inline-flex items-center gap-2 underline decoration-silver underline-offset-4 hover:text-main/70"
     href={href}
     target={href.startsWith("http") ? "_blank" : undefined}
     rel={href.startsWith("http") ? "noopener noreferrer" : undefined}

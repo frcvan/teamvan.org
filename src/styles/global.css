@@ -4,8 +4,11 @@
     --font-sans:
         "Merriweather Sans", "Helvetica Neue", -apple-system, "Segoe UI", Roboto;
 
-    --color-silver: #c0c0c0;
+    --color-silver: var(--silver);
+    --color-gold: var(--gold);
     --color-main: var(--main);
+    --color-page: var(--page);
+    --color-brand: var(--brand);
     --color-secondary-background: var(--secondary-background);
     --radius-base: 5px;
     --font-weight-base: 500;
@@ -13,10 +16,35 @@
     --font-weight-heading: 900;
 }
 
+/* Light mode is warm paper with crimson type; dark mode flips the field to ink
+   and keeps a lighter crimson as the accent. */
 :root {
-    --main: #652633;
-    --secondary-background: oklch(100% 0 0);
-    --site-foreground: #ffffff;
+    color-scheme: light dark;
+
+    --crimson: #770000;
+    --gold: #ab946c;
+
+    --page: #f2e9dc;
+    --site-foreground: var(--crimson);
+
+    --secondary-background: #fbf6ee;
+    --main: var(--crimson);
+    --brand: var(--crimson);
+    --silver: #d9c9b4;
+}
+
+/* Dark mode follows the system preference. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --page: #150d0d;
+        --site-foreground: #f1e6d8;
+
+        --secondary-background: #211515;
+        --main: #d1716a;
+        --brand: var(--crimson);
+        --silver: #4a3a36;
+        --gold: #c9a97b;
+    }
 }
 
 @layer base {
@@ -46,24 +74,20 @@
     white-space: break-spaces;
 }
 
-main {
-    text-shadow:
-        0 1px 1px rgb(0 0 0 / 25%),
-        0 0 8px rgb(255 255 255 / 12%);
-}
-
 /* Header wordmark: the checker "V" sits at 0.74em so its cap height matches
    Archivo Black, with the logo lab's offset-shadow treatment stacked twice. */
 .logo-type {
     font-family: "Archivo Black", "Helvetica Neue", sans-serif;
     font-weight: 400;
     text-shadow:
-        2px 2px 0 #c0c0c0b3,
+        2px 2px 0 color-mix(in srgb, var(--gold) 70%, transparent),
         4px 4px 0 color-mix(in srgb, currentColor 55%, transparent);
 }
 
 .logo-type svg {
-    filter: drop-shadow(2px 2px 0 #c0c0c0b3)
+    filter: drop-shadow(
+            2px 2px 0 color-mix(in srgb, var(--gold) 70%, transparent)
+        )
         drop-shadow(4px 4px 0 color-mix(in srgb, currentColor 55%, transparent));
 }
 
@@ -115,17 +139,18 @@ main {
     }
 
     #main-content :not(pre) > code {
-        @apply rounded-base border border-white/22 bg-black/20 px-[0.35em] py-[0.1em] text-[0.9em] [overflow-wrap:anywhere];
+        @apply rounded-base border border-main/20 bg-main/10 px-[0.35em] py-[0.1em] text-[0.9em] [overflow-wrap:anywhere];
     }
 
     #main-content pre {
-        @apply rounded-base border border-white/25 px-5 py-4 text-[0.9em] leading-[1.7];
+        @apply rounded-base border border-main/25 px-5 py-4 text-[0.9em] leading-[1.7];
+        color: #f4ece1;
         background-color: #2a1218 !important;
         tab-size: 4;
     }
 
     #main-content blockquote {
-        @apply border-l-4 border-silver pl-5 italic;
+        @apply border-l-4 border-gold pl-5 italic;
     }
 
     #main-content blockquote > * + * {
@@ -133,7 +158,7 @@ main {
     }
 
     #main-content hr {
-        @apply h-px border-0 bg-silver;
+        @apply h-px border-0 bg-gold;
     }
 
     #main-content table {
@@ -142,11 +167,11 @@ main {
 
     #main-content th,
     #main-content td {
-        @apply border border-white/28 px-3 py-2 text-left align-top break-words;
+        @apply border border-main/20 px-3 py-2 text-left align-top break-words;
     }
 
     #main-content th {
-        @apply bg-black/18 font-bold;
+        @apply bg-main/10 font-bold;
     }
 
     #main-content p img {
@@ -162,7 +187,7 @@ main {
     }
 
     #main-content .task-list-item > input[type="checkbox"] {
-        @apply mr-2 align-[-0.1em] accent-white;
+        @apply mr-2 align-[-0.1em] accent-main;
     }
 }
 
