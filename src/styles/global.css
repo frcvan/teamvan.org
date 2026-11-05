@@ -9,6 +9,11 @@
     --color-main: var(--main);
     --color-page: var(--page);
     --color-brand: var(--brand);
+    --color-link: var(--link);
+    --color-link-hover: var(--link-hover);
+    --color-accent: var(--accent);
+    --color-accent-hover: var(--accent-hover);
+    --color-accent-foreground: var(--accent-foreground);
     --color-secondary-background: var(--secondary-background);
     --radius-base: 5px;
     --font-weight-base: 500;
@@ -16,36 +21,53 @@
     --font-weight-heading: 900;
 }
 
-/* Light mode is warm paper with crimson type; dark mode flips the field to ink
-   and keeps a lighter crimson as the accent. */
+/* Light mode is warm paper with crimson type; dark mode flips the field to ink,
+   keeps the same crimson for filled buttons and nav pills, and lifts only the
+   red used for type and blue for links. Each foreground token is chosen
+   to clear WCAG AA against the surface it sits on: main 9.8:1 on --page and
+   10.9:1 on --secondary-background, link 5.5:1, and gold 3.6:1 so rules and
+   quote bars stay visible as UI edges. */
 :root {
     color-scheme: light;
 
     --crimson: #770000;
-    --gold: #ab946c;
+    --gold: #8d7444;
 
     --page: #f2e9dc;
     --site-foreground: var(--crimson);
 
     --secondary-background: #fbf6ee;
     --main: var(--crimson);
+    --link: #1d4ed8;
+    --link-hover: #1e3a8a;
+    --accent: #7d6538;
+    --accent-hover: #6a5530;
+    --accent-foreground: #fbf6ee;
     --brand: var(--crimson);
-    --silver: #d9c9b4;
+    --silver: #ab9376;
+    --focus: #8d7444;
 }
 
 /* Dark mode is opt-in: with ?dark in the URL, the inline script in the head
-   sets data-theme on <html>. */
+   sets data-theme on <html>. The ink surfaces are lifted slightly off black so
+   cards, header, and footer read as distinct layers. */
 :root[data-theme="dark"] {
     color-scheme: dark;
 
     --page: #150d0d;
-    --site-foreground: #f1e6d8;
+    --site-foreground: #f2e8db;
 
-    --secondary-background: #211515;
-    --main: #d1716a;
+    --secondary-background: #2a1d1b;
+    --main: #e3928b;
+    --link: #93c5fd;
+    --link-hover: #bfdbfe;
+    --accent: #d8b98c;
+    --accent-hover: #e8ca9f;
+    --accent-foreground: #150d0d;
     --brand: var(--crimson);
-    --silver: #4a3a36;
-    --gold: #c9a97b;
+    --silver: #7a635a;
+    --gold: #d8b98c;
+    --focus: #e8c79c;
 }
 
 @layer base {
@@ -69,6 +91,13 @@
     :is(b, strong) {
         @apply font-bold;
     }
+
+    /* A single themed focus ring for everything that is not a Button, which
+       carries its own. Gold clears 3:1 against both page surfaces. */
+    :where(a, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+    }
 }
 
 .editor-text {
@@ -76,20 +105,16 @@
 }
 
 /* Header wordmark: the checker "V" sits at 0.74em so its cap height matches
-   Archivo Black, with the logo lab's offset-shadow treatment stacked twice. */
+   Archivo Black. The mark and the wordmark each cast a single solid gold
+   offset shadow, so the logo never shows more than one shadow color. */
 .logo-type {
     font-family: "Archivo Black", "Helvetica Neue", sans-serif;
     font-weight: 400;
-    text-shadow:
-        2px 2px 0 color-mix(in srgb, var(--gold) 70%, transparent),
-        4px 4px 0 color-mix(in srgb, currentColor 55%, transparent);
+    text-shadow: 4px 4px 0 var(--gold);
 }
 
 .logo-type svg {
-    filter: drop-shadow(
-            2px 2px 0 color-mix(in srgb, var(--gold) 70%, transparent)
-        )
-        drop-shadow(4px 4px 0 color-mix(in srgb, currentColor 55%, transparent));
+    filter: drop-shadow(4px 4px 0 var(--gold));
 }
 
 /* Markdown body defaults. Components override these with utilities, which sit
@@ -168,7 +193,7 @@
 
     #main-content th,
     #main-content td {
-        @apply border border-main/20 px-3 py-2 text-left align-top break-words;
+        @apply border border-main/25 px-3 py-2 text-left align-top break-words;
     }
 
     #main-content th {

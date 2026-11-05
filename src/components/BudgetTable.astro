@@ -12,7 +12,7 @@ interface Props {
 const { items, total } = Astro.props as Props;
 ---
 
-<div class="overflow-x-auto rounded-base border border-main/20 shadow-sm">
+<div class="overflow-x-auto rounded-base border border-main/30 shadow-sm">
     <table class="w-full min-w-max border-collapse text-sm">
         <thead>
             <tr class="bg-secondary-background text-main">
@@ -26,14 +26,14 @@ const { items, total } = Astro.props as Props;
         </thead>
         <tbody>
             {items.map((item, index) => (
-                <tr class={index % 2 === 1 ? "bg-main/5" : ""}>
+                <tr class={index % 2 === 1 ? "bg-main/8" : ""}>
                     <td class="py-2 pr-4 pl-4">{item.label}</td>
                     <td class="py-2 pr-4 text-right">{item.cost}</td>
                 </tr>
             ))}
         </tbody>
         <tfoot>
-            <tr class="border-t-2 border-main/40 font-bold">
+            <tr class="border-t-2 border-main/50 font-bold">
                 <td class="py-2 pr-4 pl-4">Total</td>
                 <td class="py-2 pr-4 text-right">{total}</td>
             </tr>

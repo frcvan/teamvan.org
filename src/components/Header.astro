@@ -21,7 +21,7 @@ const navigationLinks = navlinks.map((navlink) => ({
 <header class="relative border-gold bg-secondary-background border-b-2">
     <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 lg:gap-6">
         <a
-            class="text-main flex min-w-0 flex-1 items-center no-underline lg:flex-none"
+            class="text-brand flex min-w-0 flex-1 items-center no-underline lg:flex-none"
             href="/"
             aria-label="Team V.A.N. home"
         >
@@ -32,7 +32,7 @@ const navigationLinks = navlinks.map((navlink) => ({
                 <VanLogo
                     width="1280"
                     height="448"
-                    class="block size-12 shrink-0 fill-main! sm:size-14 lg:size-[0.74em]"
+                    class="block size-12 shrink-0 fill-brand! sm:size-14 lg:size-[0.74em]"
                 />
                 <span class="hidden lg:block lg:-ml-[0.11em]">.A.N.</span>
             </span>
@@ -60,6 +60,7 @@ const navigationLinks = navlinks.map((navlink) => ({
                         href={link.href}
                         current={link.active}
                         variant={link.active ? "primary" : "ghost"}
+                        outline={false}
                         size="lg"
                         class:list={[
                             "mobile-menu-item w-full justify-start border-2 border-silver hover:border-main focus-visible:outline-2 focus-visible:outline-offset-2",
@@ -88,4 +89,3 @@ const navigationLinks = navlinks.map((navlink) => ({
             });
     });
 </script>
-

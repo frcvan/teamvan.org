@@ -1,10 +1,12 @@
 ---
 import { Content, frontmatter } from "@/content/pages/index.mdx";
 
+import Hero from "@/components/Hero.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import components from "@/components/mdx";
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
+    <Hero />
     <Content components={components} />
 </Layout>

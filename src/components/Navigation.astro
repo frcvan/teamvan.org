@@ -23,6 +23,7 @@ const { navlinks, class: className } = Astro.props as Props;
             href={navlink.href}
             current={navlink.active}
             variant={navlink.active ? "primary" : "ghost"}
+            outline={false}
             class={navlink.labelClass}
         >
             {navlink.label}

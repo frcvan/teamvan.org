@@ -1,7 +1,7 @@
 ---
 interface Props {
     href?: string;
-    variant?: "primary" | "secondary" | "ghost" | "outline";
+    variant?: "primary" | "secondary" | "accent" | "ghost" | "outline";
     size?: "default" | "sm" | "lg" | "icon";
     class?: string;
     download?: string | boolean;
@@ -9,6 +9,7 @@ interface Props {
     rel?: string;
     ariaLabel?: string;
     current?: boolean;
+    outline?: boolean;
     disabled?: boolean;
 }
 
@@ -22,6 +23,7 @@ const {
     rel,
     ariaLabel,
     current = false,
+    outline = true,
     disabled = false,
 } = Astro.props as Props;
 
@@ -29,6 +31,7 @@ const variantClasses = {
     primary: "bg-brand text-white hover:bg-brand/85",
     secondary:
         "bg-secondary-background text-main hover:bg-secondary-background/90",
+    accent: "bg-accent text-accent-foreground hover:bg-accent-hover",
     ghost: "text-main hover:bg-main hover:text-secondary-background",
     outline:
         "border border-main text-main hover:bg-main hover:text-secondary-background",
@@ -42,9 +45,12 @@ const sizeClasses = {
 };
 
 const classes = [
-    "inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-1.5 rounded-base text-center font-bold whitespace-nowrap transition-all outline-none focus-visible:ring-3 focus-visible:ring-main/50 active:translate-y-px [&_p]:m-0 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    "inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-1.5 rounded-base text-center font-bold whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-main/60 active:translate-y-px [&_p]:m-0 [&_svg]:pointer-events-none [&_svg]:shrink-0",
     sizeClasses[size],
     variantClasses[variant],
+    outline &&
+        variant !== "outline" &&
+        "outline-2 outline-offset-2 outline-gold",
     disabled && "pointer-events-none cursor-not-allowed opacity-50",
     className,
 ];

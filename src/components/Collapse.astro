@@ -10,14 +10,12 @@ const { title, class: className, open = false } = Astro.props as Props;
 
 <details
     class:list={[
-        "group rounded-base border border-main/20 bg-main/5",
+        "group rounded-base border border-main/30 bg-main/8",
         className,
     ]}
     open={open}
 >
-    <summary
-        class="flex cursor-pointer list-none items-center p-4 font-semibold [&::-webkit-details-marker]:hidden before:mr-2.5 before:size-0 before:border-y-4 before:border-y-transparent before:border-l-[6px] before:border-l-current before:transition-transform before:content-[''] group-open:before:rotate-90"
-    >
+    <summary class="flex cursor-pointer list-none items-center p-4 font-semibold [&::-webkit-details-marker]:hidden before:mr-2.5 before:size-0 before:border-y-4 before:border-y-transparent before:border-l-[6px] before:border-l-current before:transition-transform before:content-[''] group-open:before:rotate-90">
         {title}
     </summary>
     <div class="space-y-4 px-4 pb-4">
