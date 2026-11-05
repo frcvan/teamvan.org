@@ -41,7 +41,7 @@ const navigationLinks = navlinks.map((navlink) => ({
             <summary
                 aria-label="Open navigation menu"
                 aria-controls="mobile-navigation"
-                class="ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4"
+                class="ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
             >
                 <Icon name="tabler:menu" size={32} />
             </summary>
@@ -57,7 +57,7 @@ const navigationLinks = navlinks.map((navlink) => ({
                         variant={link.active ? "primary" : "ghost"}
                         size="lg"
                         class:list={[
-                            "mobile-menu-item rounded-base border-2 px-4 py-3 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2",
+                            "mobile-menu-item w-full justify-start border-2 border-main focus-visible:outline-2 focus-visible:outline-offset-2",
                             link.labelClass || "",
                         ]}
                     >
@@ -84,8 +84,3 @@ const navigationLinks = navlinks.map((navlink) => ({
     });
 </script>
 
-<style>
-    .mobile-menu summary::-webkit-details-marker {
-        display: none;
-    }
-</style>
