@@ -21,6 +21,9 @@ const development = process.argv.includes("dev");
 export default defineConfig({
     adapter: development ? undefined : cloudflare(),
     session: false,
+    build: {
+        concurrency: 2,
+    },
     vite: {
         plugins: [tailwindcss()],
         environments: {
