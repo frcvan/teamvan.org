@@ -52,6 +52,21 @@ main {
         0 0 8px rgb(255 255 255 / 12%);
 }
 
+/* Header wordmark: the checker "V" sits at 0.74em so its cap height matches
+   Archivo Black, with the logo lab's offset-shadow treatment stacked twice. */
+.logo-type {
+    font-family: "Archivo Black", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    text-shadow:
+        2px 2px 0 #c0c0c0b3,
+        4px 4px 0 color-mix(in srgb, currentColor 55%, transparent);
+}
+
+.logo-type svg {
+    filter: drop-shadow(2px 2px 0 #c0c0c0b3)
+        drop-shadow(4px 4px 0 color-mix(in srgb, currentColor 55%, transparent));
+}
+
 /* Markdown body defaults. Components override these with utilities, which sit
    in a later layer. */
 @layer components {
