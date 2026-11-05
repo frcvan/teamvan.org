@@ -1,4 +1,6 @@
 ---
+import Loader from "./Loader.astro";
+
 interface Props {
     src: string;
     title: string;
@@ -16,11 +18,38 @@ const frameClass =
         : "w-full h-full border-none outline-none shadow-none";
 ---
 
-<div class:list={["relative", containerClass]}>
+<div class:list={["relative", containerClass]} data-embed-container>
+    <div
+        class="absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 in-[.is-loaded]:pointer-events-none in-[.is-loaded]:opacity-0"
+        data-embed-loader
+        role="status"
+        aria-label="Loading content"
+    >
+        <Loader />
+    </div>
     <iframe
-        class:list={["block", frameClass]}
+        class:list={[
+            "block opacity-0 transition-opacity duration-300 in-[.is-loaded]:opacity-100",
+            frameClass,
+        ]}
         src={src}
         title={title}
         loading="eager"
+        data-embed
     ></iframe>
 </div>
+
+<script>
+    document
+        .querySelectorAll<HTMLElement>("[data-embed-container]")
+        .forEach((container) => {
+            const iframe =
+                container.querySelector<HTMLIFrameElement>("[data-embed]");
+
+            iframe?.addEventListener(
+                "load",
+                () => container.classList.add("is-loaded"),
+                { once: true },
+            );
+        });
+</script>
