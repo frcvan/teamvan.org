@@ -19,7 +19,7 @@
 /* Light mode is warm paper with crimson type; dark mode flips the field to ink
    and keeps a lighter crimson as the accent. */
 :root {
-    color-scheme: light dark;
+    color-scheme: light;
 
     --crimson: #770000;
     --gold: #ab946c;
@@ -33,18 +33,19 @@
     --silver: #d9c9b4;
 }
 
-/* Dark mode follows the system preference. */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --page: #150d0d;
-        --site-foreground: #f1e6d8;
+/* Dark mode is opt-in: with ?dark in the URL, the inline script in the head
+   sets data-theme on <html>. */
+:root[data-theme="dark"] {
+    color-scheme: dark;
 
-        --secondary-background: #211515;
-        --main: #d1716a;
-        --brand: var(--crimson);
-        --silver: #4a3a36;
-        --gold: #c9a97b;
-    }
+    --page: #150d0d;
+    --site-foreground: #f1e6d8;
+
+    --secondary-background: #211515;
+    --main: #d1716a;
+    --brand: var(--crimson);
+    --silver: #4a3a36;
+    --gold: #c9a97b;
 }
 
 @layer base {

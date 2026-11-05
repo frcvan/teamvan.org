@@ -29,7 +29,6 @@ const socialImageUrl = new URL("/social-image.png", Astro.site ?? Astro.url);
         />
 
         <meta name="viewport" content="width=device-width" />
-        <meta name="color-scheme" content="light dark" />
         <link
             rel="icon"
             type="image/svg+xml"
@@ -44,16 +43,17 @@ const socialImageUrl = new URL("/social-image.png", Astro.site ?? Astro.url);
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={pageDescription} />
         <meta name="robots" content="index, follow" />
-        <meta
-            name="theme-color"
-            content="#f2e9dc"
-            media="(prefers-color-scheme: light)"
-        />
-        <meta
-            name="theme-color"
-            content="#150d0d"
-            media="(prefers-color-scheme: dark)"
-        />
+        <meta name="theme-color" content="#f2e9dc" />
+        <script is:inline>
+            // Dark mode is opt-in via ?dark so the site is light for everyone
+            // else, whatever their system preference.
+            if (new URLSearchParams(location.search).has("dark")) {
+                document.documentElement.dataset.theme = "dark";
+                document
+                    .querySelector('meta[name="theme-color"]')
+                    ?.setAttribute("content", "#150d0d");
+            }
+        </script>
         <link rel="canonical" href={canonicalUrl} />
         <link rel="sitemap" href="/sitemap-index.xml" />
 
