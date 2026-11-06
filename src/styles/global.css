@@ -27,8 +27,8 @@
 }
 
 /* Five core colours: paper, cream, ink, crimson (the red in the logo), and
-   gold. Every other token is mixed from those five, so the site only gains
-   tints and surface variants instead of new hues. */
+   gold. Crimson leads the scheme; gold is kept as a small detail on the
+   wordmark rather than a surface or button colour. */
 :root {
     color-scheme: light;
 
@@ -49,9 +49,12 @@
     --link: var(--crimson);
     --link-hover: color-mix(in srgb, var(--crimson) 82%, var(--ink));
 
-    --accent: var(--gold);
-    --accent-hover: color-mix(in srgb, var(--gold) 70%, var(--cream));
-    --accent-foreground: var(--ink);
+    --accent: var(--crimson);
+    --accent-hover: var(--brand-hover);
+    --accent-foreground: var(--cream);
+
+    /* Every button shares the same gold offset shadow. */
+    --btn-shadow: var(--gold);
 
     --focus: var(--crimson);
     --logo-front: var(--crimson);
@@ -66,16 +69,15 @@
 
     --page: var(--ink);
     --site-foreground: var(--paper);
-    --secondary-background: color-mix(in srgb, var(--ink) 90%, var(--gold));
+    --secondary-background: color-mix(in srgb, var(--ink) 85%, var(--crimson));
     --main: var(--paper);
     --rule: var(--paper);
 
     --link: color-mix(in srgb, var(--crimson) 38%, var(--paper));
     --link-hover: color-mix(in srgb, var(--crimson) 28%, var(--paper));
 
-    --focus: var(--gold);
-    --logo-front: var(--gold);
-    --logo-shadow: var(--crimson);
+    --focus: var(--link);
+    --logo-front: var(--link);
 }
 
 @layer base {
@@ -113,7 +115,7 @@
     }
 
     /* A single themed focus ring for everything that is not a Button, which
-       carries its own. Gold clears 3:1 against both page surfaces. */
+       carries its own. Crimson and its dark-mode tint clear 3:1 on the page. */
     :where(a, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
         outline: 2px solid var(--focus);
         outline-offset: 2px;
@@ -245,9 +247,9 @@ body.menu-open {
     transform: scaleX(1);
 }
 
-/* In dark mode the menu icon flips to gold with a maroon offset behind it. */
+/* In dark mode the menu icon uses the light link red with a maroon offset. */
 :root[data-theme="dark"] .mobile-menu summary svg {
-    color: var(--gold);
+    color: var(--link);
     filter: drop-shadow(2px 2px 0 var(--crimson));
 }
 
@@ -315,8 +317,8 @@ body.menu-open {
     }
 
     #main-content > h2:nth-of-type(even) {
-        background-color: var(--gold);
-        color: var(--ink);
+        background-color: var(--crimson);
+        color: var(--cream);
     }
 
     #main-content :is(h1, h2, h3, h4, h5, h6) {
@@ -371,7 +373,7 @@ body.menu-open {
     }
 
     #main-content blockquote {
-        @apply border-l-4 border-gold pl-5 italic;
+        @apply border-l-4 border-link pl-5 italic;
     }
 
     #main-content blockquote > * + * {

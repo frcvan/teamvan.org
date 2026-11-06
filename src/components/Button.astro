@@ -29,7 +29,8 @@ const {
 
 const variantClasses = {
     primary: "bg-brand text-cream hover:bg-brand-hover",
-    secondary: "bg-secondary-background text-main hover:bg-gold hover:text-ink",
+    secondary:
+        "bg-secondary-background text-main hover:bg-brand hover:text-cream",
     accent: "bg-accent text-accent-foreground hover:bg-accent-hover",
     ghost: "text-main hover:bg-main hover:text-secondary-background",
     outline:
@@ -49,7 +50,7 @@ const classes = [
     variantClasses[variant],
     outline && variant !== "outline" && "border-2 border-rule",
     outline
-        ? "shadow-[3px_3px_0_var(--btn-shadow,var(--rule))] hover:shadow-[5px_5px_0_var(--btn-shadow,var(--rule))] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+        ? "shadow-[3px_3px_0_var(--btn-shadow)] hover:shadow-[5px_5px_0_var(--btn-shadow)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
         : "active:translate-y-0.5",
     disabled && "pointer-events-none cursor-not-allowed opacity-50",
     className,

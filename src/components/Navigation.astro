@@ -29,7 +29,7 @@ const { navlinks, class: className } = Astro.props as Props;
             <span
                 aria-hidden="true"
                 class:list={[
-                    "absolute inset-x-0 -bottom-0.5 h-[3px] origin-left bg-gold transition-[scale] duration-200 ease-out motion-reduce:transition-none",
+                    "absolute inset-x-0 -bottom-0.5 h-[3px] origin-left bg-link transition-[scale] duration-200 ease-out motion-reduce:transition-none",
                     navlink.active
                         ? "scale-x-100"
                         : "scale-x-0 group-hover:scale-x-100",
