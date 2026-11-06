@@ -38,9 +38,6 @@ importers:
       astro-icon:
         specifier: ^1.2.0
         version: 1.2.0
-      basecoat-css:
-        specifier: ^1.0.2
-        version: 1.0.2
       react:
         specifier: ^19.3.1
         version: 19.3.1
@@ -1594,8 +1591,6 @@ packages:
     resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
     engines: {node: 18 || 20 || >=22}
 
-  basecoat-css@1.0.2:
-    resolution: {integrity: sha512-C6I5rr7HziIAoBYNGPO5U6HaU/6FuF3iVp++IgoEqqJ836is3XoRty6l1ibXqxnoIRZNnOAYDMX8QxVC+58zhw==}
 
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
@@ -4602,7 +4597,6 @@ snapshots:
 
   balanced-match@4.0.4: {}
 
-  basecoat-css@1.0.2: {}
 
   blake3-wasm@2.1.5: {}
 

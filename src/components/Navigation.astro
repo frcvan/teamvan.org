@@ -1,6 +1,4 @@
 ---
-import Button from "@/components/Button.astro";
-
 interface Props {
     navlinks: {
         href: string;
@@ -15,17 +13,28 @@ const { navlinks, class: className } = Astro.props as Props;
 ---
 
 <nav
-    class:list={["text-main flex items-center gap-1", className]}
+    class:list={["flex items-center gap-5 text-main", className]}
     aria-label="Main navigation"
 >
     {navlinks.map((navlink: Props["navlinks"][number]) => (
-        <Button
+        <a
             href={navlink.href}
-            current={navlink.active}
-            variant={navlink.active ? "primary" : "ghost"}
-            class={navlink.labelClass}
+            aria-current={navlink.active ? "page" : undefined}
+            class:list={[
+                "group relative inline-block py-1 font-bold text-main no-underline",
+                navlink.labelClass,
+            ]}
         >
             {navlink.label}
-        </Button>
+            <span
+                aria-hidden="true"
+                class:list={[
+                    "absolute inset-x-0 -bottom-0.5 h-[3px] origin-left bg-link transition-[scale] duration-200 ease-out motion-reduce:transition-none",
+                    navlink.active
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100",
+                ]}
+            ></span>
+        </a>
     ))}
 </nav>

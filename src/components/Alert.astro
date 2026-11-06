@@ -13,7 +13,7 @@ const { title, class: className, ...props } = Astro.props as Props;
 <div
     role="status"
     class:list={[
-        "grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 rounded-base border border-white/20 bg-white/5 p-4",
+        "grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 rounded-base border-4 border-rule bg-secondary-background p-4 shadow-[6px_6px_0_var(--rule)]",
         className,
     ]}
     {...props}

@@ -1,202 +1,424 @@
 @import "tailwindcss";
-@import "basecoat-css";
 
 @theme inline {
     --font-sans:
         "Merriweather Sans", "Helvetica Neue", -apple-system, "Segoe UI", Roboto;
+    --font-heading: "Barlow Condensed", "Arial Narrow", sans-serif;
 
-    --color-silver: #c0c0c0;
+    --color-paper: var(--paper);
+    --color-cream: var(--cream);
+    --color-gold: var(--gold);
+    --color-ink: var(--ink);
+    --color-rule: var(--rule);
+    --color-brand-hover: var(--brand-hover);
     --color-main: var(--main);
+    --color-page: var(--page);
+    --color-brand: var(--brand);
+    --color-link: var(--link);
+    --color-link-hover: var(--link-hover);
+    --color-accent: var(--accent);
+    --color-accent-hover: var(--accent-hover);
+    --color-accent-foreground: var(--accent-foreground);
     --color-secondary-background: var(--secondary-background);
-    --radius-base: 5px;
+    --radius-base: 2px;
     --font-weight-base: 500;
     --font-weight-bold: 800;
     --font-weight-heading: 900;
 }
 
+/* Five core colours: paper, cream, ink, crimson (the red in the logo), and
+   gold. Crimson leads the scheme; gold is kept as a small detail on the
+   wordmark rather than a surface or button colour. */
 :root {
-    --background: #ffffff;
-    --foreground: #ffffff;
-    --primary: var(--main);
-    --primary-foreground: #ffffff;
-    --secondary: #ffffff;
-    --secondary-foreground: var(--main);
-    --muted: var(--main);
-    --muted-foreground: #ffffff;
-    --accent: var(--main);
-    --accent-foreground: #ffffff;
-    --border: var(--main);
-    --input: var(--main);
-    --ring: var(--main);
-    --secondary-background: oklch(100% 0 0);
-    --main: #652633;
-    --site-foreground: #ffffff;
+    color-scheme: light;
+
+    --paper: #f2e9dc;
+    --cream: #fbf6ee;
+    --ink: #150d0d;
+    --crimson: #770000;
+    --gold: #f0c541;
+
+    --page: var(--paper);
+    --site-foreground: var(--ink);
+    --secondary-background: var(--cream);
+    --main: var(--ink);
+    --rule: var(--ink);
+
+    --brand: var(--crimson);
+    --brand-hover: color-mix(in srgb, var(--crimson) 82%, var(--ink));
+    --link: var(--crimson);
+    --link-hover: color-mix(in srgb, var(--crimson) 82%, var(--ink));
+
+    --accent: var(--crimson);
+    --accent-hover: var(--brand-hover);
+    --accent-foreground: var(--cream);
+
+    /* Every button shares the same gold offset shadow. */
+    --btn-shadow: var(--gold);
+
+    --focus: var(--crimson);
+    --logo-front: var(--crimson);
+    --logo-shadow: var(--gold);
+}
+
+/* Dark mode is opt-in: with ?dark in the URL, the inline script in the head
+   sets data-theme on <html>. The ink surfaces are lifted slightly off black so
+   cards, header, and footer read as distinct layers. */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --page: var(--ink);
+    --site-foreground: var(--paper);
+    --secondary-background: color-mix(in srgb, var(--ink) 85%, var(--crimson));
+    --main: var(--paper);
+    --rule: var(--paper);
+
+    --link: color-mix(in srgb, var(--crimson) 38%, var(--paper));
+    --link-hover: color-mix(in srgb, var(--crimson) 28%, var(--paper));
+
+    --focus: var(--link);
+    --logo-front: var(--link);
 }
 
 @layer base {
     html {
-        overflow-x: clip;
-        overflow-y: scroll;
+        @apply scroll-smooth overflow-x-clip overflow-y-scroll;
     }
+
     body {
-        font-weight: var(--font-weight-base);
+        @apply font-base overflow-x-clip;
         color: var(--site-foreground);
-        overflow-x: clip;
+        background-image:
+            linear-gradient(
+                to right,
+                color-mix(in srgb, var(--rule) 5%, transparent) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--rule) 5%, transparent) 1px,
+                transparent 1px
+            );
+        background-size: 48px 48px;
     }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-weight: var(--font-weight-heading);
+
+    :is(h1, h2, h3, h4, h5, h6) {
+        @apply font-heading uppercase tracking-tight;
     }
+
     p {
         word-spacing: 0.1em;
     }
-    b,
-    strong {
-        font-weight: var(--font-weight-bold);
+
+    :is(b, strong) {
+        @apply font-bold;
+    }
+
+    /* A single themed focus ring for everything that is not a Button, which
+       carries its own. Crimson and its dark-mode tint clear 3:1 on the page. */
+    :where(a, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
     }
 }
+
 .editor-text {
     white-space: break-spaces;
 }
 
-main {
-    text-shadow:
-        0 1px 1px rgb(0 0 0 / 25%),
-        0 0 8px rgb(255 255 255 / 12%);
+/* Header wordmark: the checker "V" sits at 0.74em so its cap height matches
+   Archivo Black. The mark and the wordmark each cast a single solid offset
+   shadow, so the logo never shows more than one shadow color. */
+.logo-type {
+    font-family: "Archivo Black", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    color: var(--logo-front);
+    text-shadow: 4px 4px 0 var(--logo-shadow);
 }
 
-#main-content > * + * {
-    margin-top: 1.5rem;
+.logo-type svg {
+    filter: drop-shadow(4px 4px 0 var(--logo-shadow));
 }
 
-#main-content .btn > p {
-    margin: 0;
+/* Hero lockup: same face as the header wordmark, but flat so the large type
+   stays crisp instead of carrying a heavy shadow across the panel. */
+.hero-logo {
+    font-family: "Archivo Black", "Helvetica Neue", sans-serif;
+    font-weight: 400;
 }
 
-#main-content h1,
-#main-content h2,
-#main-content h3,
-#main-content h4,
-#main-content h5,
-#main-content h6 {
-    scroll-margin-top: 5rem;
-    font-weight: 800;
-    line-height: 1.25;
+/* Sticky header: the outer box keeps its height so the page never shifts;
+   only the painted bar (and the wordmark) gets shorter on scroll. Content
+   scrolls behind the transparent remainder of the outer box, so the bar
+   reads as shorter while the document below it stays put. */
+.site-header {
+    height: 6rem;
 }
 
-#main-content h1 {
-    font-size: 2.25rem;
+.site-header .header-bar {
+    height: 100%;
+    transition: height 200ms ease-out;
 }
 
-#main-content h2 {
-    font-size: 1.875rem;
+.site-header .logo-type {
+    transition: font-size 200ms ease-out;
 }
 
-#main-content h3 {
-    font-size: 1.5rem;
+.site-header.is-scrolled .header-bar {
+    height: 4.5rem;
 }
 
-#main-content h4 {
-    font-size: 1.25rem;
+@media (min-width: 64rem) {
+    .site-header.is-scrolled .logo-type {
+        font-size: 2.25rem;
+    }
 }
 
-#main-content h5 {
-    font-size: 1.125rem;
+/* Full-screen mobile menu: lock the page behind it and stagger the links. */
+body.menu-open {
+    overflow: hidden;
 }
 
-#main-content h6 {
-    font-size: 1rem;
+@keyframes mobile-menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-menu[open] .mobile-menu-nav {
+    animation: mobile-menu-in 180ms ease-out both;
+}
+
+.mobile-menu[open] .mobile-menu-item {
+    animation: hero-rise 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(2) {
+    animation-delay: 40ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(3) {
+    animation-delay: 80ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(4) {
+    animation-delay: 120ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(5) {
+    animation-delay: 160ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(6) {
+    animation-delay: 200ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(7) {
+    animation-delay: 240ms;
+}
+
+/* Inline links: a hairline bar that thickens into a 2px bar on hover/focus. */
+.link-bar {
+    position: relative;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--rule);
+}
+
+.link-bar::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--rule);
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease-out;
+}
+
+.link-bar:hover::after,
+.link-bar:focus-visible::after {
+    transform: scaleX(1);
+}
+
+/* In dark mode the menu icon uses the light link red with a maroon offset. */
+:root[data-theme="dark"] .mobile-menu summary svg {
+    color: var(--link);
+    filter: drop-shadow(2px 2px 0 var(--crimson));
+}
+
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-settle {
+    from {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.hero-media {
+    animation: hero-settle 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-rise > * {
+    animation: hero-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-rise > :nth-child(1) {
+    animation-delay: 80ms;
+}
+
+.hero-rise > :nth-child(2) {
+    animation-delay: 160ms;
+}
+
+.hero-rise > :nth-child(3) {
+    animation-delay: 240ms;
+}
+
+.hero-rise > :nth-child(4) {
+    animation-delay: 320ms;
+}
+
+/* Markdown body defaults. Components override these with utilities, which sit
+   in a later layer. */
+@layer components {
+    #main-content > * + * {
+        @apply mt-6;
+    }
+
+    #main-content > * + h2 {
+        @apply mt-12;
+    }
+
+    #main-content > h2 {
+        margin-inline: calc(50% - 50vw);
+        padding-inline: calc(50vw - 50%);
+        padding-block: 0.9rem 1rem;
+        border-block: 3px solid var(--rule);
+        background-color: var(--secondary-background);
+    }
+
+    #main-content > h2:nth-of-type(even) {
+        background-color: var(--crimson);
+        color: var(--cream);
+    }
+
+    #main-content :is(h1, h2, h3, h4, h5, h6) {
+        @apply scroll-mt-20 font-bold leading-tight;
+    }
+
+    #main-content h1 {
+        @apply text-4xl;
+    }
+
+    #main-content h2 {
+        @apply text-3xl;
+    }
+
+    #main-content h3 {
+        @apply text-2xl;
+    }
+
+    #main-content h4 {
+        @apply text-xl;
+    }
+
+    #main-content h5 {
+        @apply text-lg;
+    }
+
+    #main-content h6 {
+        @apply text-base;
+    }
+
+    #main-content ul {
+        @apply list-disc space-y-3 pl-6;
+    }
+
+    #main-content ol {
+        @apply list-decimal space-y-3 pl-6;
+    }
+
+    #main-content :not(pre) > code {
+        @apply rounded-base border border-main/20 bg-main/10 px-[0.35em] py-[0.1em] text-[0.9em] [overflow-wrap:anywhere];
+    }
+
+    #main-content pre {
+        @apply rounded-base border border-main/25 px-5 py-4 text-[0.9em] leading-[1.7];
+        color: var(--paper);
+        background-color: color-mix(
+            in srgb,
+            var(--ink) 88%,
+            var(--crimson)
+        ) !important;
+        tab-size: 4;
+    }
+
+    #main-content blockquote {
+        @apply border-l-4 border-link pl-5 italic;
+    }
+
+    #main-content blockquote > * + * {
+        @apply mt-4;
+    }
+
+    #main-content hr {
+        @apply h-1 border-0 bg-rule;
+    }
+
+    #main-content table {
+        @apply w-full border-collapse;
+    }
+
+    #main-content th,
+    #main-content td {
+        @apply border border-main/25 px-3 py-2 text-left align-top break-words;
+    }
+
+    #main-content th {
+        @apply bg-main/10 font-bold;
+    }
+
+    #main-content p img {
+        @apply block h-auto max-w-full rounded-base border-4 border-rule;
+        box-shadow: 6px 6px 0 var(--rule);
+    }
+
+    #main-content ul.contains-task-list {
+        @apply list-none pl-0;
+    }
+
+    #main-content .task-list-item {
+        @apply list-none;
+    }
+
+    #main-content .task-list-item > input[type="checkbox"] {
+        @apply mr-2 align-[-0.1em] accent-main;
+    }
 }
 
 @media (min-width: 64rem) {
     #main-content h1 {
-        font-size: 3rem;
+        @apply text-5xl;
     }
-}
-
-#main-content :not(pre) > code {
-    padding: 0.1em 0.35em;
-    border: 1px solid rgb(255 255 255 / 22%);
-    border-radius: 5px;
-    background: rgb(0 0 0 / 20%);
-    font-size: 0.9em;
-    overflow-wrap: anywhere;
-}
-
-#main-content pre {
-    padding: 1rem 1.25rem;
-    border: 1px solid rgb(255 255 255 / 25%);
-    border-radius: 5px;
-    background-color: #2a1218 !important;
-    font-size: 0.9em;
-    line-height: 1.7;
-    tab-size: 4;
-}
-
-#main-content blockquote {
-    padding-left: 1.25rem;
-    border-left: 4px solid #c0c0c0;
-    font-style: italic;
-}
-
-#main-content blockquote > * + * {
-    margin-top: 1rem;
-}
-
-#main-content hr {
-    height: 1px;
-    border: 0;
-    background: #c0c0c0;
-}
-
-#main-content table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#main-content th,
-#main-content td {
-    padding: 0.5rem 0.75rem;
-    border: 1px solid rgb(255 255 255 / 28%);
-    text-align: left;
-    vertical-align: top;
-    overflow-wrap: break-word;
-}
-
-#main-content th {
-    background: rgb(0 0 0 / 18%);
-    font-weight: 800;
-}
-
-#main-content p img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #c0c0c0;
-    border-radius: 5px;
-}
-
-#main-content ul.contains-task-list {
-    padding-left: 0;
-    list-style: none;
-}
-
-#main-content .task-list-item {
-    list-style: none;
-}
-
-#main-content .task-list-item > input[type="checkbox"] {
-    margin-right: 0.5rem;
-    vertical-align: -0.1em;
-    accent-color: #ffffff;
-}
-
-#main-content > * + h2 {
-    margin-top: 3rem;
 }
 
 @media (min-width: 1600px) {
@@ -213,11 +435,11 @@ main {
     }
 
     #main-content > * + * {
-        margin-top: 1.75rem;
+        @apply mt-7;
     }
 
     #main-content > * + h2 {
-        margin-top: 4.5rem;
+        @apply mt-18;
     }
 }
 
@@ -230,28 +452,129 @@ main {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+
+    .hero-rise > * {
+        animation-delay: 0ms !important;
+    }
 }
 
-body,
-.scrollbar {
-    --sb-track-color: #ffffff;
-    --sb-thumb-color: #000000;
+/* Homepage sponsor ticker. */
+.sponsor-ticker {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    background: var(--ink);
+    color: var(--cream);
 }
 
-.scrollbar::-webkit-scrollbar {
-    width: 16px;
+.sponsor-ticker-label {
+    display: flex;
+    flex: 0 0 auto;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0.7rem 1rem;
+    background: var(--crimson);
+    color: var(--cream);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
-.scrollbar::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
+.sponsor-ticker-window {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+    overflow: hidden;
+    border-block: 4px solid var(--rule);
 }
 
-.scrollbar::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
+.sponsor-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: sponsor-ticker 32s linear infinite;
 }
 
-@supports not selector(::-webkit-scrollbar) {
-    .scrollbar {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+.sponsor-ticker-group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 100vw;
+    padding-inline: 1.25rem;
+}
+
+.sponsor-ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.sponsor-ticker-flag {
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 1.2rem;
+    height: 0.85rem;
+    border: 1px solid var(--cream);
+    background-color: var(--cream);
+    background-image:
+        linear-gradient(
+            45deg,
+            var(--ink) 25%,
+            transparent 25% 75%,
+            var(--ink) 75%
+        ),
+        linear-gradient(
+            45deg,
+            var(--ink) 25%,
+            transparent 25% 75%,
+            var(--ink) 75%
+        );
+    background-position:
+        0 0,
+        3px 3px;
+    background-size: 6px 6px;
+}
+
+.sponsor-ticker-slash {
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    opacity: 0.45;
+}
+
+.sponsor-ticker-name {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sponsor-ticker:hover .sponsor-ticker-track {
+    animation-play-state: paused;
+}
+
+@keyframes sponsor-ticker {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sponsor-ticker-track {
+        animation: none;
+    }
+
+    .sponsor-ticker-window {
+        overflow-x: auto;
+    }
+
+    .sponsor-ticker-group[aria-hidden="true"] {
+        display: none;
     }
 }

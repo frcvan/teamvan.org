@@ -2,9 +2,18 @@ import { config, fields, singleton } from "@keystatic/core";
 import { createElement } from "react";
 import { block, repeating, wrapper } from "@keystatic/core/content-components";
 
+// Content-component images are imported with import.meta.glob in
+// Figure.astro, so the stored path must start with /src/.
 const pageImages = {
-    directory: "public/images/pages",
-    publicPath: "/images/pages/",
+    directory: "src/images/pages",
+    publicPath: "/src/images/pages/",
+};
+
+// Images inserted directly into the MDX body are resolved by Astro like an
+// import, so use the project alias instead of the /src/ form.
+const mdxImages = {
+    directory: "src/images/pages",
+    publicPath: "@/images/pages/",
 };
 
 // Keep this list equal to the `include` allowlist in astro.config.mjs. An icon
@@ -221,7 +230,7 @@ const pageSingletons = Object.fromEntries(
                 content: fields.mdx({
                     label: "Page content",
                     components: contentComponents,
-                    options: { image: pageImages },
+                    options: { image: mdxImages },
                 }),
             },
         }),

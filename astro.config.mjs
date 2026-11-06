@@ -70,6 +70,7 @@ export default defineConfig({
                     "mail",
                     "menu",
                     "plus",
+                    "x",
                 ],
             },
         }),

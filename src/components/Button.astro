@@ -1,7 +1,7 @@
 ---
 interface Props {
     href?: string;
-    variant?: "primary" | "secondary" | "ghost" | "outline";
+    variant?: "primary" | "secondary" | "accent" | "ghost" | "outline";
     size?: "default" | "sm" | "lg" | "icon";
     class?: string;
     download?: string | boolean;
@@ -9,6 +9,7 @@ interface Props {
     rel?: string;
     ariaLabel?: string;
     current?: boolean;
+    outline?: boolean;
     disabled?: boolean;
 }
 
@@ -22,12 +23,35 @@ const {
     rel,
     ariaLabel,
     current = false,
+    outline = true,
     disabled = false,
 } = Astro.props as Props;
 
+const variantClasses = {
+    primary: "bg-brand text-cream hover:bg-brand-hover",
+    secondary:
+        "bg-secondary-background text-main hover:bg-brand hover:text-cream",
+    accent: "bg-accent text-accent-foreground hover:bg-accent-hover",
+    ghost: "text-main hover:bg-main hover:text-secondary-background",
+    outline:
+        "border-2 border-rule text-main hover:bg-main hover:text-secondary-background",
+};
+
+const sizeClasses = {
+    default: "min-h-11 px-4 text-base",
+    sm: "min-h-9 px-3 text-sm",
+    lg: "min-h-13 px-5 text-[1.05rem]",
+    icon: "size-11 p-0",
+};
+
 const classes = [
-    "btn !px-4 text-base font-bold !min-h-11",
-    size === "lg" && "!px-5 text-[1.05rem] !min-h-13",
+    "inline-flex shrink-0 cursor-pointer select-none items-center justify-center gap-1.5 rounded-base text-center font-bold whitespace-nowrap transition-[color,background-color,border-color,translate,box-shadow] duration-150 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-main/60 [&_p]:m-0 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+    sizeClasses[size],
+    variantClasses[variant],
+    outline && variant !== "outline" && "border-2 border-rule",
+    outline
+        ? "shadow-[3px_3px_0_var(--btn-shadow)] hover:shadow-[5px_5px_0_var(--btn-shadow)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+        : "active:translate-y-0.5",
     disabled && "pointer-events-none cursor-not-allowed opacity-50",
     className,
 ];
@@ -37,8 +61,6 @@ const classes = [
     <a
         href={disabled ? undefined : href}
         class:list={classes}
-        data-variant={variant}
-        data-size={size === "default" ? undefined : size}
         aria-current={current ? "page" : undefined}
         aria-disabled={disabled ? "true" : undefined}
         tabindex={disabled ? -1 : undefined}
@@ -53,8 +75,6 @@ const classes = [
     <button
         type="button"
         class:list={classes}
-        data-variant={variant}
-        data-size={size === "default" ? undefined : size}
         aria-current={current ? "page" : undefined}
         aria-label={ariaLabel}
         disabled={disabled}
