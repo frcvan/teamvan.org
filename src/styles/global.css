@@ -463,8 +463,8 @@ body.menu-open {
     display: flex;
     align-items: stretch;
     overflow: hidden;
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--ink);
+    color: var(--cream);
 }
 
 .sponsor-ticker-label {
