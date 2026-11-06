@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
     src?: string | null;
     alt: string;
@@ -7,19 +10,30 @@ interface Props {
 }
 
 const { src, alt, caption, variant = "natural" } = Astro.props as Props;
+
+// Keystatic stores content-component images under src/ with a /src/ public
+// path. Resolve that path to image metadata so <Image> can optimize it.
+const pageImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/images/pages/*.{jpeg,jpg,png,webp,avif}",
+);
+const loadImage = src ? pageImages[src] : undefined;
+const image = loadImage ? (await loadImage()).default : undefined;
+
+const imageClass = [
+    "h-auto w-full rounded-base border-4 border-rule object-cover shadow-[6px_6px_0_var(--rule)]",
+    variant === "wide" && "aspect-[25/12] object-bottom lg:-mx-6",
+]
+    .filter(Boolean)
+    .join(" ");
 ---
 
 {src && (
     <figure class="my-6">
-        <img
-            src={src}
-            alt={alt}
-            loading="lazy"
-            class:list={[
-                "h-auto w-full rounded-base border-4 border-rule object-cover shadow-[6px_6px_0_var(--rule)]",
-                variant === "wide" && "aspect-[25/12] object-bottom lg:-mx-6",
-            ]}
-        />
+        {image ? (
+            <Image src={image} alt={alt} loading="lazy" class={imageClass} />
+        ) : (
+            <img src={src} alt={alt} loading="lazy" class={imageClass} />
+        )}
         {caption && <figcaption class="mt-2 text-sm">{caption}</figcaption>}
     </figure>
 )}

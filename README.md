@@ -18,7 +18,7 @@ The editor edits the seven main pages as MDX. Each page has a title, description
 
 Page layouts, navigation, the footer, and the component map in `src/components/mdx.ts` stay in code. Each `src/pages/*.astro` wrapper imports its matching MDX file and renders it through the shared page layout. The kickoff announcement currently appears in both Home and Calendar; update both pages when changing it.
 
-Footer copy lives in `src/components/Footer.astro` and is not editable in Keystatic. Page and component definitions live in `keystatic.config.ts`. Images added through the editor are written to `public/images/pages/`.
+Footer copy lives in `src/components/Footer.astro` and is not editable in Keystatic. Page and component definitions live in `keystatic.config.ts`. Images added through the editor are written to `src/images/pages/` and optimized by Astro's `<Image>` component.
 
 `astro dev` runs on Astro's Node server without an adapter so Keystatic can write files. Builds use `@astrojs/cloudflare`, so the editor's API routes run in the Worker.
 
