@@ -463,8 +463,8 @@ body.menu-open {
     display: flex;
     align-items: stretch;
     overflow: hidden;
-    background: var(--ink);
-    color: var(--cream);
+    background: var(--paper);
+    color: var(--ink);
 }
 
 .sponsor-ticker-label {
@@ -515,11 +515,10 @@ body.menu-open {
 }
 
 .sponsor-ticker-flag {
-    position: relative;
     display: inline-block;
     flex: 0 0 auto;
-    width: 1rem;
-    height: 0.7rem;
+    width: 1.2rem;
+    height: 0.85rem;
     border: 1px solid var(--cream);
     background-color: var(--cream);
     background-image:
@@ -539,16 +538,6 @@ body.menu-open {
         0 0,
         3px 3px;
     background-size: 6px 6px;
-}
-
-.sponsor-ticker-flag::before {
-    content: "";
-    position: absolute;
-    top: -0.15rem;
-    bottom: -0.3rem;
-    left: -0.25rem;
-    width: 1.5px;
-    background: var(--cream);
 }
 
 .sponsor-ticker-slash {
