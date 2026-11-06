@@ -7,8 +7,7 @@ import argosyFoundationLogo from "@/images/sponsors/argosy-foundation-logo.png";
 import hcbLogo from "@/images/sponsors/hcb-logo.png";
 
 type Logo =
-    | { asset: ImageMetadata }
-    | { url: string; width: number; height: number };
+    { asset: ImageMetadata } | { url: string; width: number; height: number };
 
 interface Sponsor {
     name: string;
@@ -45,41 +44,46 @@ const sponsors: Sponsor[] = [
     },
 ];
 
-const logoClass = "max-h-16 w-auto max-w-full object-contain";
+const logoClass =
+    "max-h-16 w-auto max-w-full object-contain transition-transform duration-200 group-hover:scale-[1.04] group-hover:-rotate-1 motion-reduce:transition-none";
 ---
 
 <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {
-        sponsors.map(({ name, href, logo }) => (
-            <li>
-                <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${name} (opens in a new tab)`}
-                    class="flex min-h-28 w-full items-center justify-center rounded-base border border-silver bg-white p-3"
+    {sponsors.map(({ name, href, logo }) => (
+        <li>
+            <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${name} (opens in a new tab)`}
+                class="group relative flex min-h-28 w-full items-center justify-center overflow-hidden rounded-base border-2 border-rule bg-white p-3 shadow-[3px_3px_0_var(--rule)] transition-[translate,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_var(--rule)] focus-visible:-translate-y-0.5 focus-visible:shadow-[5px_5px_0_var(--rule)]"
+            >
+                {"asset" in logo ? (
+                    <Image
+                        src={logo.asset}
+                        alt=""
+                        loading="lazy"
+                        class={logoClass}
+                    />
+                ) : (
+                    <img
+                        src={logo.url}
+                        width={logo.width}
+                        height={logo.height}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        referrerpolicy="no-referrer"
+                        class={logoClass}
+                    />
+                )}
+                <span
+                    aria-hidden="true"
+                    class="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full border-t-2 border-rule bg-gold px-2 py-1 text-[0.65rem] font-bold tracking-[0.12em] text-ink uppercase transition-transform duration-200 group-hover:translate-y-0 group-focus-visible:translate-y-0"
                 >
-                    {"asset" in logo ? (
-                        <Image
-                            src={logo.asset}
-                            alt=""
-                            loading="lazy"
-                            class={logoClass}
-                        />
-                    ) : (
-                        <img
-                            src={logo.url}
-                            width={logo.width}
-                            height={logo.height}
-                            alt=""
-                            loading="lazy"
-                            decoding="async"
-                            referrerpolicy="no-referrer"
-                            class={logoClass}
-                        />
-                    )}
-                </a>
-            </li>
-        ))
-    }
+                    {name}
+                </span>
+            </a>
+        </li>
+    ))}
 </ul>

@@ -18,8 +18,13 @@ const navigationLinks = navlinks.map((navlink) => ({
 }));
 ---
 
-<header class="relative border-rule bg-secondary-background border-b-4">
-    <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 lg:gap-6">
+<header class="site-header sticky top-0 z-30 border-rule bg-secondary-background border-b-4">
+    <div
+        class="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gold"
+        data-scroll-progress
+        aria-hidden="true"
+    ></div>
+    <div class="header-inner mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 transition-[padding] duration-200 lg:gap-6">
         <a
             class="text-brand flex min-w-0 flex-1 items-center no-underline lg:flex-none"
             href="/"
@@ -42,18 +47,23 @@ const navigationLinks = navlinks.map((navlink) => ({
             <Navigation navlinks={navigationLinks} class="flex-none!" />
         </div>
 
-        <details class="mobile-menu shrink-0 text-main lg:hidden">
+        <details class="mobile-menu group shrink-0 text-main lg:hidden">
             <summary
                 aria-label="Open navigation menu"
                 aria-controls="mobile-navigation"
-                class="ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
+                class="relative z-30 ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
             >
-                <Icon name="tabler:menu" size={32} />
+                <Icon name="tabler:menu" size={32} class="group-open:hidden" />
+                <Icon
+                    name="tabler:x"
+                    size={32}
+                    class="hidden group-open:block"
+                />
             </summary>
             <nav
                 id="mobile-navigation"
                 aria-label="Main navigation"
-                class="mobile-menu-nav absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-rule bg-secondary-background px-6 py-4"
+                class="mobile-menu-nav fixed inset-0 z-20 flex flex-col gap-3 overflow-y-auto bg-page px-6 pt-28 pb-10"
             >
                 {navigationLinks.map((link) => (
                     <Button
@@ -76,16 +86,54 @@ const navigationLinks = navlinks.map((navlink) => ({
 </header>
 
 <script>
-    document.addEventListener("click", (event) => {
-        const target = event.target;
-        if (!(target instanceof Node)) return;
+    const menu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
+    const header = document.querySelector<HTMLElement>(".site-header");
+    const progress = document.querySelector<HTMLElement>(
+        "[data-scroll-progress]",
+    );
 
-        document
-            .querySelectorAll<HTMLDetailsElement>(".mobile-menu[open]")
-            .forEach((menu) => {
-                if (!menu.contains(target)) {
-                    menu.open = false;
-                }
-            });
+    menu?.addEventListener("toggle", () => {
+        document.body.classList.toggle("menu-open", menu.open);
     });
+
+    document.addEventListener("click", (event) => {
+        if (!menu?.open) return;
+        if (
+            event.target instanceof Element &&
+            event.target.closest(".mobile-menu-item")
+        ) {
+            menu.open = false;
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menu?.open) menu.open = false;
+    });
+
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    desktop.addEventListener("change", (event) => {
+        if (event.matches && menu) menu.open = false;
+    });
+
+    if (header && progress) {
+        let frame = 0;
+        const update = () => {
+            const y = window.scrollY;
+            header.classList.toggle("is-scrolled", y > 8);
+            const scrollable =
+                document.documentElement.scrollHeight - window.innerHeight;
+            const ratio = scrollable > 0 ? Math.min(y / scrollable, 1) : 0;
+            progress.style.transform = `scaleX(${ratio})`;
+            frame = 0;
+        };
+        window.addEventListener(
+            "scroll",
+            () => {
+                if (!frame) frame = requestAnimationFrame(update);
+            },
+            { passive: true },
+        );
+        window.addEventListener("resize", update);
+        update();
+    }
 </script>

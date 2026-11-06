@@ -10,7 +10,7 @@ const { title, class: className, open = false } = Astro.props as Props;
 
 <details
     class:list={[
-        "group rounded-base border-2 border-rule bg-secondary-background",
+        "group rounded-base border-2 border-rule bg-secondary-background shadow-[3px_3px_0_var(--rule)]",
         className,
     ]}
     open={open}

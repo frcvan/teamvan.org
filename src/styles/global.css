@@ -140,6 +140,102 @@
     font-weight: 400;
 }
 
+/* Sticky header: shrink the bar once the page has scrolled. */
+.site-header .header-inner {
+    transition: padding-block 200ms ease-out;
+}
+
+.site-header.is-scrolled .header-inner {
+    padding-block: 0.75rem;
+}
+
+@media (min-width: 64rem) {
+    .site-header.is-scrolled .logo-type {
+        font-size: 2.25rem;
+    }
+}
+
+/* Full-screen mobile menu: lock the page behind it and stagger the links. */
+body.menu-open {
+    overflow: hidden;
+}
+
+@keyframes mobile-menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-menu[open] .mobile-menu-nav {
+    animation: mobile-menu-in 180ms ease-out both;
+}
+
+.mobile-menu[open] .mobile-menu-item {
+    animation: hero-rise 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(2) {
+    animation-delay: 40ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(3) {
+    animation-delay: 80ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(4) {
+    animation-delay: 120ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(5) {
+    animation-delay: 160ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(6) {
+    animation-delay: 200ms;
+}
+
+.mobile-menu[open] .mobile-menu-item:nth-child(7) {
+    animation-delay: 240ms;
+}
+
+/* Inline links: a hairline bar that thickens into a 2px bar on hover/focus. */
+.link-bar {
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.link-bar::before,
+.link-bar::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    background: var(--rule);
+    pointer-events: none;
+}
+
+.link-bar::before {
+    height: 1px;
+    opacity: 0.45;
+}
+
+.link-bar::after {
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease-out;
+}
+
+.link-bar:hover::after,
+.link-bar:focus-visible::after {
+    transform: scaleX(1);
+}
+
 /* In dark mode the menu icon flips to gold with a maroon offset behind it. */
 :root[data-theme="dark"] .mobile-menu summary svg {
     color: var(--gold);
@@ -275,6 +371,7 @@
 
     #main-content p img {
         @apply block h-auto max-w-full rounded-base border-2 border-rule;
+        box-shadow: 3px 3px 0 var(--rule);
     }
 
     #main-content ul.contains-task-list {

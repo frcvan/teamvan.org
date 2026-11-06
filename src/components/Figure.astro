@@ -16,7 +16,7 @@ const { src, alt, caption, variant = "natural" } = Astro.props as Props;
             alt={alt}
             loading="lazy"
             class:list={[
-                "h-auto w-full rounded-base border-2 border-rule object-cover",
+                "h-auto w-full rounded-base border-2 border-rule object-cover shadow-[3px_3px_0_var(--rule)]",
                 variant === "wide" && "aspect-[25/12] object-bottom",
             ]}
         />
