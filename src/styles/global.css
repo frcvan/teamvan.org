@@ -5,7 +5,8 @@
         "Merriweather Sans", "Helvetica Neue", -apple-system, "Segoe UI", Roboto;
     --font-heading: "Barlow Condensed", "Arial Narrow", sans-serif;
 
-    --color-silver: var(--silver);
+    --color-paper: var(--paper);
+    --color-cream: var(--cream);
     --color-gold: var(--gold);
     --color-ink: var(--ink);
     --color-rule: var(--rule);
@@ -25,37 +26,36 @@
     --font-weight-heading: 900;
 }
 
-/* Light mode is warm paper with crimson type; dark mode flips the field to ink,
-   keeps the same crimson for filled buttons and nav pills, and lifts only the
-   red used for type and blue for links. Each foreground token is chosen
-   to clear WCAG AA against the surface it sits on: main 9.8:1 on --page and
-   10.9:1 on --secondary-background, link 5.5:1. Gold is the bright accent
-   used for fills, rules, and shadows; --focus uses a darker gold in light
-   mode so focus rings stay at 3:1 or better. */
+/* Five core colours: paper, cream, ink, crimson (the red in the logo), and
+   gold. Every other token is mixed from those five, so the site only gains
+   tints and surface variants instead of new hues. */
 :root {
     color-scheme: light;
 
+    --paper: #f2e9dc;
+    --cream: #fbf6ee;
+    --ink: #150d0d;
     --crimson: #770000;
     --gold: #f0c541;
-    --ink: #150d0d;
-    --brand-hover: #5c0000;
-    --rule: #150d0d;
+
+    --page: var(--paper);
+    --site-foreground: var(--ink);
+    --secondary-background: var(--cream);
+    --main: var(--ink);
+    --rule: var(--ink);
+
+    --brand: var(--crimson);
+    --brand-hover: color-mix(in srgb, var(--crimson) 82%, var(--ink));
+    --link: var(--crimson);
+    --link-hover: color-mix(in srgb, var(--crimson) 82%, var(--ink));
+
+    --accent: var(--gold);
+    --accent-hover: color-mix(in srgb, var(--gold) 70%, var(--cream));
+    --accent-foreground: var(--ink);
+
+    --focus: var(--crimson);
     --logo-front: var(--crimson);
     --logo-shadow: var(--gold);
-
-    --page: #f2e9dc;
-    --site-foreground: var(--ink);
-
-    --secondary-background: #fbf6ee;
-    --main: var(--ink);
-    --link: #3a5a8f;
-    --link-hover: #2f4a78;
-    --accent: #f0c541;
-    --accent-hover: #ffdb62;
-    --accent-foreground: #150d0d;
-    --brand: var(--crimson);
-    --silver: #ab9376;
-    --focus: #a66b00;
 }
 
 /* Dark mode is opt-in: with ?dark in the URL, the inline script in the head
@@ -64,24 +64,18 @@
 :root[data-theme="dark"] {
     color-scheme: dark;
 
-    --page: #150d0d;
-    --site-foreground: #f2e8db;
-    --brand-hover: #5c0000;
-    --rule: #f2e8db;
+    --page: var(--ink);
+    --site-foreground: var(--paper);
+    --secondary-background: color-mix(in srgb, var(--ink) 90%, var(--gold));
+    --main: var(--paper);
+    --rule: var(--paper);
+
+    --link: color-mix(in srgb, var(--crimson) 38%, var(--paper));
+    --link-hover: color-mix(in srgb, var(--crimson) 28%, var(--paper));
+
+    --focus: var(--gold);
     --logo-front: var(--gold);
     --logo-shadow: var(--crimson);
-
-    --secondary-background: #2a1d1b;
-    --main: #e3928b;
-    --link: #a9c6e8;
-    --link-hover: #c3d8f2;
-    --accent: #f0c541;
-    --accent-hover: #ffdb62;
-    --accent-foreground: #150d0d;
-    --brand: var(--crimson);
-    --silver: #7a635a;
-    --gold: #f0c541;
-    --focus: #ffdb62;
 }
 
 @layer base {
@@ -131,8 +125,8 @@
 }
 
 /* Header wordmark: the checker "V" sits at 0.74em so its cap height matches
-   Archivo Black. The mark and the wordmark each cast a single solid gold
-   offset shadow, so the logo never shows more than one shadow color. */
+   Archivo Black. The mark and the wordmark each cast a single solid offset
+   shadow, so the logo never shows more than one shadow color. */
 .logo-type {
     font-family: "Archivo Black", "Helvetica Neue", sans-serif;
     font-weight: 400;
@@ -151,13 +145,25 @@
     font-weight: 400;
 }
 
-/* Sticky header: shrink the bar once the page has scrolled. */
-.site-header .header-inner {
-    transition: padding-block 200ms ease-out;
+/* Sticky header: the outer box keeps its height so the page never shifts;
+   only the painted bar (and the wordmark) gets shorter on scroll. Content
+   scrolls behind the transparent remainder of the outer box, so the bar
+   reads as shorter while the document below it stays put. */
+.site-header {
+    height: 6rem;
 }
 
-.site-header.is-scrolled .header-inner {
-    padding-block: 0.75rem;
+.site-header .header-bar {
+    height: 100%;
+    transition: height 200ms ease-out;
+}
+
+.site-header .logo-type {
+    transition: font-size 200ms ease-out;
+}
+
+.site-header.is-scrolled .header-bar {
+    height: 4.5rem;
 }
 
 @media (min-width: 64rem) {
@@ -355,8 +361,12 @@ body.menu-open {
 
     #main-content pre {
         @apply rounded-base border border-main/25 px-5 py-4 text-[0.9em] leading-[1.7];
-        color: #f4ece1;
-        background-color: #2a1218 !important;
+        color: var(--paper);
+        background-color: color-mix(
+            in srgb,
+            var(--ink) 88%,
+            var(--crimson)
+        ) !important;
         tab-size: 4;
     }
 

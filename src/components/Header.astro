@@ -18,70 +18,76 @@ const navigationLinks = navlinks.map((navlink) => ({
 }));
 ---
 
-<header class="site-header sticky top-0 z-30 border-rule bg-secondary-background border-b-4">
+<header class="site-header sticky top-0 z-30">
     <div
-        class="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-gold"
+        class="absolute inset-x-0 top-0 h-0.75 origin-left scale-x-0 bg-gold"
         data-scroll-progress
         aria-hidden="true"
     ></div>
-    <div class="header-inner mx-auto flex min-h-24 w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 transition-[padding] duration-200 lg:gap-6">
-        <a
-            class="text-brand flex min-w-0 flex-1 items-center no-underline lg:flex-none"
-            href="/"
-            aria-label="Team V.A.N. home"
-        >
-            <span
-                class="logo-type flex items-baseline whitespace-nowrap leading-none lg:text-[3rem]"
-                aria-hidden="true"
+    <div class="header-bar h-full border-rule bg-secondary-background border-b-4">
+        <div class="header-inner mx-auto flex h-full w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 lg:gap-6">
+            <a
+                class="text-brand flex min-w-0 flex-1 items-center no-underline lg:flex-none"
+                href="/"
+                aria-label="Team V.A.N. home"
             >
-                <VanLogo
-                    width="1280"
-                    height="448"
-                    class="block size-12 shrink-0 fill-[var(--logo-front)]! sm:size-14 lg:size-[0.74em]"
-                />
-                <span class="hidden lg:block lg:-ml-[0.11em]">.A.N.</span>
-            </span>
-        </a>
+                <span
+                    class="logo-type flex items-baseline whitespace-nowrap leading-none lg:text-[3rem]"
+                    aria-hidden="true"
+                >
+                    <VanLogo
+                        width="1280"
+                        height="448"
+                        class="block size-12 shrink-0 fill-[var(--logo-front)]! sm:size-14 lg:size-[0.74em]"
+                    />
+                    <span class="hidden lg:block lg:-ml-[0.11em]">.A.N.</span>
+                </span>
+            </a>
 
-        <div class="hidden lg:block">
-            <Navigation navlinks={navigationLinks} class="flex-none!" />
+            <div class="hidden lg:block">
+                <Navigation navlinks={navigationLinks} class="flex-none!" />
+            </div>
+
+            <details class="mobile-menu group shrink-0 text-main lg:hidden">
+                <summary
+                    aria-label="Open navigation menu"
+                    aria-controls="mobile-navigation"
+                    class="relative z-30 ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
+                >
+                    <Icon
+                        name="tabler:menu"
+                        size={32}
+                        class="group-open:hidden"
+                    />
+                    <Icon
+                        name="tabler:x"
+                        size={32}
+                        class="hidden group-open:block"
+                    />
+                </summary>
+                <nav
+                    id="mobile-navigation"
+                    aria-label="Main navigation"
+                    class="mobile-menu-nav fixed inset-0 z-20 flex flex-col gap-3 overflow-y-auto bg-page px-6 pt-28 pb-10"
+                >
+                    {navigationLinks.map((link) => (
+                        <Button
+                            href={link.href}
+                            current={link.active}
+                            variant={link.active ? "primary" : "ghost"}
+                            outline={false}
+                            size="lg"
+                            class:list={[
+                                "mobile-menu-item w-full justify-start border-2 border-rule hover:border-main",
+                                link.labelClass || "",
+                            ]}
+                        >
+                            {link.label}
+                        </Button>
+                    ))}
+                </nav>
+            </details>
         </div>
-
-        <details class="mobile-menu group shrink-0 text-main lg:hidden">
-            <summary
-                aria-label="Open navigation menu"
-                aria-controls="mobile-navigation"
-                class="relative z-30 ml-auto flex min-h-11 min-w-11 w-fit cursor-pointer list-none items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4 [&::-webkit-details-marker]:hidden"
-            >
-                <Icon name="tabler:menu" size={32} class="group-open:hidden" />
-                <Icon
-                    name="tabler:x"
-                    size={32}
-                    class="hidden group-open:block"
-                />
-            </summary>
-            <nav
-                id="mobile-navigation"
-                aria-label="Main navigation"
-                class="mobile-menu-nav fixed inset-0 z-20 flex flex-col gap-3 overflow-y-auto bg-page px-6 pt-28 pb-10"
-            >
-                {navigationLinks.map((link) => (
-                    <Button
-                        href={link.href}
-                        current={link.active}
-                        variant={link.active ? "primary" : "ghost"}
-                        outline={false}
-                        size="lg"
-                        class:list={[
-                            "mobile-menu-item w-full justify-start border-2 border-rule hover:border-main",
-                            link.labelClass || "",
-                        ]}
-                    >
-                        {link.label}
-                    </Button>
-                ))}
-            </nav>
-        </details>
     </div>
 </header>
 
@@ -121,7 +127,7 @@ const navigationLinks = navlinks.map((navlink) => ({
         const update = () => {
             const y = window.scrollY;
             // Hysteresis keeps the shrink from flickering at the threshold.
-            if (y > 16 && !scrolled) {
+            if (y > 32 && !scrolled) {
                 scrolled = true;
                 header.classList.add("is-scrolled");
             } else if (y < 4 && scrolled) {
