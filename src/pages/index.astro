@@ -7,6 +7,6 @@ import components from "@/components/mdx";
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
-    <Hero />
+    <Hero slot="hero" />
     <Content components={components} />
 </Layout>

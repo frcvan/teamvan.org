@@ -2,34 +2,36 @@
 import Button from "@/components/Button.astro";
 ---
 
-<section class="relative isolate overflow-hidden rounded-base border-2 border-gold">
+<section class="relative isolate w-full overflow-hidden">
     <img
         src="/images/pages/hero-frc.jpg"
-        alt="Two FRC robots face off on the competition field while drive teams watch through the glass"
+        alt="FRC robots 180, 179, and 1902 line up on the field beneath hanging game pieces while drive teams and spectators watch from the stands"
         width="2000"
-        height="1328"
+        height="1333"
         fetchpriority="high"
-        class="h-[clamp(17rem,38vw,23rem)] w-full object-cover object-center"
+        class="h-[clamp(18rem,46vw,32rem)] w-full object-cover object-center"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-[#150d0d]/90 via-[#150d0d]/45 to-[#150d0d]/15"></div>
-    <div class="absolute inset-x-0 bottom-0 flex flex-col items-start gap-4 p-6 sm:p-8">
-        <p class="text-xs font-bold tracking-[0.22em] text-[#e8c79c] uppercase">
-            FRC 12148 · Palm Bay, Florida
-        </p>
-        <p class="font-heading text-4xl leading-none text-white sm:text-5xl">
-            Team V.A.N.
-        </p>
-        <p class="max-w-xl text-base text-[#f2e8db]">
-            A student-managed rookie FIRST Robotics Competition team serving
-            southern Brevard and Indian River counties.
-        </p>
-        <div class="mt-1 flex flex-wrap gap-3">
-            <Button href="/interest/" variant="accent">
-                Join the team
-            </Button>
-            <Button href="/sponsors/" variant="secondary">
-                Sponsor us
-            </Button>
+    <div class="absolute inset-0">
+        <div class="mx-auto flex h-full max-w-5xl flex-col items-start justify-end gap-4 px-6 py-8 sm:px-10 lg:px-12">
+            <p class="text-xs font-bold tracking-[0.22em] text-gold uppercase">
+                FRC 12148 · Palm Bay, Florida
+            </p>
+            <p class="font-heading text-4xl leading-none text-white sm:text-5xl">
+                Team V.A.N.
+            </p>
+            <p class="max-w-xl text-base text-[#f2e8db]">
+                A student-managed rookie FIRST Robotics Competition team serving
+                southern Brevard and Indian River counties.
+            </p>
+            <div class="mt-1 flex flex-wrap gap-3">
+                <Button href="/interest/" variant="accent">
+                    Join the team
+                </Button>
+                <Button href="/sponsors/" variant="secondary">
+                    Sponsor us
+                </Button>
+            </div>
         </div>
     </div>
 </section>

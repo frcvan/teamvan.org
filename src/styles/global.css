@@ -6,6 +6,7 @@
 
     --color-silver: var(--silver);
     --color-gold: var(--gold);
+    --color-ink: var(--ink);
     --color-main: var(--main);
     --color-page: var(--page);
     --color-brand: var(--brand);
@@ -15,7 +16,7 @@
     --color-accent-hover: var(--accent-hover);
     --color-accent-foreground: var(--accent-foreground);
     --color-secondary-background: var(--secondary-background);
-    --radius-base: 5px;
+    --radius-base: 2px;
     --font-weight-base: 500;
     --font-weight-bold: 800;
     --font-weight-heading: 900;
@@ -25,13 +26,15 @@
    keeps the same crimson for filled buttons and nav pills, and lifts only the
    red used for type and blue for links. Each foreground token is chosen
    to clear WCAG AA against the surface it sits on: main 9.8:1 on --page and
-   10.9:1 on --secondary-background, link 5.5:1, and gold 3.6:1 so rules and
-   quote bars stay visible as UI edges. */
+   10.9:1 on --secondary-background, link 5.5:1. Gold is the bright accent
+   used for fills, rules, and shadows; --focus uses a darker gold in light
+   mode so focus rings stay at 3:1 or better. */
 :root {
     color-scheme: light;
 
     --crimson: #770000;
-    --gold: #8d7444;
+    --gold: #f0c541;
+    --ink: #150d0d;
 
     --page: #f2e9dc;
     --site-foreground: var(--crimson);
@@ -40,12 +43,12 @@
     --main: var(--crimson);
     --link: #1d4ed8;
     --link-hover: #1e3a8a;
-    --accent: #7d6538;
-    --accent-hover: #6a5530;
-    --accent-foreground: #fbf6ee;
+    --accent: #f0c541;
+    --accent-hover: #ffdb62;
+    --accent-foreground: #150d0d;
     --brand: var(--crimson);
     --silver: #ab9376;
-    --focus: #8d7444;
+    --focus: #a66b00;
 }
 
 /* Dark mode is opt-in: with ?dark in the URL, the inline script in the head
@@ -61,13 +64,13 @@
     --main: #e3928b;
     --link: #93c5fd;
     --link-hover: #bfdbfe;
-    --accent: #d8b98c;
-    --accent-hover: #e8ca9f;
+    --accent: #f0c541;
+    --accent-hover: #ffdb62;
     --accent-foreground: #150d0d;
     --brand: var(--crimson);
     --silver: #7a635a;
-    --gold: #d8b98c;
-    --focus: #e8c79c;
+    --gold: #f0c541;
+    --focus: #ffdb62;
 }
 
 @layer base {
