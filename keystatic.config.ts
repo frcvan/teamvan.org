@@ -64,6 +64,7 @@ const contentComponents = {
                 options: [
                     { label: "Primary", value: "primary" },
                     { label: "Secondary", value: "secondary" },
+                    { label: "Accent", value: "accent" },
                 ],
                 defaultValue: "primary",
             }),
