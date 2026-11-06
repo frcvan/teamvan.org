@@ -1,5 +1,6 @@
 ---
 import Button from "@/components/Button.astro";
+import { sponsors } from "@/data/sponsors";
 import VanLogo from "@/images/van-logo.svg";
 ---
 
@@ -15,7 +16,7 @@ import VanLogo from "@/images/van-logo.svg";
     <div class="lg:absolute lg:inset-0">
         <div class="flex max-w-5xl items-end px-6 py-6 sm:px-10 sm:py-8 lg:h-full lg:px-12">
             <div class="hero-rise w-full max-w-2xl border-4 border-cream bg-ink p-5 shadow-[10px_10px_0_var(--link)] sm:p-7">
-                <p class="inline-block -rotate-2 border-2 border-cream bg-brand px-2 py-1 text-[0.65rem] font-bold tracking-[0.18em] text-cream uppercase">
+                <p class="inline-block border-2 border-cream bg-brand px-2 py-1 text-[0.65rem] font-bold tracking-[0.18em] text-cream uppercase">
                     FRC 12148 · Palm Bay, Florida
                 </p>
                 <p class="hero-logo mt-5 flex items-baseline text-[clamp(2.25rem,6vw,3.75rem)] leading-none whitespace-nowrap text-cream">
@@ -48,3 +49,33 @@ import VanLogo from "@/images/van-logo.svg";
         </div>
     </div>
 </section>
+
+<aside class="sponsor-ticker" aria-label="Our sponsors">
+    <p class="sponsor-ticker-label">Powered By</p>
+    <div class="sponsor-ticker-window">
+        <div class="sponsor-ticker-track">
+            {[0, 1].map((copy) => (
+                <div
+                    class="sponsor-ticker-group"
+                    aria-hidden={copy === 1 ? "true" : undefined}
+                >
+                    {sponsors.map(({ name }) => (
+                        <span class="sponsor-ticker-item">
+                            <span
+                                class="sponsor-ticker-flag"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                class="sponsor-ticker-slash"
+                                aria-hidden="true"
+                            >
+                                //
+                            </span>
+                            <span class="sponsor-ticker-name">{name}</span>
+                        </span>
+                    ))}
+                </div>
+            ))}
+        </div>
+    </div>
+</aside>

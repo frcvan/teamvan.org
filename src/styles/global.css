@@ -457,3 +457,135 @@ body.menu-open {
         animation-delay: 0ms !important;
     }
 }
+
+/* Homepage sponsor ticker. */
+.sponsor-ticker {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    background: var(--ink);
+    color: var(--cream);
+}
+
+.sponsor-ticker-label {
+    display: flex;
+    flex: 0 0 auto;
+    align-self: stretch;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0.7rem 1rem;
+    background: var(--crimson);
+    color: var(--cream);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sponsor-ticker-window {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+    overflow: hidden;
+    border-block: 4px solid var(--rule);
+}
+
+.sponsor-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: sponsor-ticker 32s linear infinite;
+}
+
+.sponsor-ticker-group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 100vw;
+    padding-inline: 1.25rem;
+}
+
+.sponsor-ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.sponsor-ticker-flag {
+    position: relative;
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 1rem;
+    height: 0.7rem;
+    border: 1px solid var(--cream);
+    background-color: var(--cream);
+    background-image:
+        linear-gradient(
+            45deg,
+            var(--ink) 25%,
+            transparent 25% 75%,
+            var(--ink) 75%
+        ),
+        linear-gradient(
+            45deg,
+            var(--ink) 25%,
+            transparent 25% 75%,
+            var(--ink) 75%
+        );
+    background-position:
+        0 0,
+        3px 3px;
+    background-size: 6px 6px;
+}
+
+.sponsor-ticker-flag::before {
+    content: "";
+    position: absolute;
+    top: -0.15rem;
+    bottom: -0.3rem;
+    left: -0.25rem;
+    width: 1.5px;
+    background: var(--cream);
+}
+
+.sponsor-ticker-slash {
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    opacity: 0.45;
+}
+
+.sponsor-ticker-name {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.sponsor-ticker:hover .sponsor-ticker-track {
+    animation-play-state: paused;
+}
+
+@keyframes sponsor-ticker {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sponsor-ticker-track {
+        animation: none;
+    }
+
+    .sponsor-ticker-window {
+        overflow-x: auto;
+    }
+
+    .sponsor-ticker-group[aria-hidden="true"] {
+        display: none;
+    }
+}
