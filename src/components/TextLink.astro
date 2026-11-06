@@ -9,7 +9,7 @@ const external = typeof href === "string" && /^https?:/.test(href);
 
 <a
     href={href}
-    class="text-blue-300 underline underline-offset-4"
+    class="link-bar font-bold text-link"
     target={external ? "_blank" : undefined}
     rel={external ? "noopener noreferrer" : undefined}
     {...props}

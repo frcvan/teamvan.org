@@ -50,19 +50,19 @@ const copyrightYear = updatedOn.toLocaleDateString("en-US", {
 });
 ---
 
-<footer class="border-silver bg-white text-main mt-12 border-t-2 px-6 py-10 sm:px-10">
+<footer class="border-rule bg-secondary-background text-main mt-12 border-t-4 px-6 py-10 sm:px-10">
     <div class="mx-auto grid w-full max-w-6xl gap-8 sm:grid-cols-2">
         <section id="location">
-            <h2 class="mb-3 text-lg">Location</h2>
+            <h2 class="mb-3 text-2xl">Location</h2>
             <address class="mt-3 max-w-md text-sm leading-6 not-italic">
-                Mind Forge Guild
+                The MindForge Guild
                 <br />
                 <a
-                    class="text-blue-700 underline underline-offset-4 hover:text-blue-900"
+                    class="link-bar font-bold text-link"
                     href="https://maps.app.goo.gl/EZpkUnE5RZaprrsCA"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Open map to Mind Forge at 2475 Palm Bay Road, Suite 210, in a new tab"
+                    aria-label="Open map to The MindForge at 2475 Palm Bay Road, Suite 210, in a new tab"
                 >
                     2475 Palm Bay Rd, Suite 210
                 </a>
@@ -70,7 +70,7 @@ const copyrightYear = updatedOn.toLocaleDateString("en-US", {
         </section>
 
         <section class="sm:justify-self-end">
-            <h2 class="mb-3 text-lg">Connect</h2>
+            <h2 class="mb-3 text-2xl">Connect</h2>
             <address class="grid gap-2 text-sm not-italic md:grid-cols-2 md:gap-x-10">
                 <SocialLink
                     href="mailto:contact@teamvan.org"
@@ -100,23 +100,23 @@ const copyrightYear = updatedOn.toLocaleDateString("en-US", {
     </div>
 
     <section
-        class="mx-auto mt-8 w-full max-w-6xl border-t border-silver pt-8"
+        class="mx-auto mt-8 w-full max-w-6xl border-t-2 border-rule pt-8"
         aria-labelledby="sponsor-banners-heading"
     >
-        <h2 id="sponsor-banners-heading" class="mb-6 text-lg">
+        <h2 id="sponsor-banners-heading" class="mb-6 text-2xl">
             Want to Appear Here?{" "}
-            <a
-                href="/sponsors"
-                class="underline decoration-silver underline-offset-4 hover:text-black"
-            >
+            <a href="/sponsors" class="link-bar font-bold text-link">
                 Sponsor Our Team!
             </a>
         </h2>
         <SponsorGallery />
     </section>
 
-    <div class="mx-auto mt-8 flex w-full max-w-6xl items-center justify-between gap-4 border-silver border-t pt-4 text-xs">
+    <div class="mx-auto mt-8 flex w-full max-w-6xl items-center justify-between gap-4 border-t-2 border-rule pt-4 text-xs">
         <p>&copy; {copyrightYear} Team V.A.N. All rights reserved.</p>
+        <span class="hidden -rotate-2 border-2 border-rule bg-brand px-2 py-1 text-[0.6rem] font-bold tracking-[0.16em] text-cream uppercase sm:inline-block">
+            Est. 2026
+        </span>
         <p>Website last updated: {lastUpdated}</p>
     </div>
 </footer>

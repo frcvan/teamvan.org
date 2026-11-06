@@ -14,7 +14,7 @@ const { title, description } = Astro.props;
 <Layout title={title} description={description}>
     <a
         href="#main-content"
-        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-base focus:border-2 focus:border-black focus:bg-white focus:px-4 focus:py-2 focus:text-main focus:no-underline"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-base focus:border-2 focus:border-rule focus:bg-secondary-background focus:px-4 focus:py-2 focus:text-main focus:no-underline"
     >
         Skip to content
     </a>
@@ -29,6 +29,7 @@ const { title, description } = Astro.props;
             { href: "/interest/", label: "Join" },
         ]}
     />
+    <slot name="hero" />
     <main
         id="main-content"
         class="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col px-6 pt-16 sm:px-10 lg:px-12"
