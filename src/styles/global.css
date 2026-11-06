@@ -44,12 +44,12 @@
     --logo-shadow: var(--gold);
 
     --page: #f2e9dc;
-    --site-foreground: var(--crimson);
+    --site-foreground: var(--ink);
 
     --secondary-background: #fbf6ee;
-    --main: var(--crimson);
-    --link: #1d4ed8;
-    --link-hover: #1e3a8a;
+    --main: var(--ink);
+    --link: #3a5a8f;
+    --link-hover: #2f4a78;
     --accent: #f0c541;
     --accent-hover: #ffdb62;
     --accent-foreground: #150d0d;
@@ -58,10 +58,9 @@
     --focus: #a66b00;
 }
 
-/* Dark mode follows the OS colour-scheme preference: the inline script in the
-   head sets data-theme on <html> before paint and tracks changes live. The ink
-   surfaces are lifted slightly off black so cards, header, and footer read as
-   distinct layers. */
+/* Dark mode is opt-in: with ?dark in the URL, the inline script in the head
+   sets data-theme on <html>. The ink surfaces are lifted slightly off black so
+   cards, header, and footer read as distinct layers. */
 :root[data-theme="dark"] {
     color-scheme: dark;
 
@@ -74,8 +73,8 @@
 
     --secondary-background: #2a1d1b;
     --main: #e3928b;
-    --link: #93c5fd;
-    --link-hover: #bfdbfe;
+    --link: #a9c6e8;
+    --link-hover: #c3d8f2;
     --accent: #f0c541;
     --accent-hover: #ffdb62;
     --accent-foreground: #150d0d;
@@ -93,6 +92,18 @@
     body {
         @apply font-base overflow-x-clip;
         color: var(--site-foreground);
+        background-image:
+            linear-gradient(
+                to right,
+                color-mix(in srgb, var(--rule) 5%, transparent) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--rule) 5%, transparent) 1px,
+                transparent 1px
+            );
+        background-size: 48px 48px;
     }
 
     :is(h1, h2, h3, h4, h5, h6) {
@@ -207,25 +218,17 @@ body.menu-open {
 .link-bar {
     position: relative;
     padding-bottom: 2px;
+    border-bottom: 1px solid var(--rule);
 }
 
-.link-bar::before,
 .link-bar::after {
     content: "";
     position: absolute;
     inset-inline: 0;
-    bottom: 0;
+    bottom: -1px;
+    height: 2px;
     background: var(--rule);
     pointer-events: none;
-}
-
-.link-bar::before {
-    height: 1px;
-    opacity: 0.45;
-}
-
-.link-bar::after {
-    height: 2px;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 180ms ease-out;
@@ -294,7 +297,20 @@ body.menu-open {
     }
 
     #main-content > * + h2 {
-        @apply mt-12 border-t-2 border-rule pt-8;
+        @apply mt-12;
+    }
+
+    #main-content > h2 {
+        margin-inline: calc(50% - 50vw);
+        padding-inline: calc(50vw - 50%);
+        padding-block: 0.9rem 1rem;
+        border-block: 3px solid var(--rule);
+        background-color: var(--secondary-background);
+    }
+
+    #main-content > h2:nth-of-type(even) {
+        background-color: var(--gold);
+        color: var(--ink);
     }
 
     #main-content :is(h1, h2, h3, h4, h5, h6) {
@@ -353,7 +369,7 @@ body.menu-open {
     }
 
     #main-content hr {
-        @apply h-[3px] border-0 bg-rule;
+        @apply h-1 border-0 bg-rule;
     }
 
     #main-content table {
@@ -370,8 +386,8 @@ body.menu-open {
     }
 
     #main-content p img {
-        @apply block h-auto max-w-full rounded-base border-2 border-rule;
-        box-shadow: 3px 3px 0 var(--rule);
+        @apply block h-auto max-w-full rounded-base border-4 border-rule;
+        box-shadow: 6px 6px 0 var(--rule);
     }
 
     #main-content ul.contains-task-list {

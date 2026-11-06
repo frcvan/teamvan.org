@@ -24,7 +24,7 @@ const navigationLinks = navlinks.map((navlink) => ({
         data-scroll-progress
         aria-hidden="true"
     ></div>
-    <div class="header-inner mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 transition-[padding] duration-200 lg:gap-6">
+    <div class="header-inner mx-auto flex min-h-24 w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 transition-[padding] duration-200 lg:gap-6">
         <a
             class="text-brand flex min-w-0 flex-1 items-center no-underline lg:flex-none"
             href="/"
@@ -117,9 +117,17 @@ const navigationLinks = navlinks.map((navlink) => ({
 
     if (header && progress) {
         let frame = 0;
+        let scrolled = false;
         const update = () => {
             const y = window.scrollY;
-            header.classList.toggle("is-scrolled", y > 8);
+            // Hysteresis keeps the shrink from flickering at the threshold.
+            if (y > 16 && !scrolled) {
+                scrolled = true;
+                header.classList.add("is-scrolled");
+            } else if (y < 4 && scrolled) {
+                scrolled = false;
+                header.classList.remove("is-scrolled");
+            }
             const scrollable =
                 document.documentElement.scrollHeight - window.innerHeight;
             const ratio = scrollable > 0 ? Math.min(y / scrollable, 1) : 0;

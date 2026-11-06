@@ -36,29 +36,14 @@ const socialImageUrl = new URL("/social-image.png", Astro.site ?? Astro.url);
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#f2e9dc" />
         <script is:inline>
-            // Follow the OS colour-scheme preference. Apply it before paint so
-            // the page never flashes the wrong palette, and keep it in sync if
-            // the setting changes while the page is open.
-            (() => {
-                const darkQuery = window.matchMedia(
-                    "(prefers-color-scheme: dark)",
-                );
-                const applyTheme = () => {
-                    if (darkQuery.matches) {
-                        document.documentElement.dataset.theme = "dark";
-                    } else {
-                        delete document.documentElement.dataset.theme;
-                    }
-                    document
-                        .querySelector('meta[name="theme-color"]')
-                        ?.setAttribute(
-                            "content",
-                            darkQuery.matches ? "#150d0d" : "#f2e9dc",
-                        );
-                };
-                applyTheme();
-                darkQuery.addEventListener("change", applyTheme);
-            })();
+            // Dark mode is opt-in via ?dark so the site stays light for anyone
+            // who has not asked for it, whatever their system preference.
+            if (new URLSearchParams(location.search).has("dark")) {
+                document.documentElement.dataset.theme = "dark";
+                document
+                    .querySelector('meta[name="theme-color"]')
+                    ?.setAttribute("content", "#150d0d");
+            }
         </script>
         <link rel="canonical" href={canonicalUrl} />
         <link rel="sitemap" href="/sitemap-index.xml" />
