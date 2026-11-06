@@ -18,7 +18,7 @@ const navigationLinks = navlinks.map((navlink) => ({
 }));
 ---
 
-<header class="relative border-gold bg-secondary-background border-b-2">
+<header class="relative border-rule bg-secondary-background border-b-4">
     <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-6 lg:gap-6">
         <a
             class="text-brand flex min-w-0 flex-1 items-center no-underline lg:flex-none"
@@ -32,7 +32,7 @@ const navigationLinks = navlinks.map((navlink) => ({
                 <VanLogo
                     width="1280"
                     height="448"
-                    class="block size-12 shrink-0 fill-brand! sm:size-14 lg:size-[0.74em]"
+                    class="block size-12 shrink-0 fill-[var(--logo-front)]! sm:size-14 lg:size-[0.74em]"
                 />
                 <span class="hidden lg:block lg:-ml-[0.11em]">.A.N.</span>
             </span>
@@ -53,7 +53,7 @@ const navigationLinks = navlinks.map((navlink) => ({
             <nav
                 id="mobile-navigation"
                 aria-label="Main navigation"
-                class="mobile-menu-nav absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-silver bg-secondary-background px-6 py-4"
+                class="mobile-menu-nav absolute inset-x-0 top-full z-20 flex flex-col gap-2 border-b-2 border-rule bg-secondary-background px-6 py-4"
             >
                 {navigationLinks.map((link) => (
                     <Button
@@ -63,7 +63,7 @@ const navigationLinks = navlinks.map((navlink) => ({
                         outline={false}
                         size="lg"
                         class:list={[
-                            "mobile-menu-item w-full justify-start border-2 border-ink hover:border-main",
+                            "mobile-menu-item w-full justify-start border-2 border-rule hover:border-main",
                             link.labelClass || "",
                         ]}
                     >

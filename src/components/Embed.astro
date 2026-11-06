@@ -10,7 +10,7 @@ interface Props {
 const { src, title, variant = "calendar" } = Astro.props as Props;
 const containerClass =
     variant === "calendar"
-        ? "w-full overflow-hidden rounded-base border border-silver bg-white shadow-sm"
+        ? "w-full overflow-hidden rounded-base border-2 border-rule bg-white"
         : "w-full h-[800px] overflow-hidden rounded-base border-none shadow-none";
 const frameClass =
     variant === "calendar"

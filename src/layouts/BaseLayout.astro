@@ -24,35 +24,41 @@ const socialImageUrl = new URL("/social-image.png", Astro.site ?? Astro.url);
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@600;700;800;900&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
             rel="stylesheet"
         />
 
         <meta name="viewport" content="width=device-width" />
-        <link
-            rel="icon"
-            type="image/svg+xml"
-            href="/favicon.svg"
-            sizes="any"
-        />
-        <link
-            rel="icon"
-            type="image/x-icon"
-            href="/favicon.ico"
-        />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={pageDescription} />
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#f2e9dc" />
         <script is:inline>
-            // Dark mode is opt-in via ?dark so the site is light for everyone
-            // else, whatever their system preference.
-            if (new URLSearchParams(location.search).has("dark")) {
-                document.documentElement.dataset.theme = "dark";
-                document
-                    .querySelector('meta[name="theme-color"]')
-                    ?.setAttribute("content", "#150d0d");
-            }
+            // Follow the OS colour-scheme preference. Apply it before paint so
+            // the page never flashes the wrong palette, and keep it in sync if
+            // the setting changes while the page is open.
+            (() => {
+                const darkQuery = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                );
+                const applyTheme = () => {
+                    if (darkQuery.matches) {
+                        document.documentElement.dataset.theme = "dark";
+                    } else {
+                        delete document.documentElement.dataset.theme;
+                    }
+                    document
+                        .querySelector('meta[name="theme-color"]')
+                        ?.setAttribute(
+                            "content",
+                            darkQuery.matches ? "#150d0d" : "#f2e9dc",
+                        );
+                };
+                applyTheme();
+                darkQuery.addEventListener("change", applyTheme);
+            })();
         </script>
         <link rel="canonical" href={canonicalUrl} />
         <link rel="sitemap" href="/sitemap-index.xml" />

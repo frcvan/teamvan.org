@@ -1,5 +1,6 @@
 ---
 import Button from "@/components/Button.astro";
+import VanLogo from "@/images/van-logo.svg";
 ---
 
 <section class="relative isolate w-full overflow-hidden">
@@ -9,28 +10,40 @@ import Button from "@/components/Button.astro";
         width="2000"
         height="1333"
         fetchpriority="high"
-        class="h-[clamp(18rem,46vw,32rem)] w-full object-cover object-center"
+        class="hero-media h-[clamp(26rem,50vw,34rem)] w-full object-cover object-center"
     />
-    <div class="absolute inset-0 bg-gradient-to-t from-[#150d0d]/90 via-[#150d0d]/45 to-[#150d0d]/15"></div>
-    <div class="absolute inset-0">
-        <div class="mx-auto flex h-full max-w-5xl flex-col items-start justify-end gap-4 px-6 py-8 sm:px-10 lg:px-12">
-            <p class="text-xs font-bold tracking-[0.22em] text-gold uppercase">
-                FRC 12148 · Palm Bay, Florida
-            </p>
-            <p class="font-heading text-4xl leading-none text-white sm:text-5xl">
-                Team V.A.N.
-            </p>
-            <p class="max-w-xl text-base text-[#f2e8db]">
-                A student-managed rookie FIRST Robotics Competition team serving
-                southern Brevard and Indian River counties.
-            </p>
-            <div class="mt-1 flex flex-wrap gap-3">
-                <Button href="/interest/" variant="accent">
-                    Join the team
-                </Button>
-                <Button href="/sponsors/" variant="secondary">
-                    Sponsor us
-                </Button>
+    <div class="lg:absolute lg:inset-0">
+        <div class="flex max-w-5xl items-end px-6 py-6 sm:px-10 sm:py-8 lg:h-full lg:px-12">
+            <div class="hero-rise w-full max-w-2xl border-2 border-gold bg-ink p-5 sm:p-7">
+                <p class="inline-block -rotate-2 border-2 border-ink bg-gold px-2 py-1 text-[0.65rem] font-bold tracking-[0.18em] text-ink uppercase">
+                    FRC 12148 · Palm Bay, Florida
+                </p>
+                <p class="hero-logo mt-5 flex items-baseline text-[clamp(2.25rem,6vw,3.75rem)] leading-none whitespace-nowrap text-[#fbf6ee]">
+                    <span class="sr-only">Team V.A.N.</span>
+                    <span aria-hidden="true" class="inline-flex items-baseline">
+                        <span>Team</span>
+                        <span class="ml-2 inline-flex items-baseline">
+                            <VanLogo
+                                width="1280"
+                                height="448"
+                                class="block size-[0.74em] shrink-0 fill-[#fbf6ee]!"
+                            />
+                            <span class="-ml-[0.11em]">.A.N.</span>
+                        </span>
+                    </span>
+                </p>
+                <p class="mt-3 max-w-xl text-base text-[#f2e8db]">
+                    A student-managed rookie FIRST Robotics Competition team
+                    serving southern Brevard and Indian River counties.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                    <Button href="/interest/" variant="accent">
+                        Join the team
+                    </Button>
+                    <Button href="/sponsors/" variant="secondary">
+                        Sponsor us
+                    </Button>
+                </div>
             </div>
         </div>
     </div>

@@ -3,10 +3,13 @@
 @theme inline {
     --font-sans:
         "Merriweather Sans", "Helvetica Neue", -apple-system, "Segoe UI", Roboto;
+    --font-heading: "Barlow Condensed", "Arial Narrow", sans-serif;
 
     --color-silver: var(--silver);
     --color-gold: var(--gold);
     --color-ink: var(--ink);
+    --color-rule: var(--rule);
+    --color-brand-hover: var(--brand-hover);
     --color-main: var(--main);
     --color-page: var(--page);
     --color-brand: var(--brand);
@@ -35,6 +38,10 @@
     --crimson: #770000;
     --gold: #f0c541;
     --ink: #150d0d;
+    --brand-hover: #5c0000;
+    --rule: #150d0d;
+    --logo-front: var(--crimson);
+    --logo-shadow: var(--gold);
 
     --page: #f2e9dc;
     --site-foreground: var(--crimson);
@@ -51,14 +58,19 @@
     --focus: #a66b00;
 }
 
-/* Dark mode is opt-in: with ?dark in the URL, the inline script in the head
-   sets data-theme on <html>. The ink surfaces are lifted slightly off black so
-   cards, header, and footer read as distinct layers. */
+/* Dark mode follows the OS colour-scheme preference: the inline script in the
+   head sets data-theme on <html> before paint and tracks changes live. The ink
+   surfaces are lifted slightly off black so cards, header, and footer read as
+   distinct layers. */
 :root[data-theme="dark"] {
     color-scheme: dark;
 
     --page: #150d0d;
     --site-foreground: #f2e8db;
+    --brand-hover: #5c0000;
+    --rule: #f2e8db;
+    --logo-front: var(--gold);
+    --logo-shadow: var(--crimson);
 
     --secondary-background: #2a1d1b;
     --main: #e3928b;
@@ -84,7 +96,7 @@
     }
 
     :is(h1, h2, h3, h4, h5, h6) {
-        @apply font-heading;
+        @apply font-heading uppercase tracking-tight;
     }
 
     p {
@@ -113,11 +125,69 @@
 .logo-type {
     font-family: "Archivo Black", "Helvetica Neue", sans-serif;
     font-weight: 400;
-    text-shadow: 4px 4px 0 var(--gold);
+    color: var(--logo-front);
+    text-shadow: 4px 4px 0 var(--logo-shadow);
 }
 
 .logo-type svg {
-    filter: drop-shadow(4px 4px 0 var(--gold));
+    filter: drop-shadow(4px 4px 0 var(--logo-shadow));
+}
+
+/* Hero lockup: same face as the header wordmark, but flat so the large type
+   stays crisp instead of carrying a heavy shadow across the panel. */
+.hero-logo {
+    font-family: "Archivo Black", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+}
+
+/* In dark mode the menu icon flips to gold with a maroon offset behind it. */
+:root[data-theme="dark"] .mobile-menu summary svg {
+    color: var(--gold);
+    filter: drop-shadow(2px 2px 0 var(--crimson));
+}
+
+@keyframes hero-rise {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes hero-settle {
+    from {
+        transform: scale(1.05);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.hero-media {
+    animation: hero-settle 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-rise > * {
+    animation: hero-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-rise > :nth-child(1) {
+    animation-delay: 80ms;
+}
+
+.hero-rise > :nth-child(2) {
+    animation-delay: 160ms;
+}
+
+.hero-rise > :nth-child(3) {
+    animation-delay: 240ms;
+}
+
+.hero-rise > :nth-child(4) {
+    animation-delay: 320ms;
 }
 
 /* Markdown body defaults. Components override these with utilities, which sit
@@ -128,7 +198,7 @@
     }
 
     #main-content > * + h2 {
-        @apply mt-12;
+        @apply mt-12 border-t-2 border-rule pt-8;
     }
 
     #main-content :is(h1, h2, h3, h4, h5, h6) {
@@ -187,7 +257,7 @@
     }
 
     #main-content hr {
-        @apply h-px border-0 bg-gold;
+        @apply h-[3px] border-0 bg-rule;
     }
 
     #main-content table {
@@ -204,7 +274,7 @@
     }
 
     #main-content p img {
-        @apply block h-auto max-w-full rounded-base border border-silver;
+        @apply block h-auto max-w-full rounded-base border-2 border-rule;
     }
 
     #main-content ul.contains-task-list {
@@ -256,5 +326,9 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+
+    .hero-rise > * {
+        animation-delay: 0ms !important;
     }
 }
