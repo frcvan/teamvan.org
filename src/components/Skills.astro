@@ -1,0 +1,46 @@
+---
+import "@/styles/motion.css";
+
+interface Props {
+    title?: string;
+}
+
+const { title = "What the team needs" } = Astro.props as Props;
+
+const roles = [
+    { name: "Build", detail: "Mechanical, electrical, and controls work" },
+    { name: "Business", detail: "Sponsorships, budget, and scheduling" },
+    { name: "Media", detail: "Photos, video, and social posts" },
+    { name: "Speaking", detail: "Judging, pit talks, and outreach" },
+];
+---
+
+<div
+    class="visual-rise border-4 border-rule bg-secondary-background shadow-[8px_8px_0_var(--rule)]"
+>
+    <p
+        class="border-b-4 border-rule px-4 py-2 text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase"
+    >
+        {title}
+    </p>
+    <dl class="visual-rise-stagger grid sm:grid-cols-2">
+        {
+            roles.map(({ name, detail }, index) => (
+                <div
+                    class:list={[
+                        "flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-3",
+                        index === 1 &&
+                            "border-t-4 border-rule sm:border-t-0 sm:border-l-4",
+                        index === 2 && "border-t-4 border-rule",
+                        index === 3 && "border-t-4 border-rule sm:border-l-4",
+                    ]}
+                >
+                    <dt class="font-heading text-xl leading-none font-extrabold uppercase">
+                        {name}
+                    </dt>
+                    <dd class="text-sm">{detail}</dd>
+                </div>
+            ))
+        }
+    </dl>
+</div>

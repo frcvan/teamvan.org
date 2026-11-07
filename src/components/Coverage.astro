@@ -1,0 +1,85 @@
+---
+import "@/styles/motion.css";
+
+interface Props {
+    schools?: string;
+    schoolLabel?: string;
+}
+
+const {
+    schools = "Palm Bay, Bayside, Sebastian River, Vero Beach, Indian River Charter",
+    schoolLabel = "Closest FRC team to",
+} = Astro.props as Props;
+
+const schoolList = schools
+    .split(",")
+    .map((school) => school.trim())
+    .filter(Boolean);
+
+const cells = [
+    {
+        title: "Brevard County",
+        value: "1",
+        caption: "community FRC team, ours",
+        highlight: false,
+    },
+    {
+        title: "Indian River County",
+        value: "0",
+        caption: "FRC teams",
+        highlight: true,
+    },
+    {
+        title: "Nearest existing team",
+        value: "40+ min",
+        caption: "drive from southern Brevard",
+        highlight: false,
+    },
+];
+---
+
+<div
+    class="visual-rise border-4 border-rule bg-secondary-background shadow-[8px_8px_0_var(--rule)]"
+>
+    <div class="visual-rise-stagger grid sm:grid-cols-3">
+        {
+            cells.map(({ title, value, caption, highlight }, index) => (
+                <div
+                    class:list={[
+                        "px-4 py-4 sm:px-5",
+                        index > 0 &&
+                            "border-t-4 border-rule sm:border-t-0 sm:border-l-4",
+                        highlight && "bg-brand text-cream",
+                    ]}
+                >
+                    <p class="text-[0.65rem] font-bold tracking-[0.18em] uppercase opacity-80">
+                        {title}
+                    </p>
+                    <p class="mt-2 font-heading text-5xl leading-none font-black">
+                        {value}
+                    </p>
+                    <p class="mt-2 text-sm">{caption}</p>
+                </div>
+            ))
+        }
+    </div>
+    <div class="border-t-4 border-rule px-4 py-3 sm:px-5">
+        <p class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase">
+            {schoolLabel}
+        </p>
+        <ul
+            class="mt-2 flex list-none flex-wrap gap-x-4 gap-y-2 space-y-0 pl-0"
+        >
+            {
+                schoolList.map((school) => (
+                    <li class="flex items-center gap-2 text-sm font-bold tracking-wide uppercase">
+                        <span class="text-link" aria-hidden="true">
+                            //
+                        </span>
+                        {school}
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>

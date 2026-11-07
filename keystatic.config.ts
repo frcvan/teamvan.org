@@ -42,6 +42,106 @@ const contentComponents = {
             }),
         },
     }),
+    Quip: wrapper({
+        label: "Quip",
+        description: "A short one-liner shown as a bordered sticker.",
+        schema: {},
+    }),
+    Coverage: block({
+        label: "Coverage panel",
+        description: "Counties and schools served, shown as a bordered panel.",
+        schema: {
+            schools: fields.text({
+                label: "Schools",
+                description: "Separate each school with a comma.",
+                defaultValue:
+                    "Palm Bay, Bayside, Sebastian River, Vero Beach, Indian River Charter",
+            }),
+            schoolLabel: fields.text({
+                label: "Schools label",
+                defaultValue: "Closest FRC team to",
+            }),
+        },
+    }),
+    Comparison: repeating({
+        label: "Comparison chart",
+        description: "Paired bars comparing two groups, up to four rows.",
+        children: ["ComparisonRow"],
+        validation: { children: { min: 1, max: 4 } },
+        schema: {
+            title: fields.text({ label: "Title" }),
+            legend: fields.text({
+                label: "First group",
+                defaultValue: "FIRST alumni",
+            }),
+            compareLegend: fields.text({
+                label: "Second group",
+                defaultValue: "Comparison group",
+            }),
+        },
+    }),
+    ComparisonRow: block({
+        label: "Comparison row",
+        description: "One measure, with a value for each group.",
+        schema: {
+            label: fields.text({
+                label: "Measure",
+                validation: { isRequired: true },
+            }),
+            value: fields.text({
+                label: "First group value",
+                description: "A number out of 100.",
+                validation: { isRequired: true },
+            }),
+            compare: fields.text({
+                label: "Second group value",
+                description: "A number out of 100.",
+                validation: { isRequired: true },
+            }),
+            unit: fields.text({
+                label: "Unit",
+                defaultValue: "%",
+            }),
+        },
+    }),
+    Skills: block({
+        label: "Skills panel",
+        description:
+            "The non-build roles the team needs: business, media, and speaking.",
+        schema: {
+            title: fields.text({
+                label: "Title",
+                defaultValue: "What the team needs",
+            }),
+        },
+    }),
+    Nameplate: block({
+        label: "Stats band",
+        description:
+            "A label and four team stats, such as students interested and schools served.",
+        schema: {
+            label: fields.text({
+                label: "Label",
+                defaultValue: "About Team V.A.N.",
+            }),
+            interested: fields.text({
+                label: "Students interested",
+                defaultValue: "20+",
+            }),
+            schools: fields.text({
+                label: "Partner schools",
+                defaultValue: "5",
+            }),
+            counties: fields.text({
+                label: "Counties served",
+                defaultValue: "2",
+            }),
+            founded: fields.text({
+                label: "Founded",
+                defaultValue: "2026",
+            }),
+        },
+    }),
     Collapse: wrapper({
         label: "Collapsible section",
         description: "A section readers open to see the details inside.",

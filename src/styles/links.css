@@ -1,0 +1,26 @@
+/* Inline links: a hairline bar that thickens into a 2px bar on hover/focus.
+   Shared by TextLink, SocialLink, and the footer's address links. */
+
+.link-bar {
+    position: relative;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--rule);
+}
+
+.link-bar::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--rule);
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease-out;
+}
+
+.link-bar:hover::after,
+.link-bar:focus-visible::after {
+    transform: scaleX(1);
+}

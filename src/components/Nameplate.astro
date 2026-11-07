@@ -1,0 +1,60 @@
+---
+import "@/styles/motion.css";
+
+interface Props {
+    label?: string;
+    interested?: string;
+    schools?: string;
+    counties?: string;
+    founded?: string;
+}
+
+const {
+    label = "About Team V.A.N.",
+    interested = "20+",
+    schools = "5",
+    counties = "2",
+    founded = "2026",
+} = Astro.props as Props;
+
+const specs = [
+    { label: "Students interested", value: interested },
+    { label: "Partner schools", value: schools },
+    { label: "Counties served", value: counties },
+    { label: "Founded", value: founded },
+];
+
+// Two stat columns on small screens, four across from sm up.
+const cellClass = (index: number) => [
+    "px-4 py-3 sm:px-5",
+    index === 1 && "border-l-4 border-rule",
+    index === 2 && "border-t-4 border-rule sm:border-t-0 sm:border-l-4",
+    index === 3 && "border-t-4 border-l-4 border-rule sm:border-t-0",
+];
+---
+
+<div
+    class="visual-rise border-4 border-rule bg-secondary-background shadow-[8px_8px_0_var(--rule)]"
+>
+    <div class="flex flex-col sm:flex-row">
+        <p
+            class="flex items-center border-b-4 border-rule bg-brand px-4 py-3 font-heading text-2xl leading-none font-extrabold tracking-tight text-cream uppercase sm:w-56 sm:shrink-0 sm:border-r-4 sm:border-b-0"
+        >
+            {label}
+        </p>
+        <dl class="visual-rise-stagger grid flex-1 grid-cols-2 sm:grid-cols-4">
+            {
+                specs.map(({ label: specLabel, value }, index) => (
+                    <div class:list={cellClass(index)}>
+                        <dt class="text-[0.65rem] font-bold tracking-[0.18em] uppercase opacity-70">
+                            {specLabel}
+                        </dt>
+                        <dd class="mt-1 font-heading text-2xl leading-tight font-extrabold uppercase">
+                            {value}
+                        </dd>
+                    </div>
+                ))
+            }
+        </dl>
+    </div>
+</div>

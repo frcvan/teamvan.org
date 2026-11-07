@@ -5,45 +5,54 @@ import VanLogo from "@/images/van-logo.svg";
 ---
 
 <section class="relative isolate w-full overflow-hidden">
-    <img
-        src="/images/pages/hero-frc.jpg"
-        alt="FRC robots 180, 179, and 1902 line up on the field beneath hanging game pieces while drive teams and spectators watch from the stands"
-        width="2000"
-        height="1333"
-        fetchpriority="high"
-        class="hero-media h-[clamp(26rem,50vw,34rem)] w-full object-cover object-center"
-    />
-    <div class="lg:absolute lg:inset-0">
-        <div class="flex max-w-5xl items-end px-6 py-6 sm:px-10 sm:py-8 lg:h-full lg:px-12">
-            <div class="hero-rise w-full max-w-2xl border-4 border-ink bg-paper p-5 shadow-[10px_10px_0_var(--link)] sm:p-7">
-                <p class="inline-block border-2 border-ink bg-brand px-2 py-1 text-[0.65rem] font-bold tracking-[0.18em] text-cream uppercase">
-                    FRC 12148 · Palm Bay, Florida
-                </p>
-                <p class="hero-logo mt-5 flex items-baseline text-[clamp(2.25rem,6vw,3.75rem)] leading-none whitespace-nowrap text-ink">
-                    <span class="sr-only">Team V.A.N.</span>
-                    <span aria-hidden="true" class="inline-flex items-baseline">
-                        <span>Team</span>
-                        <span class="ml-2 inline-flex items-baseline">
-                            <VanLogo
-                                width="1280"
-                                height="448"
-                                class="block size-[0.74em] shrink-0 fill-ink!"
-                            />
-                            <span class="-ml-[0.11em]">.A.N.</span>
+    <div class="relative">
+        <img
+            src="/images/pages/hero-frc.jpg"
+            alt="FRC robots 180, 179, and 1902 line up on the field beneath hanging game pieces while drive teams and spectators watch from the stands"
+            width="2000"
+            height="1333"
+            fetchpriority="high"
+            class="hero-media h-[clamp(20rem,50vw,34rem)] w-full object-cover object-center"
+        />
+        <div class="lg:absolute lg:inset-0">
+            <div class="flex max-w-5xl items-end lg:h-full lg:px-12 lg:pb-10">
+                <div class="hero-rise w-full bg-secondary-background px-4 py-5 sm:px-5 sm:py-6 lg:max-w-2xl lg:border-4 lg:border-ink lg:bg-paper lg:p-7 lg:shadow-[10px_10px_0_var(--link)]">
+                    <p class="inline-block border-2 border-ink bg-brand px-2 py-1 text-[0.65rem] font-bold tracking-[0.18em] text-cream uppercase">
+                        FRC 12148 · Palm Bay, Florida
+                    </p>
+                    <h1 class="hero-logo mt-5 flex items-baseline text-[clamp(2.25rem,6vw,3.75rem)] leading-none font-normal whitespace-nowrap normal-case text-ink">
+                        <span class="sr-only">Team V.A.N.</span>
+                        <span
+                            aria-hidden="true"
+                            class="inline-flex items-baseline"
+                        >
+                            <span>Team</span>
+                            <span class="ml-2 inline-flex items-baseline">
+                                <VanLogo
+                                    width="1280"
+                                    height="448"
+                                    class="block size-[0.74em] shrink-0 fill-ink!"
+                                />
+                                <span class="-ml-[0.11em]">.A.N.</span>
+                            </span>
                         </span>
-                    </span>
-                </p>
-                <p class="mt-3 max-w-xl text-base text-ink">
-                    A student-managed rookie FIRST Robotics Competition team
-                    serving southern Brevard and Indian River counties.
-                </p>
-                <div class="mt-4 flex flex-wrap gap-3">
-                    <Button href="/interest/" variant="accent">
-                        Join the team
-                    </Button>
-                    <Button href="/sponsors/" variant="secondary">
-                        Sponsor us
-                    </Button>
+                    </h1>
+                    <p class="mt-3 max-w-xl text-base text-ink">
+                        A student-managed rookie FIRST Robotics Competition team
+                        serving southern Brevard and Indian River counties.
+                    </p>
+                    <p class="mt-4 inline-flex w-fit max-w-full -rotate-1 items-center gap-2 border-2 border-ink bg-gold px-2.5 py-1.5 font-heading text-sm leading-none font-extrabold tracking-wide text-ink uppercase shadow-[3px_3px_0_var(--ink)]">
+                        <span aria-hidden="true">//</span>
+                        In the VAN, we brake for no one.
+                    </p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                        <Button href="/interest/" variant="accent">
+                            Join the team
+                        </Button>
+                        <Button href="/sponsors/" variant="secondary">
+                            Sponsor us
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,3 +88,221 @@ import VanLogo from "@/images/van-logo.svg";
         </div>
     </div>
 </aside>
+
+<style>
+    /* Hero lockup: same face as the header wordmark, but flat so the large type
+       stays crisp instead of carrying a heavy shadow across the panel. */
+    .hero-logo {
+        font-family: "Archivo Black", "Helvetica Neue", sans-serif;
+        font-weight: 400;
+    }
+
+    @keyframes hero-settle {
+        from {
+            transform: scale(1.05);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+
+    .hero-media {
+        animation: hero-settle 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes hero-rise {
+        from {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero-rise > * {
+        animation: hero-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero-rise > :nth-child(1) {
+        animation-delay: 80ms;
+    }
+
+    .hero-rise > :nth-child(2) {
+        animation-delay: 160ms;
+    }
+
+    .hero-rise > :nth-child(3) {
+        animation-delay: 240ms;
+    }
+
+    .hero-rise > :nth-child(4) {
+        animation-delay: 320ms;
+    }
+
+    .hero-rise > :nth-child(5) {
+        animation-delay: 400ms;
+    }
+
+    /* Sponsor ticker. */
+    /* Below sm the label sits above the scrolling names; from sm up it becomes
+       a left rail beside them. */
+    .sponsor-ticker {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        overflow: hidden;
+        background: var(--ink);
+        color: var(--cream);
+    }
+
+    .sponsor-ticker-label {
+        display: flex;
+        flex: 0 0 auto;
+        align-self: stretch;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0.7rem 1rem;
+        background: var(--crimson);
+        color: var(--cream);
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    /* From sm up the label is a fixed-width rail, so the sponsor names always
+       start on the same edge. */
+    @media (min-width: 40rem) {
+        .sponsor-ticker {
+            flex-direction: row;
+        }
+
+        .sponsor-ticker-label {
+            flex: 0 0 14rem;
+            width: 14rem;
+            justify-content: flex-start;
+        }
+    }
+
+    .sponsor-ticker-window {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        align-items: center;
+        overflow: hidden;
+        padding-block: 0.8rem;
+    }
+
+    .sponsor-ticker-track {
+        display: flex;
+        width: max-content;
+        animation: sponsor-ticker 32s linear infinite;
+    }
+
+    .sponsor-ticker-group {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: space-around;
+        min-width: 100vw;
+        padding-inline: 1.25rem;
+    }
+
+    .sponsor-ticker-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+    }
+
+    .sponsor-ticker-flag {
+        display: inline-block;
+        flex: 0 0 auto;
+        width: 1.2rem;
+        height: 0.85rem;
+        border: 1px solid var(--cream);
+        background-color: var(--cream);
+        background-image:
+            linear-gradient(
+                45deg,
+                var(--ink) 25%,
+                transparent 25% 75%,
+                var(--ink) 75%
+            ),
+            linear-gradient(
+                45deg,
+                var(--ink) 25%,
+                transparent 25% 75%,
+                var(--ink) 75%
+            );
+        background-position:
+            0 0,
+            3px 3px;
+        background-size: 6px 6px;
+    }
+
+    .sponsor-ticker-slash {
+        font-size: 0.7rem;
+        font-weight: 800;
+        line-height: 1;
+        opacity: 0.45;
+    }
+
+    .sponsor-ticker-name {
+        font-size: 0.75rem;
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .sponsor-ticker:hover .sponsor-ticker-track {
+        animation-play-state: paused;
+    }
+
+    @keyframes sponsor-ticker {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* On phones the label is a bar above the names, so give the strip enough
+       height to read at a glance. */
+    @media (max-width: 39.999rem) {
+        .sponsor-ticker-label {
+            padding-block: 0.8rem;
+        }
+
+        .sponsor-ticker-window {
+            min-height: 3.25rem;
+        }
+
+        .sponsor-ticker-name {
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .sponsor-ticker-track {
+            animation: none;
+        }
+
+        .sponsor-ticker-window {
+            overflow-x: auto;
+        }
+
+        .sponsor-ticker-group[aria-hidden="true"] {
+            display: none;
+        }
+
+        .hero-rise > * {
+            animation-delay: 0ms !important;
+        }
+    }
+</style>

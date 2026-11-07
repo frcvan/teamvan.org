@@ -1,0 +1,49 @@
+---
+import "@/styles/motion.css";
+
+interface Props {
+    title?: string;
+    legend?: string;
+    compareLegend?: string;
+}
+
+const {
+    title,
+    legend = "FIRST alumni",
+    compareLegend = "Comparison group",
+} = Astro.props as Props;
+---
+
+<figure
+    class="visual-rise border-4 border-rule bg-secondary-background p-4 shadow-[8px_8px_0_var(--rule)] sm:p-5"
+>
+    {
+        title && (
+            <figcaption class="text-xs font-bold tracking-[0.18em] uppercase opacity-80">
+                {title}
+            </figcaption>
+        )
+    }
+    <ul
+        class:list={[
+            "flex list-none flex-wrap gap-x-5 gap-y-2 space-y-0 pl-0 text-[0.65rem] font-bold tracking-[0.18em] uppercase",
+            title && "mt-3",
+        ]}
+    >
+        <li class="flex items-center gap-2">
+            <span
+                class="size-3 border-2 border-rule bg-brand"
+                aria-hidden="true"></span>
+            {legend}
+        </li>
+        <li class="flex items-center gap-2">
+            <span
+                class="size-3 border-2 border-rule bg-main/20"
+                aria-hidden="true"></span>
+            {compareLegend}
+        </li>
+    </ul>
+    <div class="comparison-rows mt-4 space-y-4">
+        <slot />
+    </div>
+</figure>

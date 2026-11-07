@@ -1,0 +1,28 @@
+---
+import "@/styles/motion.css";
+
+interface Props {
+    class?: string;
+    tilt?: boolean;
+}
+
+const { class: className, tilt = false } = Astro.props as Props;
+---
+
+<div
+    class:list={[
+        "visual-rise flex w-fit max-w-full items-start gap-3 border-4 border-rule bg-brand px-4 py-3 text-cream shadow-[6px_6px_0_var(--rule)]",
+        tilt && "-rotate-1",
+        className,
+    ]}
+>
+    <span
+        aria-hidden="true"
+        class="mt-0.5 font-heading text-xl leading-none text-gold"
+    >
+        //
+    </span>
+    <div class="font-heading text-xl leading-tight font-extrabold uppercase">
+        <slot />
+    </div>
+</div>

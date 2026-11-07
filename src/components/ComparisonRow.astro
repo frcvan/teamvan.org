@@ -1,0 +1,42 @@
+---
+interface Props {
+    label: string;
+    value: string;
+    compare: string;
+    unit?: string;
+}
+
+const { label, value, compare, unit = "%" } = Astro.props as Props;
+
+const barWidth = (raw: string) => {
+    const parsed = Number.parseFloat(raw);
+    if (Number.isNaN(parsed)) return 0;
+    return Math.min(100, Math.max(0, parsed));
+};
+---
+
+<div>
+    <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+        <p class="text-sm font-bold">{label}</p>
+        <p
+            class="flex items-baseline gap-2 text-sm font-bold whitespace-nowrap tabular-nums"
+        >
+            <span class="text-link">{value}{unit}</span>
+            <span class="opacity-60 [word-spacing:normal]">vs.&nbsp;{compare}{unit}</span>
+        </p>
+    </div>
+    <div class="mt-2 space-y-1" aria-hidden="true">
+        <div class="h-3 border-2 border-rule bg-secondary-background">
+            <div
+                class="bar-fill h-full bg-brand"
+                style={`width: ${barWidth(value)}%`}>
+            </div>
+        </div>
+        <div class="h-3 border-2 border-rule bg-secondary-background">
+            <div
+                class="bar-fill h-full bg-main/20"
+                style={`width: ${barWidth(compare)}%`}>
+            </div>
+        </div>
+    </div>
+</div>
