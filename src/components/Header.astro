@@ -6,15 +6,36 @@ import Button from "@/components/Button.astro";
 
 import VanLogo from "@/images/van-logo.svg";
 
+interface NavChild {
+    href: string;
+    label: string;
+}
+
+interface NavLink {
+    href: string;
+    label: string;
+    labelClass?: string;
+    children?: NavChild[];
+}
+
 interface Props {
-    navlinks: { href: string; label: string; labelClass?: string }[];
+    navlinks: NavLink[];
 }
 
 const { navlinks } = Astro.props as Props;
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (href: string) =>
+    (href.replace(/\/$/, "") || "/") === currentPath;
 const navigationLinks = navlinks.map((navlink) => ({
     ...navlink,
-    active: (navlink.href.replace(/\/$/, "") || "/") === currentPath,
+    // A section stays marked as the current page on any of its child pages.
+    active:
+        isCurrent(navlink.href) ||
+        (navlink.children?.some((child) => isCurrent(child.href)) ?? false),
+    children: navlink.children?.map((child) => ({
+        ...child,
+        active: isCurrent(child.href),
+    })),
 }));
 ---
 
@@ -70,21 +91,56 @@ const navigationLinks = navlinks.map((navlink) => ({
                     aria-label="Main navigation"
                     class="mobile-menu-nav fixed inset-0 z-20 flex flex-col gap-3 overflow-y-auto bg-page px-6 pt-28 pb-10"
                 >
-                    {navigationLinks.map((link) => (
-                        <Button
-                            href={link.href}
-                            current={link.active}
-                            variant={link.active ? "primary" : "ghost"}
-                            outline={false}
-                            size="lg"
-                            class:list={[
-                                "mobile-menu-item w-full justify-start border-2 border-rule hover:border-main",
-                                link.labelClass || "",
-                            ]}
-                        >
-                            {link.label}
-                        </Button>
-                    ))}
+                    {navigationLinks.map((link) =>
+                        link.children?.length ? (
+                            <div class="mobile-menu-item grid gap-2">
+                                <Button
+                                    href={link.href}
+                                    current={link.active}
+                                    variant={link.active ? "primary" : "ghost"}
+                                    outline={false}
+                                    size="lg"
+                                    class:list={[
+                                        "w-full justify-start border-2 border-rule hover:border-main",
+                                        link.labelClass || "",
+                                    ]}
+                                >
+                                    {link.label}
+                                </Button>
+                                <div class="grid gap-2 border-l-4 border-rule pl-4">
+                                    {link.children.map((child) => (
+                                        <Button
+                                            href={child.href}
+                                            current={child.active}
+                                            variant={
+                                                child.active
+                                                    ? "primary"
+                                                    : "ghost"
+                                            }
+                                            outline={false}
+                                            class="w-full justify-start border-2 border-rule hover:border-main"
+                                        >
+                                            {child.label}
+                                        </Button>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <Button
+                                href={link.href}
+                                current={link.active}
+                                variant={link.active ? "primary" : "ghost"}
+                                outline={false}
+                                size="lg"
+                                class:list={[
+                                    "mobile-menu-item w-full justify-start border-2 border-rule hover:border-main",
+                                    link.labelClass || "",
+                                ]}
+                            >
+                                {link.label}
+                            </Button>
+                        ),
+                    )}
                 </nav>
             </details>
         </div>

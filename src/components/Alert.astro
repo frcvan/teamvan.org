@@ -4,28 +4,41 @@ import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
     title?: string;
+    variant?: "info" | "warning";
     class?: string;
 }
 
-const { title, class: className, ...props } = Astro.props as Props;
+const {
+    title,
+    variant = "info",
+    class: className,
+    ...props
+} = Astro.props as Props;
+const warning = variant === "warning";
 ---
 
 <div
     role="status"
     class:list={[
-        "grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 rounded-base border-4 border-rule bg-secondary-background p-4 shadow-[6px_6px_0_var(--rule)]",
+        "grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 rounded-base border-4 border-rule p-4 shadow-[6px_6px_0_var(--rule)]",
+        warning ? "bg-brand text-cream" : "bg-secondary-background",
         className,
     ]}
     {...props}
 >
     <Icon
-        name="tabler:info-circle"
-        size={20}
-        class="shrink-0 self-center"
+        name={warning ? "tabler:alert-triangle" : "tabler:info-circle"}
+        size={warning ? 28 : 20}
+        class:list={["shrink-0 self-center", warning && "text-gold"]}
         aria-hidden="true"
     />
-    <p class="font-bold">{title}</p>
-    <div class="col-start-2 space-y-2 text-sm">
+    <p class:list={["font-bold", warning && "text-xl"]}>{title}</p>
+    <div
+        class:list={[
+            "col-start-2 space-y-2",
+            warning ? "text-base" : "text-sm",
+        ]}
+    >
         <slot />
     </div>
 </div>

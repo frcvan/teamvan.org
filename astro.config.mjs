@@ -62,6 +62,7 @@ export default defineConfig({
         icon({
             include: {
                 tabler: [
+                    "alert-triangle",
                     "brand-github",
                     "brand-instagram",
                     "brand-youtube",

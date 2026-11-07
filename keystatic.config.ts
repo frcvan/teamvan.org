@@ -40,6 +40,14 @@ const contentComponents = {
                 label: "Title",
                 validation: { isRequired: true },
             }),
+            variant: fields.select({
+                label: "Style",
+                options: [
+                    { label: "Info", value: "info" },
+                    { label: "Warning", value: "warning" },
+                ],
+                defaultValue: "info",
+            }),
         },
     }),
     Quip: wrapper({
@@ -306,6 +314,7 @@ const pageDefinitions = [
     { key: "calendar", label: "Calendar" },
     { key: "competitions", label: "Competitions" },
     { key: "outreach", label: "Outreach" },
+    { key: "fll", label: "Start an FLL Team" },
     { key: "sponsors", label: "Sponsors" },
     { key: "interest", label: "Join" },
 ] as const;

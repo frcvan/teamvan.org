@@ -6,6 +6,7 @@ const pages = [
     "about",
     "calendar",
     "competitions",
+    "fll",
     "interest",
     "outreach",
     "sponsors",

@@ -1,11 +1,20 @@
 ---
+interface NavChild {
+    href: string;
+    label: string;
+    active?: boolean;
+}
+
+interface NavLink {
+    href: string;
+    label: string;
+    labelClass?: string;
+    active?: boolean;
+    children?: NavChild[];
+}
+
 interface Props {
-    navlinks: {
-        href: string;
-        label: string;
-        labelClass?: string;
-        active?: boolean;
-    }[];
+    navlinks: NavLink[];
     class?: string;
 }
 
@@ -16,25 +25,139 @@ const { navlinks, class: className } = Astro.props as Props;
     class:list={["flex items-center gap-5 text-main", className]}
     aria-label="Main navigation"
 >
-    {navlinks.map((navlink: Props["navlinks"][number]) => (
-        <a
-            href={navlink.href}
-            aria-current={navlink.active ? "page" : undefined}
-            class:list={[
-                "group relative inline-block py-1 font-bold text-main no-underline",
-                navlink.labelClass,
-            ]}
-        >
-            {navlink.label}
-            <span
-                aria-hidden="true"
+    {navlinks.map((navlink: NavLink) =>
+        navlink.children?.length ? (
+            <div class="nav-drop-wrap group relative">
+                <a
+                    href={navlink.href}
+                    aria-current={navlink.active ? "page" : undefined}
+                    class:list={[
+                        "relative -my-2 inline-flex items-center gap-1.5 px-1 py-2 font-bold text-main no-underline",
+                        navlink.labelClass,
+                    ]}
+                >
+                    {navlink.label}
+                    <span
+                        aria-hidden="true"
+                        class="nav-caret size-0 border-x-[4px] border-t-[5px] border-x-transparent border-t-current"
+                    />
+                    <span
+                        aria-hidden="true"
+                        class:list={[
+                            "absolute inset-x-0 -bottom-0.5 h-[3px] origin-left bg-link transition-[scale] duration-200 ease-out group-hover:scale-x-100 motion-reduce:transition-none",
+                            navlink.active ? "scale-x-100" : "scale-x-0",
+                        ]}
+                    ></span>
+                </a>
+                <div class="nav-drop absolute top-full left-0 z-40 pt-3">
+                    <ul class="min-w-60 list-none rounded-base border-4 border-rule bg-secondary-background p-1.5 shadow-[6px_6px_0_var(--rule)]">
+                        {navlink.children.map((child) => (
+                            <li>
+                                <a
+                                    href={child.href}
+                                    aria-current={
+                                        child.active ? "page" : undefined
+                                    }
+                                    class:list={[
+                                        "group/item flex items-center gap-2 rounded-[2px] px-3.5 py-2.5 font-bold text-main no-underline transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link",
+                                        child.active
+                                            ? "bg-brand text-cream"
+                                            : "hover:bg-brand hover:text-cream",
+                                    ]}
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        class:list={[
+                                            "h-0.5 w-0 shrink-0 bg-gold transition-[width] duration-200 ease-out group-hover/item:w-3",
+                                            child.active && "w-3",
+                                        ]}
+                                    />
+                                    <span class="transition-transform duration-200 ease-out group-hover/item:translate-x-0.5">
+                                        {child.label}
+                                    </span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        ) : (
+            <a
+                href={navlink.href}
+                aria-current={navlink.active ? "page" : undefined}
                 class:list={[
-                    "absolute inset-x-0 -bottom-0.5 h-[3px] origin-left bg-link transition-[scale] duration-200 ease-out motion-reduce:transition-none",
-                    navlink.active
-                        ? "scale-x-100"
-                        : "scale-x-0 group-hover:scale-x-100",
+                    "group relative -my-2 inline-block px-1 py-2 font-bold text-main no-underline",
+                    navlink.labelClass,
                 ]}
-            ></span>
-        </a>
-    ))}
+            >
+                {navlink.label}
+                <span
+                    aria-hidden="true"
+                    class:list={[
+                        "absolute inset-x-0 -bottom-0.5 h-[3px] origin-left bg-link transition-[scale] duration-200 ease-out motion-reduce:transition-none",
+                        navlink.active
+                            ? "scale-x-100"
+                            : "scale-x-0 group-hover:scale-x-100",
+                    ]}
+                ></span>
+            </a>
+        ),
+    )}
 </nav>
+
+<style>
+    /* The panel fades and drops in on open, then lingers for a moment on close
+       so the pointer can cross the gap between the trigger and the menu. */
+    .nav-drop {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(6px);
+        transition:
+            opacity 140ms ease-out,
+            transform 180ms ease-out,
+            visibility 0s linear 200ms;
+    }
+
+    .nav-drop-wrap:hover .nav-drop,
+    .nav-drop-wrap:focus-within .nav-drop {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+            opacity 140ms ease-out,
+            transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+            visibility 0s;
+    }
+
+    .nav-caret {
+        transition:
+            transform 200ms ease-out,
+            color 200ms ease-out;
+    }
+
+    .nav-drop-wrap:hover .nav-caret,
+    .nav-drop-wrap:focus-within .nav-caret {
+        transform: rotate(180deg);
+        color: var(--link);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .nav-drop,
+        .nav-drop-wrap:hover .nav-drop,
+        .nav-drop-wrap:focus-within .nav-drop {
+            transition: none;
+            transform: none;
+        }
+
+        .nav-caret,
+        .nav-drop-wrap:hover .nav-caret,
+        .nav-drop-wrap:focus-within .nav-caret {
+            transition: none;
+        }
+
+        .nav-drop-wrap:hover .nav-caret,
+        .nav-drop-wrap:focus-within .nav-caret {
+            transform: none;
+        }
+    }
+</style>

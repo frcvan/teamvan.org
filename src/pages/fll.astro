@@ -1,0 +1,10 @@
+---
+import { Content, frontmatter } from "@/content/pages/fll.mdx";
+
+import Layout from "@/layouts/PageLayout.astro";
+import components from "@/components/mdx";
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+    <Content components={components} />
+</Layout>

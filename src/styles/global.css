@@ -147,6 +147,12 @@
         color: var(--cream);
     }
 
+    /* A subheading directly under a section band needs more air than the
+       default stack spacing. */
+    #main-content > * + h3 {
+        @apply mt-10;
+    }
+
     #main-content :is(h1, h2, h3, h4, h5, h6) {
         @apply scroll-mt-20 font-bold leading-tight;
     }

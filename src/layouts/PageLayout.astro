@@ -24,7 +24,14 @@ const { title, description } = Astro.props;
             { href: "/about/", label: "What Is FIRST" },
             { href: "/calendar/", label: "Calendar" },
             { href: "/competitions/", label: "Competitions" },
-            { href: "/outreach/", label: "Outreach" },
+            {
+                href: "/outreach/",
+                label: "Outreach",
+                children: [
+                    { href: "/outreach/", label: "Outreach Overview" },
+                    { href: "/fll/", label: "Start an FLL Team" },
+                ],
+            },
             { href: "/sponsors/", label: "Sponsors" },
             { href: "/interest/", label: "Join" },
         ]}
