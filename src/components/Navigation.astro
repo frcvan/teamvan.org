@@ -59,10 +59,10 @@ const { navlinks, class: className } = Astro.props as Props;
                                         child.active ? "page" : undefined
                                     }
                                     class:list={[
-                                        "group/item flex items-center gap-2 rounded-[2px] px-3.5 py-2.5 font-bold text-main no-underline transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link",
+                                        "group/item flex items-center gap-2 rounded-[2px] px-3.5 py-2.5 font-bold no-underline transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link",
                                         child.active
                                             ? "bg-brand text-cream"
-                                            : "hover:bg-brand hover:text-cream",
+                                            : "text-main hover:bg-brand hover:text-cream",
                                     ]}
                                 >
                                     <span
