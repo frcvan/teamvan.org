@@ -1,16 +1,23 @@
 ---
+import { Image } from "astro:assets";
+
 import Button from "@/components/Button.astro";
-import { sponsors } from "@/data/sponsors";
+import { sponsorsByTier } from "@/data/sponsors";
+import heroFrc from "@/images/pages/hero-frc.jpg";
 import VanLogo from "@/images/van-logo.svg";
+
+// Flattened in tier order, so the ticker always leads with the highest tiers.
+const tickerSponsors = sponsorsByTier.flatMap(({ sponsors }) => sponsors);
 ---
 
 <section class="relative isolate w-full overflow-hidden">
     <div class="relative">
-        <img
-            src="/images/pages/hero-frc.jpg"
+        <Image
+            src={heroFrc}
             alt="FRC robots 180, 179, and 1902 line up on the field beneath hanging game pieces while drive teams and spectators watch from the stands"
-            width="2000"
-            height="1333"
+            widths={[640, 960, 1280, 1600, 2000]}
+            sizes="100vw"
+            loading="eager"
             fetchpriority="high"
             class="hero-media h-[clamp(20rem,50vw,34rem)] w-full object-cover object-center"
         />
@@ -68,8 +75,15 @@ import VanLogo from "@/images/van-logo.svg";
                     class="sponsor-ticker-group"
                     aria-hidden={copy === 1 ? "true" : undefined}
                 >
-                    {sponsors.map(({ name }) => (
-                        <span class="sponsor-ticker-item">
+                    {tickerSponsors.map((sponsor) => (
+                        <span
+                            class:list={[
+                                "sponsor-ticker-item",
+                                (sponsor.tier === "diamond" ||
+                                    sponsor.tier === "platinum") &&
+                                    "sponsor-ticker-item-spotlight",
+                            ]}
+                        >
                             <span
                                 class="sponsor-ticker-flag"
                                 aria-hidden="true"
@@ -80,7 +94,15 @@ import VanLogo from "@/images/van-logo.svg";
                             >
                                 //
                             </span>
-                            <span class="sponsor-ticker-name">{name}</span>
+                            <span
+                                class:list={[
+                                    "sponsor-ticker-name",
+                                    sponsor.tier === "gold" &&
+                                        "sponsor-ticker-name-gold",
+                                ]}
+                            >
+                                {sponsor.name}
+                            </span>
                         </span>
                     ))}
                 </div>
@@ -211,13 +233,17 @@ import VanLogo from "@/images/van-logo.svg";
         align-items: center;
         justify-content: space-around;
         min-width: 100vw;
-        padding-inline: 1.25rem;
     }
 
+    /* The margins, not justify-content, keep the gaps on phones: once the row
+       is wider than the screen there is no free space left to distribute. The
+       group has no inline padding so the seam between the two ticker copies
+       is the same width as the gap between two sponsor names. */
     .sponsor-ticker-item {
         display: inline-flex;
         align-items: center;
         gap: 0.45rem;
+        margin-inline: 1rem;
     }
 
     .sponsor-ticker-flag {
@@ -260,6 +286,22 @@ import VanLogo from "@/images/van-logo.svg";
         letter-spacing: 0.1em;
         text-transform: uppercase;
         white-space: nowrap;
+    }
+
+    /* Gold-tier names are underlined. */
+    .sponsor-ticker-name-gold {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 2px;
+    }
+
+    /* Platinum and above highlight the whole ticker item. */
+    .sponsor-ticker-item-spotlight .sponsor-ticker-name {
+        color: var(--gold);
+    }
+
+    .sponsor-ticker-item-spotlight .sponsor-ticker-flag {
+        border-color: var(--gold);
     }
 
     .sponsor-ticker:hover .sponsor-ticker-track {

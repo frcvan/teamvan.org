@@ -1,47 +1,104 @@
 ---
 import { Image } from "astro:assets";
 
-import { sponsors } from "@/data/sponsors";
+import { sponsorsByTier } from "@/data/sponsors";
+import type { SponsorTierId } from "@/data/sponsors";
 
 const logoClass =
     "h-full w-full object-contain transition-transform duration-200 group-hover:scale-[1.04] group-hover:-rotate-1 motion-reduce:transition-none";
+
+// Each tier steps down in card size and heading weight, so a Platinum sponsor
+// reads as clearly bigger than a Bronze one in the footer.
+const tierStyles: Record<
+    SponsorTierId,
+    { heading: string; grid: string; height: string }
+> = {
+    diamond: {
+        heading: "mb-5 border-l-8 border-gold pl-4 text-3xl",
+        grid: "sm:grid-cols-2",
+        height: "h-56",
+    },
+    platinum: {
+        heading: "mb-5 border-l-8 border-gold pl-4 text-3xl",
+        grid: "sm:grid-cols-2",
+        height: "h-56",
+    },
+    gold: {
+        heading: "mb-4 border-b-4 border-gold pb-2 text-2xl",
+        grid: "sm:grid-cols-2 lg:grid-cols-3",
+        height: "h-36",
+    },
+    silver: {
+        heading: "mb-4 border-b-2 border-rule pb-2 text-xl",
+        grid: "sm:grid-cols-2 lg:grid-cols-3",
+        height: "h-24",
+    },
+    bronze: {
+        heading: "mb-3 border-b-2 border-rule/60 pb-1.5 text-lg text-main/70",
+        grid: "sm:grid-cols-2 lg:grid-cols-3",
+        height: "h-20",
+    },
+    friend: {
+        heading: "mb-3 border-b border-rule/40 pb-1.5 text-lg text-main/70",
+        grid: "sm:grid-cols-3",
+        height: "h-16",
+    },
+    partner: {
+        heading: "mb-3 border-b border-rule/40 pb-1.5 text-lg text-main/70",
+        grid: "sm:grid-cols-3",
+        height: "h-16",
+    },
+};
 ---
 
-<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {sponsors.map(({ name, href, logo }) => (
-        <li>
-            <a
-                href={href}
-                target="_blank"
-                aria-label={`${name} (opens in a new tab)`}
-                class="group relative flex h-28 w-full items-center justify-center overflow-hidden rounded-base border-4 border-rule bg-cream p-3 shadow-[6px_6px_0_var(--rule)] transition-[translate,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_var(--rule)] focus-visible:-translate-y-0.5 focus-visible:shadow-[8px_8px_0_var(--rule)]"
-            >
-                {"asset" in logo ? (
-                    <Image
-                        src={logo.asset}
-                        alt=""
-                        loading="lazy"
-                        class={logoClass}
-                    />
-                ) : (
-                    <img
-                        src={logo.url}
-                        width={logo.width}
-                        height={logo.height}
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                        referrerpolicy="no-referrer"
-                        class={logoClass}
-                    />
-                )}
-                <span
-                    aria-hidden="true"
-                    class="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full border-t-2 border-rule bg-brand px-2 py-1 text-[0.65rem] font-bold tracking-[0.12em] text-cream uppercase transition-transform duration-200 group-hover:translate-y-0 group-focus-visible:translate-y-0"
-                >
-                    {name}
-                </span>
-            </a>
-        </li>
-    ))}
-</ul>
+<div class="grid gap-8">
+    {sponsorsByTier.map(({ tier, sponsors }) => {
+        const style = tierStyles[tier.id];
+
+        return (
+            <section aria-labelledby={`sponsor-tier-${tier.id}`}>
+                <h3 id={`sponsor-tier-${tier.id}`} class={style.heading}>
+                    {tier.heading}
+                </h3>
+                <ul class:list={["grid gap-6", style.grid]}>
+                    {sponsors.map(({ name, href, logo }) => (
+                        <li>
+                            <a
+                                href={href}
+                                target="_blank"
+                                aria-label={`${name} (opens in a new tab)`}
+                                class={`group relative flex ${style.height} w-full items-center justify-center overflow-hidden rounded-base border-4 border-rule bg-cream p-3 shadow-[6px_6px_0_var(--rule)] transition-[translate,box-shadow] duration-150 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_var(--rule)] focus-visible:-translate-y-0.5 focus-visible:shadow-[8px_8px_0_var(--rule)]`}
+                            >
+                                {"asset" in logo ? (
+                                    <Image
+                                        src={logo.asset}
+                                        alt=""
+                                        loading="lazy"
+                                        class={logoClass}
+                                    />
+                                ) : (
+                                    <img
+                                        src={logo.url}
+                                        width={logo.width}
+                                        height={logo.height}
+                                        alt=""
+                                        loading="lazy"
+                                        decoding="async"
+                                        referrerpolicy="no-referrer"
+                                        class={logoClass}
+                                    />
+                                )}
+                                <span
+                                    aria-hidden="true"
+                                    class="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full border-t-2 border-rule bg-brand px-2 py-1 text-[0.65rem] font-bold tracking-[0.12em] text-cream uppercase transition-transform duration-200 group-hover:translate-y-0 group-focus-visible:translate-y-0"
+                                >
+                                    {name}
+                                </span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        );
+    })}
+</div>
