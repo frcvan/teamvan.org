@@ -65,13 +65,13 @@ export const sponsors: Sponsor[] = [
         name: "Argosy Foundation",
         href: "https://www.argosyfnd.org/",
         logo: { asset: argosyFoundationLogo },
-        tier: "bronze",
+        tier: "gold",
     },
     {
         name: "Hack Club Bank",
         href: "https://hackclub.com/hcb",
         logo: { asset: hcbLogo },
-        tier: "silver",
+        tier: "bronze",
     },
     {
         name: "RMFG",
