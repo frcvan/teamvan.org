@@ -7,7 +7,7 @@ interface Props {
     alt: string;
     credit?: string;
     creditHref?: string;
-    variant?: "natural" | "wide";
+    variant?: "natural" | "wide" | "bleed";
 }
 
 const {
@@ -28,7 +28,8 @@ const loadImage = src ? pageImages[src] : undefined;
 const image = loadImage ? (await loadImage()).default : undefined;
 
 const imageClass = [
-    "h-auto w-full rounded-base border-4 border-rule object-cover shadow-[6px_6px_0_var(--rule)]",
+    "h-auto w-full border-4 border-rule object-cover",
+    variant !== "bleed" && "rounded-base shadow-[6px_6px_0_var(--rule)]",
     variant === "wide" && "aspect-[25/12] object-bottom lg:-mx-6",
 ]
     .filter(Boolean)
@@ -36,14 +37,27 @@ const imageClass = [
 ---
 
 {src && (
-    <figure class="my-6">
+    <figure
+        class:list={[
+            "my-6",
+            // Full width breaks out of the text column to the viewport edges.
+            variant === "bleed" && "mx-[calc(50%_-_50vw)]",
+        ]}
+    >
         {image ? (
             <Image src={image} alt={alt} loading="lazy" class={imageClass} />
         ) : (
             <img src={src} alt={alt} loading="lazy" class={imageClass} />
         )}
         {(hasCaption || credit) && (
-            <figcaption class="mt-2 text-sm">
+            <figcaption
+                class:list={[
+                    "mt-2 text-sm",
+                    // A full-width image runs past the text column, so the
+                    // caption gets the page padding back.
+                    variant === "bleed" && "px-6 sm:px-10 lg:px-12",
+                ]}
+            >
                 <slot />
                 {credit && (
                     <span class="mt-1 block text-xs opacity-70">

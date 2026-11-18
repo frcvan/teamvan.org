@@ -304,10 +304,12 @@ const contentComponents = {
             }),
             variant: fields.select({
                 label: "Crop",
-                description: "Wide crops the image to a 25:12 banner.",
+                description:
+                    "Wide crops the image to a 25:12 banner. Full width lets it run to the edges of the screen.",
                 options: [
                     { label: "Natural", value: "natural" },
                     { label: "Wide", value: "wide" },
+                    { label: "Full width", value: "bleed" },
                 ],
                 defaultValue: "natural",
             }),
