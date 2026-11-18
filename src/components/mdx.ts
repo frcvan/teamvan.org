@@ -1,4 +1,5 @@
 import Alert from "./Alert.astro";
+import BudgetItem from "./BudgetItem.astro";
 import BudgetTable from "./BudgetTable.astro";
 import Collapse from "./Collapse.astro";
 import Comparison from "./Comparison.astro";
@@ -21,6 +22,7 @@ const components = {
     a: TextLink,
     Alert,
     BudgetTable,
+    BudgetItem,
     Collapse,
     Comparison,
     ComparisonRow,

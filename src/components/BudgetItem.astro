@@ -1,0 +1,14 @@
+---
+interface Props {
+    cost: string;
+}
+
+const { cost } = Astro.props as Props;
+---
+
+<tr class="even:bg-main/8">
+    <td class="py-2 pr-4 pl-4">
+        <slot />
+    </td>
+    <td class="py-2 pr-4 text-right tabular-nums">{cost}</td>
+</tr>

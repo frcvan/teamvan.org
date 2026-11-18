@@ -16,6 +16,7 @@ const pages = [
 const registeredComponents = new Set([
     "Alert",
     "Button",
+    "BudgetItem",
     "BudgetTable",
     "ButtonGroup",
     "Collapse",

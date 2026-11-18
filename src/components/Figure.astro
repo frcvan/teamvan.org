@@ -5,7 +5,6 @@ import type { ImageMetadata } from "astro";
 interface Props {
     src?: string | null;
     alt: string;
-    caption?: string;
     credit?: string;
     creditHref?: string;
     variant?: "natural" | "wide";
@@ -14,11 +13,11 @@ interface Props {
 const {
     src,
     alt,
-    caption,
     credit,
     creditHref,
     variant = "natural",
 } = Astro.props as Props;
+const hasCaption = Astro.slots.has("default");
 
 // Keystatic stores content-component images under src/ with a /src/ public
 // path. Resolve that path to image metadata so <Image> can optimize it.
@@ -43,9 +42,9 @@ const imageClass = [
         ) : (
             <img src={src} alt={alt} loading="lazy" class={imageClass} />
         )}
-        {(caption || credit) && (
+        {(hasCaption || credit) && (
             <figcaption class="mt-2 text-sm">
-                {caption}
+                <slot />
                 {credit && (
                     <span class="mt-1 block text-xs opacity-70">
                         Photo:{" "}

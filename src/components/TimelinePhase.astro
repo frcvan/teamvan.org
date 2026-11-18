@@ -2,10 +2,9 @@
 interface Props {
     period: string;
     title: string;
-    description: string;
 }
 
-const { period, title, description } = Astro.props as Props;
+const { period, title } = Astro.props as Props;
 ---
 
 <li class="relative">
@@ -14,5 +13,7 @@ const { period, title, description } = Astro.props as Props;
         {period}
     </div>
     <div class="mt-0.5 text-lg font-bold">{title}</div>
-    <p class="mt-1">{description}</p>
+    <div class="mt-1">
+        <slot />
+    </div>
 </li>

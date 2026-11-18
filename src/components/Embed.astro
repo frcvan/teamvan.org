@@ -3,11 +3,21 @@ import Loader from "./Loader.astro";
 
 interface Props {
     src: string;
-    title: string;
     variant?: "calendar" | "form";
 }
 
-const { src, title, variant = "calendar" } = Astro.props as Props;
+const { src, variant = "calendar" } = Astro.props as Props;
+
+// The editor writes the frame's name as the embed's text so it reads like a
+// caption. Astro can only hand the iframe a string, so the slot is rendered
+// once and stripped of its markup.
+const slotText = Astro.slots.has("default")
+    ? await Astro.slots.render("default")
+    : "";
+const title = slotText
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 const containerClass =
     variant === "calendar"
         ? "w-full overflow-hidden rounded-base border-4 border-rule bg-cream shadow-[6px_6px_0_var(--rule)]"
@@ -33,7 +43,7 @@ const frameClass =
             frameClass,
         ]}
         src={src}
-        title={title}
+        title={title || "Embedded content"}
         loading="eager"
         data-embed
     ></iframe>

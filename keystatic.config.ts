@@ -55,29 +55,25 @@ const contentComponents = {
         description: "A short one-liner shown as a bordered sticker.",
         schema: {},
     }),
-    BudgetTable: block({
+    BudgetTable: repeating({
         label: "Budget table",
         description:
-            "Line items and a total, shown as a bordered table with the site's styling.",
+            "Line items and a total, shown as a bordered table with the site's styling. Each line is its own item.",
+        children: ["BudgetItem"],
+        validation: { children: { min: 1 } },
         schema: {
-            items: fields.array(
-                fields.object({
-                    label: fields.text({
-                        label: "Item",
-                        validation: { isRequired: true },
-                    }),
-                    cost: fields.text({
-                        label: "Cost",
-                        validation: { isRequired: true },
-                    }),
-                }),
-                {
-                    label: "Line items",
-                    itemLabel: (props) => props.fields.label.value,
-                },
-            ),
             total: fields.text({
                 label: "Total",
+                validation: { isRequired: true },
+            }),
+        },
+    }),
+    BudgetItem: wrapper({
+        label: "Budget line",
+        description: "The item text, with its cost set on the line.",
+        schema: {
+            cost: fields.text({
+                label: "Cost",
                 validation: { isRequired: true },
             }),
         },
@@ -187,10 +183,12 @@ const contentComponents = {
             }),
         },
     }),
-    ButtonGroup: wrapper({
+    ButtonGroup: repeating({
         label: "Button row",
         description:
             "Holds two or more buttons so they sit next to each other.",
+        children: ["Button"],
+        validation: { children: { min: 1 } },
         schema: {},
     }),
     Button: wrapper({
@@ -233,18 +231,13 @@ const contentComponents = {
         validation: { children: { min: 1, max: 4 } },
         schema: {},
     }),
-    Fact: block({
+    Fact: wrapper({
         label: "Fact",
-        description: "A large number or short fact with a caption.",
+        description: "A large value with a caption written inside it.",
         schema: {
             value: fields.text({
                 label: "Value",
                 description: "The large text, such as 3,700+.",
-                validation: { isRequired: true },
-            }),
-            label: fields.text({
-                label: "Label",
-                description: "The small caption under the value.",
                 validation: { isRequired: true },
             }),
         },
@@ -256,9 +249,10 @@ const contentComponents = {
         validation: { children: { min: 1 } },
         schema: {},
     }),
-    Phase: block({
+    Phase: wrapper({
         label: "Timeline phase",
-        description: "One point on the season timeline.",
+        description:
+            "One point on the season timeline, with its detail written inside it.",
         schema: {
             period: fields.text({
                 label: "Period",
@@ -269,16 +263,12 @@ const contentComponents = {
                 label: "Title",
                 validation: { isRequired: true },
             }),
-            description: fields.text({
-                label: "Description",
-                multiline: true,
-                validation: { isRequired: true },
-            }),
         },
     }),
-    Figure: block({
+    Figure: wrapper({
         label: "Figure",
-        description: "An image with an optional caption.",
+        description:
+            "An image with an optional caption, written as the text inside it.",
         schema: {
             src: fields.image({
                 label: "Image",
@@ -290,11 +280,6 @@ const contentComponents = {
                 description:
                     "Describes the image for screen readers and when it does not load.",
                 validation: { isRequired: true },
-            }),
-            caption: fields.text({
-                label: "Caption",
-                description: "Optional. Shown under the image.",
-                multiline: true,
             }),
             credit: fields.text({
                 label: "Photo credit",
@@ -316,18 +301,13 @@ const contentComponents = {
             }),
         },
     }),
-    Embed: block({
+    Embed: wrapper({
         label: "Embed",
         description:
-            "Embeds another page inside this one, such as a calendar or a form.",
+            "Embeds another page inside this one, such as a calendar or a form. The text inside names the frame for screen readers.",
         schema: {
             src: fields.url({
                 label: "Embed URL",
-                validation: { isRequired: true },
-            }),
-            title: fields.text({
-                label: "Title",
-                description: "Names the embedded frame for screen readers.",
                 validation: { isRequired: true },
             }),
             variant: fields.select({

@@ -1,15 +1,9 @@
 ---
-interface BudgetItem {
-    label: string;
-    cost: string;
-}
-
 interface Props {
-    items: BudgetItem[];
     total: string;
 }
 
-const { items, total } = Astro.props as Props;
+const { total } = Astro.props as Props;
 ---
 
 <div class="overflow-x-auto rounded-base border-4 border-rule shadow-[6px_6px_0_var(--rule)]">
@@ -25,14 +19,7 @@ const { items, total } = Astro.props as Props;
             </tr>
         </thead>
         <tbody>
-            {items.map((item, index) => (
-                <tr class={index % 2 === 1 ? "bg-main/8" : ""}>
-                    <td class="py-2 pr-4 pl-4">{item.label}</td>
-                    <td class="py-2 pr-4 text-right tabular-nums">
-                        {item.cost}
-                    </td>
-                </tr>
-            ))}
+            <slot />
         </tbody>
         <tfoot>
             <tr class="border-t-2 border-main/50 font-bold">

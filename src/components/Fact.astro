@@ -1,13 +1,14 @@
 ---
 interface Props {
     value: string;
-    label: string;
 }
 
-const { value, label } = Astro.props as Props;
+const { value } = Astro.props as Props;
 ---
 
 <div class="rounded-base border-4 border-rule bg-secondary-background p-4 text-center shadow-[6px_6px_0_var(--rule)]">
     <div class="text-3xl font-extrabold leading-tight">{value}</div>
-    <div class="mt-1 text-sm">{label}</div>
+    <div class="mt-1 text-sm">
+        <slot />
+    </div>
 </div>
