@@ -10,6 +10,19 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Commits
+
+No commit should carry AI attribution. Leave out "Generated with" lines, `Co-Authored-By` trailers, and any mention of the assistant.
+
+## Content
+
+Keystatic is the main way this site gets edited, so check `keystatic.config.ts` whenever you change something under `src/content/pages/`. A component or prop that is missing from the config makes the editor show an error instead of the page.
+
+Two shapes break the editor even though Astro renders them fine:
+
+- Props the schema does not declare, such as `class="mb-5"` on `<Collapse>`. Put the styling in the Astro component instead.
+- A component whose text sits on the same line as its tags, such as `<Quip>Text</Quip>`. Write the text on its own line between the tags.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
