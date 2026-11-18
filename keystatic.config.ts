@@ -315,6 +315,7 @@ const pageDefinitions = [
     { key: "competitions", label: "Competitions" },
     { key: "outreach", label: "Outreach" },
     { key: "fll", label: "Start an FLL Team" },
+    { key: "ftc", label: "Start an FTC Team" },
     { key: "sponsors", label: "Sponsors" },
     { key: "interest", label: "Join" },
 ] as const;

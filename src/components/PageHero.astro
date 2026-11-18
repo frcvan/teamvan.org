@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    image: ImageMetadata;
+    alt: string;
+    kicker: string;
+    title: string;
+    blurb: string;
+    credit?: string;
+    creditHref?: string;
+}
+
+const { image, alt, kicker, title, blurb, credit, creditHref } =
+    Astro.props as Props;
+---
+
+<section class="relative isolate w-full overflow-hidden">
+    <Image
+        src={image}
+        alt={alt}
+        widths={[640, 960, 1280, 1600, 2000]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="h-[clamp(18rem,42vw,28rem)] w-full object-cover object-center"
+    />
+    <div
+        class="absolute inset-0 bg-linear-to-t from-ink/95 via-ink/40 to-transparent"
+        aria-hidden="true"
+    ></div>
+    {credit && (
+        <p class="absolute top-2 right-3 text-[0.65rem] text-cream/70">
+            Photo:{" "}
+            {creditHref ? (
+                <a
+                    href={creditHref}
+                    class="text-cream/80 underline"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                >
+                    {credit}
+                </a>
+            ) : (
+                credit
+            )}
+        </p>
+    )}
+    <div class="absolute inset-x-0 bottom-0">
+        <div class="mx-auto w-full max-w-5xl px-6 pb-6 sm:px-10 lg:px-12">
+            <p class="inline-block border-2 border-cream bg-brand px-2 py-1 text-[0.65rem] font-bold tracking-[0.18em] text-cream uppercase">
+                {kicker}
+            </p>
+            <h1 class="mt-3 font-heading text-[clamp(2rem,5.5vw,3.5rem)] leading-[0.95] text-cream uppercase">
+                {title}
+            </h1>
+            <p class="mt-2 max-w-2xl text-sm text-cream sm:text-base">
+                {blurb}
+            </p>
+        </div>
+    </div>
+</section>

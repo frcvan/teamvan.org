@@ -1,10 +1,20 @@
 ---
 import { Content, frontmatter } from "@/content/pages/fll.mdx";
 
+import PageHero from "@/components/PageHero.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import components from "@/components/mdx";
+import heroFll from "@/images/pages/west-shore-fll-scrimmage.jpg";
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
+    <PageHero
+        slot="hero"
+        image={heroFll}
+        alt="Students from several FLL teams gathered around a competition table at the West Shore FLL Scrimmage"
+        kicker="FIRST LEGO League · Grades 2 to 8"
+        title="Start an FLL Team"
+        blurb="Two adults, a kit, a table, and a few hours a week. Here is what a season actually asks of you."
+    />
     <Content components={components} />
 </Layout>
