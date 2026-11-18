@@ -1,0 +1,33 @@
+---
+// Temporary: side-by-side comparison of the two coverage visuals so the team
+// can pick one. Delete this page once a choice is made.
+import CoverageDiagram from "@/components/CoverageDiagram.astro";
+import CoverageMap from "@/components/CoverageMap.astro";
+import Layout from "@/layouts/PageLayout.astro";
+---
+
+<Layout
+    title="Coverage visual test"
+    description="A temporary comparison of two ways to show the area Team V.A.N. covers."
+>
+    <h1>Coverage visual test</h1>
+    <p>
+        Two ways to make the same point: the team serves southern Brevard and
+        Indian River County, where there was no FRC team to join. This page is
+        temporary.
+    </p>
+
+    <h2>Option 1: schematic panel</h2>
+    <p>
+        No map. Counts, school names, and the drive time, drawn in the same
+        borders-and-shadow style as the rest of the site.
+    </p>
+    <CoverageDiagram />
+
+    <h2>Option 2: county map</h2>
+    <p>
+        Real county outlines from Census data, cropped to the service area, with
+        the build space marked. Brevard continues north of the frame.
+    </p>
+    <CoverageMap />
+</Layout>

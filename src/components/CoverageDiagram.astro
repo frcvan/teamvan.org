@@ -1,0 +1,77 @@
+---
+// Option 1: a schematic of the service area. No geography, just the numbers
+// that make the case, drawn in the site's borders-and-shadows language.
+const counties = [
+    {
+        name: "Brevard County",
+        stat: "1",
+        note: "community FRC team, ours",
+        schools: ["Palm Bay", "Bayside"],
+        highlight: false,
+    },
+    {
+        name: "Indian River County",
+        stat: "0",
+        note: "FRC teams",
+        schools: ["Sebastian River", "Vero Beach", "Indian River Charter"],
+        highlight: true,
+    },
+];
+---
+
+<div class="border-4 border-rule bg-secondary-background shadow-[8px_8px_0_var(--rule)]">
+    <div class="flex flex-wrap items-baseline justify-between gap-2 border-b-4 border-rule px-4 py-2">
+        <p class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase">
+            Where our students come from
+        </p>
+        <p class="text-[0.65rem] font-bold tracking-[0.18em] uppercase opacity-70">
+            5 schools · 2 counties
+        </p>
+    </div>
+    <div class="grid sm:grid-cols-[1fr_10rem]">
+        <div class="grid">
+            {counties.map((county, index) => (
+                <div
+                    class:list={[
+                        "grid gap-3 px-4 py-4 sm:grid-cols-[12.5rem_1fr] sm:items-center sm:gap-4",
+                        index > 0 && "border-t-4 border-rule",
+                        county.highlight && "bg-brand text-cream",
+                    ]}
+                >
+                    <div class="flex items-baseline gap-3">
+                        <p class="font-heading text-4xl leading-none font-black">
+                            {county.stat}
+                        </p>
+                        <div>
+                            {" "}
+                            <p class="text-[0.6rem] font-bold tracking-[0.16em] uppercase opacity-80">
+                                {county.name}
+                            </p>
+                            <p class="text-sm">{county.note}</p>
+                        </div>
+                    </div>
+                    <ul class="flex list-none flex-wrap gap-2 space-y-0 p-0">
+                        {county.schools.map((school) => (
+                            <li
+                                class:list={[
+                                    "border-2 px-2 py-1 text-xs font-bold tracking-wide uppercase",
+                                    county.highlight
+                                        ? "border-cream/40"
+                                        : "border-rule bg-paper",
+                                ]}
+                            >
+                                {school}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+        <div class="flex flex-col justify-center border-t-4 border-rule px-4 py-4 sm:border-t-0 sm:border-l-4">
+            <p class="font-heading text-3xl leading-none font-black">40+</p>
+            <p class="mt-1 text-sm">
+                min drive to the nearest FRC team outside the area
+            </p>
+        </div>
+    </div>
+</div>
