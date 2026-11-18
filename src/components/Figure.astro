@@ -6,10 +6,19 @@ interface Props {
     src?: string | null;
     alt: string;
     caption?: string;
+    credit?: string;
+    creditHref?: string;
     variant?: "natural" | "wide";
 }
 
-const { src, alt, caption, variant = "natural" } = Astro.props as Props;
+const {
+    src,
+    alt,
+    caption,
+    credit,
+    creditHref,
+    variant = "natural",
+} = Astro.props as Props;
 
 // Keystatic stores content-component images under src/ with a /src/ public
 // path. Resolve that path to image metadata so <Image> can optimize it.
@@ -34,6 +43,27 @@ const imageClass = [
         ) : (
             <img src={src} alt={alt} loading="lazy" class={imageClass} />
         )}
-        {caption && <figcaption class="mt-2 text-sm">{caption}</figcaption>}
+        {(caption || credit) && (
+            <figcaption class="mt-2 text-sm">
+                {caption}
+                {credit && (
+                    <span class="mt-1 block text-xs opacity-70">
+                        Photo:{" "}
+                        {creditHref ? (
+                            <a
+                                href={creditHref}
+                                class="underline"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                {credit}
+                            </a>
+                        ) : (
+                            credit
+                        )}
+                    </span>
+                )}
+            </figcaption>
+        )}
     </figure>
 )}

@@ -18,9 +18,24 @@ A student who likes CAD, a student who likes wiring, and someone who keeps the e
 
 ## The robot
 
+<Figure
+    src="/src/images/pages/ftc-demo-bot.jpg"
+    alt="An FTC robot chassis with mecanum wheels, an aluminum frame, and REV electronics on a table"
+    caption="A mecanum-wheel drive base with a REV control system. Most FTC robots start from a kit like this one, shown at a vendor booth in 2019."
+    credit="Stilfehler, CC BY-SA 4.0"
+    creditHref="https://commons.wikimedia.org/wiki/File:FIRST_Tech_Challenge_%E2%80%93_Parts_%E2%80%93_Demo_bot_3.jpg"
+/>
+
 An FTC robot has to fit inside an 18-inch cube at the start of a match, then expand within the rules once it moves. Most teams build from aluminum channel and brackets with a kit from REV, goBILDA, or AndyMark, and add motors, servos, and sensors as the game demands.
 
 The brain is a REV Control Hub, which holds the code and talks to a Driver Hub over Wi-Fi. Two students drive with gamepads: one moves the robot, one runs the mechanism. A match is 30 seconds of autonomous code, an 8-second scoring pause, then 2 minutes of driver control. Four robots play at once, two per alliance, on a 12-foot field.
+
+<StatGrid>
+    <Fact value="18 in" label="starting size limit" />
+    <Fact value="12 ft" label="field" />
+    <Fact value="30 sec" label="autonomous" />
+    <Fact value="2 min" label="driver control" />
+</StatGrid>
 
 Code is Java in Android Studio or OnBot Java, and Blocks works for a first season. A rookie team that builds the kit's starter bot, gets two reliable scoring actions, and writes one autonomous routine will land in the middle of most leagues.
 
@@ -90,13 +105,23 @@ Judges only consider what the team discusses, displays, documents, or demonstrat
 
 ## What it costs
 
-- FIRST season registration is $350 for the team.
-- The Florida league fee is $150 to $300, set by each league and charged on top of registration.
-- A REV starter kit is $695. goBILDA and AndyMark sell comparable kits at similar prices.
-- A control system is $350 for a Control Hub, or about $750 for a bundle with a Driver Hub, battery, and cables.
-- Laptops, tools, a game set, shirts, and travel cover the rest.
+Five lines cover most of a first season.
 
-FIRST puts a first season at around $1,800 before travel, which lines up with registration, a kit, and a control system. The hardware is reusable. Year two is mostly registration, league fees, and replacement parts.
+<BudgetTable
+    items={[
+        { label: "FIRST season registration", cost: "$350" },
+        { label: "Florida league fee", cost: "$150 to $300" },
+        {
+            label: "REV starter kit (goBILDA and AndyMark are similar)",
+            cost: "$695",
+        },
+        { label: "Control system (Control Hub)", cost: "$350" },
+        { label: "Laptops, tools, game set, shirts, travel", cost: "varies" },
+    ]}
+    total="about $1,800"
+/>
+
+A Driver Hub, battery, and cable bundle runs about $750 instead of the $350 hub. FIRST puts a first season at around $1,800 before travel, and the hardware is reusable. Year two is mostly registration, league fees, and replacement parts.
 
 ## The weekly schedule
 

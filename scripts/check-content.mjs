@@ -7,6 +7,7 @@ const pages = [
     "calendar",
     "competitions",
     "fll",
+    "ftc",
     "interest",
     "outreach",
     "sponsors",
@@ -15,6 +16,7 @@ const pages = [
 const registeredComponents = new Set([
     "Alert",
     "Button",
+    "BudgetTable",
     "ButtonGroup",
     "Collapse",
     "Comparison",
