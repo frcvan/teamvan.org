@@ -55,6 +55,33 @@ const contentComponents = {
         description: "A short one-liner shown as a bordered sticker.",
         schema: {},
     }),
+    BudgetTable: block({
+        label: "Budget table",
+        description:
+            "Line items and a total, shown as a bordered table with the site's styling.",
+        schema: {
+            items: fields.array(
+                fields.object({
+                    label: fields.text({
+                        label: "Item",
+                        validation: { isRequired: true },
+                    }),
+                    cost: fields.text({
+                        label: "Cost",
+                        validation: { isRequired: true },
+                    }),
+                }),
+                {
+                    label: "Line items",
+                    itemLabel: (props) => props.fields.label.value,
+                },
+            ),
+            total: fields.text({
+                label: "Total",
+                validation: { isRequired: true },
+            }),
+        },
+    }),
     Coverage: block({
         label: "Coverage panel",
         description: "Counties and schools served, shown as a bordered panel.",
@@ -269,6 +296,15 @@ const contentComponents = {
                 description: "Optional. Shown under the image.",
                 multiline: true,
             }),
+            credit: fields.text({
+                label: "Photo credit",
+                description:
+                    "Required for most Creative Commons photos. Shown under the caption.",
+            }),
+            creditHref: fields.url({
+                label: "Photo credit link",
+                description: "The source page for the photo.",
+            }),
             variant: fields.select({
                 label: "Crop",
                 description: "Wide crops the image to a 25:12 banner.",
@@ -315,6 +351,7 @@ const pageDefinitions = [
     { key: "competitions", label: "Competitions" },
     { key: "outreach", label: "Outreach" },
     { key: "fll", label: "Start an FLL Team" },
+    { key: "ftc", label: "Start an FTC Team" },
     { key: "sponsors", label: "Sponsors" },
     { key: "interest", label: "Join" },
 ] as const;

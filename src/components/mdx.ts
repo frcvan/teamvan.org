@@ -1,4 +1,5 @@
 import Alert from "./Alert.astro";
+import BudgetTable from "./BudgetTable.astro";
 import Collapse from "./Collapse.astro";
 import Comparison from "./Comparison.astro";
 import ComparisonRow from "./ComparisonRow.astro";
@@ -19,6 +20,7 @@ import TimelinePhase from "./TimelinePhase.astro";
 const components = {
     a: TextLink,
     Alert,
+    BudgetTable,
     Collapse,
     Comparison,
     ComparisonRow,
