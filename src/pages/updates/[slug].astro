@@ -1,0 +1,36 @@
+---
+import PageHero from "@/components/PageHero.astro";
+import Layout from "@/layouts/PageLayout.astro";
+import components from "@/components/mdx";
+import teamPhoto from "@/images/pages/team.png";
+import { formatUpdateDate, updates } from "@/data/updates";
+
+export function getStaticPaths() {
+    return updates.map((update) => ({
+        params: { slug: update.slug },
+        props: { update },
+    }));
+}
+
+const { update } = Astro.props;
+const { Content, title, summary, date } = update;
+---
+
+<Layout title={title} description={summary}>
+    <PageHero
+        slot="hero"
+        image={teamPhoto}
+        alt="Team V.A.N. members stand in a row in front of a projector screen showing the team's mirrored VAN logo"
+        kicker={`Update · ${formatUpdateDate(date)}`}
+        title={title}
+        blurb={summary}
+    />
+    <article>
+        <Content components={components} />
+    </article>
+    <p class="mt-8 text-sm">
+        <a href="/updates/" class="link-bar font-bold text-link">
+            All updates
+        </a>
+    </p>
+</Layout>

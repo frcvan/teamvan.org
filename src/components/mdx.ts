@@ -17,6 +17,7 @@ import StatGrid from "./StatGrid.astro";
 import TextLink from "./TextLink.astro";
 import Timeline from "./Timeline.astro";
 import TimelinePhase from "./TimelinePhase.astro";
+import Updates from "./Updates.astro";
 
 const components = {
     a: TextLink,
@@ -38,6 +39,7 @@ const components = {
     Figure,
     Nameplate,
     Embed,
+    Updates,
 };
 
 export default components;

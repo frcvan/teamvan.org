@@ -1,0 +1,43 @@
+---
+import { formatUpdateDate, updates } from "@/data/updates";
+
+interface Props {
+    title?: string;
+    limit?: number;
+}
+
+const { title = "Latest from the team", limit = 3 } = Astro.props as Props;
+const recent = updates.slice(0, Math.max(limit, 1));
+---
+
+{recent.length > 0 && (
+    <section class="my-8">
+        <div class="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 class="m-0">{title}</h2>
+            <a href="/updates/" class="link-bar font-bold text-link">
+                All updates
+            </a>
+        </div>
+        <ul class="grid list-none gap-4 p-0">
+            {recent.map((post) => (
+                <li>
+                    <a
+                        href={`/updates/${post.slug}/`}
+                        class="block border-4 border-rule bg-secondary-background px-4 py-3 text-main no-underline shadow-[6px_6px_0_var(--rule)] transition-transform hover:-translate-y-0.5"
+                    >
+                        <time
+                            datetime={post.date}
+                            class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase"
+                        >
+                            {formatUpdateDate(post.date)}
+                        </time>
+                        <p class="mt-2 font-heading text-2xl leading-tight font-extrabold uppercase">
+                            {post.title}
+                        </p>
+                        <p class="mt-2 text-sm">{post.summary}</p>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
+)}

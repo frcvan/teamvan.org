@@ -1,4 +1,4 @@
-import { config, fields, singleton } from "@keystatic/core";
+import { collection, config, fields, singleton } from "@keystatic/core";
 import { createElement } from "react";
 import { block, repeating, wrapper } from "@keystatic/core/content-components";
 
@@ -132,6 +132,18 @@ const contentComponents = {
             unit: fields.text({
                 label: "Unit",
                 defaultValue: "%",
+            }),
+        },
+    }),
+    Updates: block({
+        label: "Updates feed",
+        description:
+            "The newest posts from the Updates collection, newest first. The section is hidden while the collection is empty.",
+        schema: {
+            limit: fields.integer({
+                label: "Posts shown",
+                defaultValue: 3,
+                validation: { min: 1, max: 6 },
             }),
         },
     }),
@@ -363,6 +375,37 @@ const pageSingletons = Object.fromEntries(
     ]),
 );
 
+// Team updates: short posts written in the admin, shown on the home page and
+// collected under /updates/. Each entry is an MDX file so posts can use the
+// same content components as the pages.
+const updateDefinitions = collection({
+    label: "Updates",
+    path: "src/content/updates/*",
+    slugField: "title",
+    format: { contentField: "content" },
+    schema: {
+        title: fields.slug({
+            name: { label: "Title", validation: { isRequired: true } },
+        }),
+        date: fields.date({
+            label: "Date",
+            validation: { isRequired: true },
+        }),
+        summary: fields.text({
+            label: "Summary",
+            description:
+                "One or two sentences shown on the home page and in search results.",
+            multiline: true,
+            validation: { isRequired: true },
+        }),
+        content: fields.mdx({
+            label: "Post",
+            components: contentComponents,
+            options: { image: mdxImages },
+        }),
+    },
+});
+
 const production =
     typeof import.meta.env !== "undefined" && import.meta.env.PROD;
 
@@ -390,5 +433,6 @@ export default config({
             mark: brandMark,
         },
     },
+    collections: { updates: updateDefinitions },
     singletons: pageSingletons,
 });
