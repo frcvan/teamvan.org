@@ -18,6 +18,7 @@ const {
     variant = "natural",
 } = Astro.props as Props;
 const hasCaption = Astro.slots.has("default");
+const hasFooter = hasCaption || Boolean(credit);
 
 // Keystatic stores content-component images under src/ with a /src/ public
 // path. Resolve that path to image metadata so <Image> can optimize it.
@@ -27,10 +28,12 @@ const pageImages = import.meta.glob<{ default: ImageMetadata }>(
 const loadImage = src ? pageImages[src] : undefined;
 const image = loadImage ? (await loadImage()).default : undefined;
 
+const isBleed = variant === "bleed";
+
 const imageClass = [
-    "h-auto w-full border-4 border-rule object-cover",
-    variant !== "bleed" && "rounded-base shadow-[6px_6px_0_var(--rule)]",
-    variant === "wide" && "aspect-[25/12] object-bottom lg:-mx-6",
+    "h-auto w-full object-cover",
+    variant === "wide" && "aspect-[25/12] object-bottom",
+    hasFooter && "border-b-4 border-rule",
 ]
     .filter(Boolean)
     .join(" ");
@@ -38,44 +41,66 @@ const imageClass = [
 
 {src && (
     <figure
+        data-bleed={isBleed ? "" : undefined}
         class:list={[
-            "my-6",
+            isBleed ? "my-10" : "my-6",
             // Full width breaks out of the text column to the viewport edges.
-            variant === "bleed" && "mx-[calc(50%_-_50vw)]",
+            isBleed
+                ? "mx-[calc(50%_-_50vw)] border-y-4 border-rule"
+                : "rounded-base border-4 border-rule shadow-[6px_6px_0_var(--rule)]",
+            // The caption lives in a strip inside the frame, so the figure
+            // reads as a panel rather than a photo with loose text under it.
+            "overflow-hidden bg-secondary-background",
+            variant === "wide" && "lg:-mx-6",
         ]}
     >
         {image ? (
-            <Image src={image} alt={alt} loading="lazy" class={imageClass} />
+            <Image
+                src={image}
+                alt={alt}
+                loading="lazy"
+                class={imageClass}
+                widths={isBleed ? [640, 960, 1280, 1600, 2000] : undefined}
+                sizes={isBleed ? "100vw" : undefined}
+            />
         ) : (
             <img src={src} alt={alt} loading="lazy" class={imageClass} />
         )}
-        {(hasCaption || credit) && (
+        {hasFooter && (
             <figcaption
                 class:list={[
-                    "mt-2 text-sm",
-                    // A full-width image runs past the text column, so the
-                    // caption gets the page padding back.
-                    variant === "bleed" && "px-6 sm:px-10 lg:px-12",
+                    "flex items-baseline gap-2 py-3 text-sm",
+                    isBleed
+                        ? "mx-auto max-w-5xl px-6 sm:px-10 lg:px-12"
+                        : "px-4 sm:px-5",
                 ]}
             >
-                <slot />
-                {credit && (
-                    <span class="mt-1 block text-xs opacity-70">
-                        Photo:{" "}
-                        {creditHref ? (
-                            <a
-                                href={creditHref}
-                                class="underline"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                {credit}
-                            </a>
-                        ) : (
-                            credit
-                        )}
-                    </span>
-                )}
+                <span
+                    aria-hidden="true"
+                    class="font-heading text-lg leading-none text-link"
+                >
+                    //
+                </span>
+                <div>
+                    <slot />
+                    {credit && (
+                        <span class="mt-1 block text-xs opacity-70">
+                            Photo:{" "}
+                            {creditHref ? (
+                                <a
+                                    href={creditHref}
+                                    class="underline"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    {credit}
+                                </a>
+                            ) : (
+                                credit
+                            )}
+                        </span>
+                    )}
+                </div>
             </figcaption>
         )}
     </figure>

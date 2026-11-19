@@ -275,6 +275,14 @@
     }
 }
 
+/* A full-width figure directly under a section heading sits flush against the
+   heading band, so the page grid does not show between them. The heading's
+   bottom border already draws the line, so the figure drops its top border. */
+#main-content > h2 + figure[data-bleed] {
+    margin-top: 0;
+    border-top-width: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

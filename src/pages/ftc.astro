@@ -4,19 +4,20 @@ import { Content, frontmatter } from "@/content/pages/ftc.mdx";
 import PageHero from "@/components/PageHero.astro";
 import Layout from "@/layouts/PageLayout.astro";
 import components from "@/components/mdx";
-import heroFtc from "@/images/pages/hero-ftc.jpg";
+import heroFtc from "@/images/pages/ftc-decode-2025.jpg";
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
     <PageHero
         slot="hero"
         image={heroFtc}
-        alt="Two FIRST Tech Challenge robots on the field beside the goals while referees and spectators watch"
+        alt="An FTC robot from team 23601 on a practice field beside a red DECODE goal and game balls"
         kicker="FIRST Tech Challenge · Grades 7 to 12"
         title="Start an FTC Team"
-        blurb="A metal robot, a Florida league, and a season that starts in September. Two coaches and one kit are enough to begin."
-        credit="U.S. Embassy Tel Aviv, CC BY 2.0"
-        creditHref="https://commons.wikimedia.org/wiki/File:FIRST_Finals-_Lego_League_and_Tech_Challenge_(32408443393).jpg"
+        blurb="FTC uses metal robots and Java, runs through a Florida league, and starts in September. Two coaches and one kit are enough to begin."
+        credit="Crazy10061, CC BY-SA 4.0"
+        creditHref="https://commons.wikimedia.org/wiki/File:FTC_Decode2025.jpg"
+        objectPosition="center 88%"
     />
     <Content components={components} />
 </Layout>

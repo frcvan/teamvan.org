@@ -7,13 +7,13 @@ const { total } = Astro.props as Props;
 ---
 
 <div class="overflow-x-auto rounded-base border-4 border-rule shadow-[6px_6px_0_var(--rule)]">
-    <table class="w-full min-w-max border-collapse text-sm">
+    <table class="w-full border-collapse text-sm">
         <thead>
             <tr class="bg-brand text-accent-foreground">
-                <th class="border-b-4 border-rule py-2.5 pr-4 pl-4 text-left font-heading text-base tracking-wide">
+                <th class="border-b-4 border-rule px-3 py-2.5 text-left font-heading text-sm tracking-wide sm:px-4 sm:text-base">
                     Budget item
                 </th>
-                <th class="border-b-4 border-rule py-2.5 pr-4 text-right font-heading text-base tracking-wide">
+                <th class="border-b-4 border-rule py-2.5 pr-3 text-right font-heading text-sm tracking-wide whitespace-nowrap sm:pr-4 sm:text-base">
                     Cost
                 </th>
             </tr>
@@ -23,8 +23,10 @@ const { total } = Astro.props as Props;
         </tbody>
         <tfoot>
             <tr class="border-t-2 border-main/50 font-bold">
-                <td class="py-2 pr-4 pl-4">Total</td>
-                <td class="py-2 pr-4 text-right tabular-nums">{total}</td>
+                <td class="px-3 py-2 sm:px-4">Total</td>
+                <td class="py-2 pr-3 text-right tabular-nums whitespace-nowrap sm:pr-4">
+                    {total}
+                </td>
             </tr>
         </tfoot>
     </table>

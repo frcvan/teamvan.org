@@ -10,10 +10,19 @@ interface Props {
     blurb: string;
     credit?: string;
     creditHref?: string;
+    objectPosition?: string;
 }
 
-const { image, alt, kicker, title, blurb, credit, creditHref } =
-    Astro.props as Props;
+const {
+    image,
+    alt,
+    kicker,
+    title,
+    blurb,
+    credit,
+    creditHref,
+    objectPosition = "center",
+} = Astro.props as Props;
 ---
 
 <section class="relative isolate w-full overflow-hidden">
@@ -25,6 +34,7 @@ const { image, alt, kicker, title, blurb, credit, creditHref } =
         loading="eager"
         fetchpriority="high"
         class="h-[clamp(18rem,42vw,28rem)] w-full object-cover object-center"
+        style={{ objectPosition }}
     />
     <div
         class="absolute inset-0 bg-linear-to-t from-ink/95 via-ink/40 to-transparent"

@@ -148,6 +148,56 @@ In **edit** mode, your job is to:
 
 ---
 
+## Structure first: Wikipedia's signs
+
+Source: [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing). That page is a descriptive field guide, not proof, and some of its entries are Wikipedia-specific. The useful lesson for general prose is that the strongest tell is usually the overall shape, not a single word: a generic, evenly weighted, modular piece whose sections could be reordered, whose paragraphs restate a premise, and whose ending summarizes or forecasts instead of landing. Audit that shape before swapping vocabulary.
+
+### Structural audit
+
+Run this before the word-level pass. Report findings even when no edit is authorized.
+
+1. **Order test.** Swap two body sections. Does the piece still work? If yes, it is a list of modules, not a through-line. Order by the reader's real questions, not a template.
+2. **Weight test.** Does every section get the same two or three paragraphs? Give the hard or surprising part more room; compress the obvious.
+3. **Treadmill test.** Does each paragraph add a fact, claim, or turn? If 40-60% can be cut with no loss, merge or cut.
+4. **Opener test.** Is the first paragraph generic ("In today's...", "As X evolves", "Whether you're X or Y", "This guide covers...")? Open on the specific thing.
+5. **Closer test.** Is the ending a summary, forecast, or "challenges" section? End on the last concrete point or a specific next step.
+6. **Texture test.** Are there names, dates, prices, failures, opinions, or local details? Generic praise that could describe any subject is the deeper tell. Restore specifics only when the source supplies them.
+
+If three or more of these fail, treat the problem as structural. Replacing one set of buzzwords with another does not fix it.
+
+### The Wikipedia patterns
+
+| Pattern | What it looks like | Fix |
+| --- | --- | --- |
+| Significance, legacy, broader trends | "stands as", "serves as a testament", "pivotal/crucial/vital moment", "underscores its importance", "reflects broader", "indelible mark", "deeply rooted", "marking a shift" | State the event or fact. Delete the significance clause if the sentence still works without it. |
+| Superficial `-ing` analysis | Trailing clauses: "highlighting", "underscoring", "emphasizing", "ensuring", "reflecting", "symbolizing", "contributing to", "fostering", "encompassing", "enhancing" | Cut them, or replace them with a consequence the source actually supplies. |
+| Vague attribution and weasel words | "experts argue", "observers have cited", "industry reports", "some critics", "several sources" | Name the source or cut the claim. Never invent one. |
+| Challenges and future-prospects outline | "Despite its X, Y faces challenges", "Challenges and Future Prospects", "Looking ahead" | Name the specific constraint and response, or cut the section. |
+| Prestige section headers | "Awards and recognition", "Legacy", "Impact", "Recognition" | Fold concrete awards into the chronology. Cut the section if it only lists praise. |
+| Notability name-dropping | A roster of outlets, publications, or prestigious names used to borrow credibility | Cite the one source that does real work; drop the roster. |
+| Primary-source identification | "records identify", "is listed in", "the profile lists" | State the fact directly. |
+| Online-presence claims | "maintains an active social media presence", "a strong digital presence" | Say what the account actually does, or cut it. |
+| Copula avoidance | "serves as", "stands as", "features", "boasts", "offers", "represents" where "is" or "has" is meant | Use "is" or "has" unless the stronger verb adds meaning. |
+| Negative parallelism | "not just X but Y", "not X, but Y", "Y rather than X" | State the positive claim. Keep one real correction if the reader would otherwise assume the opposite. |
+| Rule of three and colon triples | Three-item lists used as a rhythm rather than because there are three things | Use the real count. Cut padding; do not add a fourth item just to break the pattern. |
+| AI vocabulary density | delve, leverage, robust, seamless, landscape, tapestry, testament, underscore, showcase, foster, pivotal, crucial, vibrant, intricate, meticulous, comprehensive, multifaceted, and the Tier 1-3 lists above | Use the plain word. One hit is not proof; a cluster is the signal. |
+| Formatting costume | Title-case headings, bold in prose, emoji, curly quotes, em dashes, inline-header lists, a heading for every paragraph | Sentence case, minimal bold, no emoji, straight quotes in plain text, prose instead of headers. |
+| Markup leaks and placeholders | Markdown in a non-Markdown surface, bracketed links, triple backticks, `contentReference[...]`, `[Your Name]`, `2025-XX-XX` | Strip the artifact, or fill it only from supplied material. |
+| Communication-to-user artifacts | "I hope this helps", "Let me know", "As an AI", "I cannot browse", cutoff disclaimers | Remove them. They are chat UI, not writing. |
+| Generic smoothing | "vibrant community", "wide range", "something for everyone", "whether you're a beginner or an expert" | Name the actual people, numbers, constraints, or examples. |
+| Formulaic section headers | Overview, Key Points, Summary, Conclusion, Introduction, Challenges, Future Outlook, Key Takeaways | Rename, merge, or remove them. Use the subject's own language. |
+| Summary or forecast close | "In conclusion", "Overall", "The future looks bright", "Only time will tell" | Cut it. End on the last concrete point or a specific next step. |
+
+### Applying the structural pass
+
+- Prefer three to five sections for a short piece, not eight to twelve. Merge FAQ material into prose unless the Q&A is genuinely reference-shaped.
+- Use lists for steps, dates, costs, and parameters. Do not use them for advice that has a causal order.
+- Keep at most one table or timeline, and only for data a reader will scan.
+- Vary paragraph lengths around the content, not a quota. Let the important point take two sentences and the aside take one.
+- Keep first person, opinions, failures, and local specifics when the source has them. Do not invent them to satisfy the texture test.
+- Cut meta openers ("This guide covers...") and summary closers.
+- When structural editing is not authorized, report the structural finding and patch only local spans. Do not silently rebuild.
+
 ## What to remove or fix
 
 Use the editing contract in `../SKILL.md` before applying this catalog. Entries
@@ -826,7 +876,7 @@ This is the first of four stylometric signals on the roadmap. Sentence-length bu
 
 ### When to rewrite from scratch vs. patch
 
-Five or more justified vocabulary findings across multiple categories, three or more distinct pattern categories, and uniform sentence or paragraph structure can support a structural diagnosis. Report that diagnosis during ordinary cleanup and patch only the authorized spans. Rebuild from the source's core point only when the user explicitly permits broad restructuring; pattern density does not supply that permission or prove that the structure is AI-generated.
+Five or more justified vocabulary findings across multiple categories, three or more distinct pattern categories, uniform sentence or paragraph structure, or three or more failed structural tests from the Wikipedia audit can support a structural diagnosis. Report that diagnosis during ordinary cleanup and patch only the authorized spans. Rebuild from the source's core point only when the user explicitly permits broad restructuring; pattern density does not supply that permission or prove that the structure is AI-generated.
 
 ---
 
@@ -845,6 +895,8 @@ Not all AI-isms are equal. When doing a quick pass or triaging a large document,
 ### P1 — Obvious AI smell (fix before publishing)
 
 - Word-list violations (delve, leverage, harness, robust, etc.)
+- Structural template: modular sections, a heading for every subtopic, FAQ or CTA scaffolding, and a summary or forecast close (three or more failed structural tests)
+- Superficial -ing analyses, outline-like challenges/future sections, copula avoidance, and negative parallelism
 - Template phrases and slot-fill constructions
 - "Let's" transition openers
 - Synonym cycling within a paragraph
