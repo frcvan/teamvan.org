@@ -8,14 +8,22 @@ import { updates } from "@/data/updates";
     title="Updates"
     description="News and notes from Team V.A.N., a rookie FIRST Robotics Competition team in Palm Bay, Florida."
 >
-    <header class="border-b-4 border-rule pb-5">
-        <p class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase">
-            Updates
-        </p>
-        <h1 class="mt-2">Team Updates</h1>
-        <p class="mt-2 max-w-2xl">
-            Short posts about meetings, events, and what the team is working on.
-        </p>
+    <header class="flex flex-wrap items-end justify-between gap-4 border-b-4 border-rule pb-5">
+        <div>
+            <p class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase">
+                Updates
+            </p>
+            <h1 class="mt-2">Team Updates</h1>
+            <p class="mt-2 max-w-2xl">
+                Short posts about meetings, events, and what the team is working
+                on.
+            </p>
+        </div>
+        {updates.length > 0 && (
+            <p class="border-4 border-rule bg-gold px-3 py-2 font-heading text-xl leading-none font-extrabold uppercase shadow-[4px_4px_0_var(--rule)]">
+                {updates.length} {updates.length === 1 ? "post" : "posts"}
+            </p>
+        )}
     </header>
     {updates.length > 0 ? (
         <ul class="grid list-none gap-5 p-0">

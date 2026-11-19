@@ -56,3 +56,21 @@ export const formatUpdateDate = (date: string) =>
         day: "numeric",
         timeZone: "UTC",
     });
+
+export const formatUpdateDateParts = (date: string) => {
+    const value = new Date(`${isoDate(date)}T12:00:00Z`);
+    return {
+        month: value.toLocaleDateString("en-US", {
+            month: "short",
+            timeZone: "UTC",
+        }),
+        day: value.toLocaleDateString("en-US", {
+            day: "numeric",
+            timeZone: "UTC",
+        }),
+        year: value.toLocaleDateString("en-US", {
+            year: "numeric",
+            timeZone: "UTC",
+        }),
+    };
+};
