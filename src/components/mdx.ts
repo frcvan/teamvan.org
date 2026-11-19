@@ -10,10 +10,13 @@ import Coverage from "./Coverage.astro";
 import Embed from "./Embed.astro";
 import Fact from "./Fact.astro";
 import Figure from "./Figure.astro";
+import JudgingQuad from "./JudgingQuad.astro";
 import Nameplate from "./Nameplate.astro";
+import PathStep from "./PathStep.astro";
 import Quip from "./Quip.astro";
 import Skills from "./Skills.astro";
 import StatGrid from "./StatGrid.astro";
+import StepPath from "./StepPath.astro";
 import TextLink from "./TextLink.astro";
 import Timeline from "./Timeline.astro";
 import TimelinePhase from "./TimelinePhase.astro";
@@ -37,7 +40,10 @@ const components = {
     Timeline,
     Phase: TimelinePhase,
     Figure,
+    JudgingQuad,
     Nameplate,
+    PathStep,
+    StepPath,
     Embed,
     Updates,
 };

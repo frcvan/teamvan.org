@@ -1,0 +1,20 @@
+---
+interface Props {
+    period: string;
+    title: string;
+}
+
+const { period, title } = Astro.props as Props;
+---
+
+<li class="border-t-4 border-rule px-4 py-4 first:border-t-0 sm:border-t-0 sm:border-l-4 sm:first:border-l-0">
+    <p class="text-[0.65rem] font-bold tracking-[0.18em] uppercase opacity-70">
+        {period}
+    </p>
+    <p class="mt-1 font-heading text-xl leading-none font-extrabold uppercase">
+        {title}
+    </p>
+    <div class="mt-2 text-sm">
+        <slot />
+    </div>
+</li>

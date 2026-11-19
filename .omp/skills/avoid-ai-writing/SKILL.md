@@ -182,6 +182,7 @@ If three or more of these fail, treat the problem as structural. Replacing one s
 | Rule of three and colon triples | Three-item lists used as a rhythm rather than because there are three things | Use the real count. Cut padding; do not add a fourth item just to break the pattern. |
 | AI vocabulary density | delve, leverage, robust, seamless, landscape, tapestry, testament, underscore, showcase, foster, pivotal, crucial, vibrant, intricate, meticulous, comprehensive, multifaceted, and the Tier 1-3 lists above | Use the plain word. One hit is not proof; a cluster is the signal. |
 | Formatting costume | Title-case headings, bold in prose, emoji, curly quotes, em dashes, inline-header lists, a heading for every paragraph | Sentence case, minimal bold, no emoji, straight quotes in plain text, prose instead of headers. |
+| Explainer-card captions | A cute title ("Where the money goes"), a legend, and a closing sentence that restates the page ("drawn to scale"; "Two students... Four robots...") | Title the visual with its subject. Cut any caption that repeats the prose; keep only a derived fact or caveat. |
 | Markup leaks and placeholders | Markdown in a non-Markdown surface, bracketed links, triple backticks, `contentReference[...]`, `[Your Name]`, `2025-XX-XX` | Strip the artifact, or fill it only from supplied material. |
 | Communication-to-user artifacts | "I hope this helps", "Let me know", "As an AI", "I cannot browse", cutoff disclaimers | Remove them. They are chat UI, not writing. |
 | Generic smoothing | "vibrant community", "wide range", "something for everyone", "whether you're a beginner or an expert" | Name the actual people, numbers, constraints, or examples. |
@@ -197,6 +198,13 @@ If three or more of these fail, treat the problem as structural. Replacing one s
 - Keep first person, opinions, failures, and local specifics when the source has them. Do not invent them to satisfy the texture test.
 - Cut meta openers ("This guide covers...") and summary closers.
 - When structural editing is not authorized, report the structural finding and patch only local spans. Do not silently rebuild.
+
+### Visualizer captions and cute labels
+
+- A visual does not need a promotional title. "Where the money goes", "By the numbers", "The bottom line", "At a glance", and "The breakdown" promise a reveal and delay the subject. Use the subject: "First-season costs", "FTC match clock".
+- The common generated shape is a visual, a legend, and a closing sentence that restates the surrounding prose. A match clock followed by "Two students drive with gamepads. Four robots play at once, two per alliance, on a 12-foot field." adds nothing; the page already said it. The sentence exists to narrate the graphic, which makes the block read like a slide.
+- "Drawn to scale" is the same move in miniature: it explains the visual instead of trusting it. If the bars are proportional, the reader can see that; state the scale only when it is non-obvious or misleading.
+- Test: remove the title and the caption. If the visual still reads, the words were decoration. If it needs a label, use a plain noun phrase for the thing shown, and keep a caption only when it adds a derived fact ("2:38 total") or a caveat the visual cannot show.
 
 ## What to remove or fix
 

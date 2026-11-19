@@ -78,6 +78,36 @@ const contentComponents = {
             }),
         },
     }),
+    StepPath: repeating({
+        label: "Step path",
+        description:
+            "A numbered path of steps, shown in a row on wide screens.",
+        children: ["PathStep"],
+        validation: { children: { min: 1 } },
+        schema: {
+            title: fields.text({ label: "Title" }),
+        },
+    }),
+    PathStep: wrapper({
+        label: "Path step",
+        description: "One numbered step, with its detail written inside it.",
+        schema: {
+            period: fields.text({
+                label: "Period",
+                description: "Shown above the title, such as Spring.",
+                validation: { isRequired: true },
+            }),
+            title: fields.text({
+                label: "Title",
+                validation: { isRequired: true },
+            }),
+        },
+    }),
+    JudgingQuad: block({
+        label: "Judging areas",
+        description: "The four FLL judged areas, shown as equal parts.",
+        schema: {},
+    }),
     Coverage: block({
         label: "Coverage panel",
         description: "Counties and schools served, shown as a bordered panel.",
