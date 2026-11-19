@@ -378,7 +378,6 @@ const pageDefinitions = [
     { key: "ftc", label: "Start an FTC Team" },
     { key: "sponsors", label: "Sponsors" },
     { key: "join", label: "Join the Team" },
-    { key: "interest", label: "Interest Form" },
 ] as const;
 
 const pageSingletons = Object.fromEntries(

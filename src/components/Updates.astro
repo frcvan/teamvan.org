@@ -1,5 +1,6 @@
 ---
-import { formatUpdateDate, updates } from "@/data/updates";
+import UpdateCard from "@/components/UpdateCard.astro";
+import { updates } from "@/data/updates";
 
 interface Props {
     title?: string;
@@ -12,32 +13,31 @@ const recent = updates.slice(0, Math.max(limit, 1));
 
 {recent.length > 0 && (
     <section class="my-8">
-        <div class="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-            <h2 class="m-0">{title}</h2>
-            <a href="/updates/" class="link-bar font-bold text-link">
-                All updates
-            </a>
-        </div>
-        <ul class="grid list-none gap-4 p-0">
+        <header class="updates-header">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 class="m-0">{title}</h2>
+                <a href="/updates/" class="link-bar font-bold text-link">
+                    All updates
+                </a>
+            </div>
+        </header>
+        <ul class="mt-4 grid list-none gap-5 p-0">
             {recent.map((post) => (
                 <li>
-                    <a
-                        href={`/updates/${post.slug}/`}
-                        class="block border-4 border-rule bg-secondary-background px-4 py-3 text-main no-underline shadow-[6px_6px_0_var(--rule)] transition-transform hover:-translate-y-0.5"
-                    >
-                        <time
-                            datetime={post.date}
-                            class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase"
-                        >
-                            {formatUpdateDate(post.date)}
-                        </time>
-                        <p class="mt-2 font-heading text-2xl leading-tight font-extrabold uppercase">
-                            {post.title}
-                        </p>
-                        <p class="mt-2 text-sm">{post.summary}</p>
-                    </a>
+                    <UpdateCard update={post} />
                 </li>
             ))}
         </ul>
     </section>
 )}
+
+<style>
+    /* Match the page-level section headers, which are direct children of main. */
+    .updates-header {
+        margin-inline: calc(50% - 50vw);
+        padding-inline: calc(50vw - 50%);
+        padding-block: 0.9rem 1rem;
+        border-block: 3px solid var(--rule);
+        background-color: var(--secondary-background);
+    }
+</style>

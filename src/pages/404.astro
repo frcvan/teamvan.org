@@ -1,0 +1,72 @@
+---
+import Layout from "@/layouts/PageLayout.astro";
+import Button from "@/components/Button.astro";
+---
+
+<Layout
+    title="Page not found"
+    description="The page you are looking for does not exist. Start from the Team V.A.N. home page."
+>
+    <section class="my-auto w-full">
+        <div class="overflow-hidden border-4 border-rule bg-secondary-background shadow-[10px_10px_0_var(--link)]">
+            <div class="not-found-checker" aria-hidden="true"></div>
+            <div class="p-6 sm:p-10">
+                <div class="grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center">
+                    <p
+                        class="font-heading text-[clamp(6rem,20vw,10rem)] leading-[0.75] font-extrabold text-brand"
+                        aria-hidden="true"
+                    >
+                        404
+                    </p>
+                    <div class="sm:border-l-4 sm:border-rule sm:pl-8">
+                        <p class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase">
+                            Error 404
+                        </p>
+                        <h1 class="mt-2">We could not find that page.</h1>
+                        <p class="mt-3 max-w-xl">
+                            The link may be old, or the page may have moved.
+                            Start from the home page, read the latest updates,
+                            or see how to join the team.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3 border-t-4 border-rule pt-6">
+                    <Button href="/" variant="accent">
+                        Back to the home page
+                    </Button>
+                    <Button href="/updates/" variant="secondary">
+                        Read the latest updates
+                    </Button>
+                    <Button href="/join/" variant="secondary">
+                        Join the team
+                    </Button>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .not-found-checker {
+        height: 1rem;
+        border-bottom: 4px solid var(--rule);
+        background-color: var(--gold);
+        background-image:
+            linear-gradient(
+                45deg,
+                var(--ink) 25%,
+                transparent 25% 75%,
+                var(--ink) 75%
+            ),
+            linear-gradient(
+                45deg,
+                var(--ink) 25%,
+                transparent 25% 75%,
+                var(--ink) 75%
+            );
+        background-position:
+            0 0,
+            8px 8px;
+        background-size: 16px 16px;
+    }
+</style>

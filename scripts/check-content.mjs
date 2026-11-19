@@ -8,7 +8,6 @@ const pages = [
     "competitions",
     "fll",
     "ftc",
-    "interest",
     "join",
     "outreach",
     "sponsors",

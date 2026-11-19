@@ -1,13 +1,14 @@
 ---
 import Layout from "@/layouts/PageLayout.astro";
-import { formatUpdateDate, updates } from "@/data/updates";
+import UpdateCard from "@/components/UpdateCard.astro";
+import { updates } from "@/data/updates";
 ---
 
 <Layout
     title="Updates"
     description="News and notes from Team V.A.N., a rookie FIRST Robotics Competition team in Palm Bay, Florida."
 >
-    <header>
+    <header class="border-b-4 border-rule pb-5">
         <p class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase">
             Updates
         </p>
@@ -17,24 +18,10 @@ import { formatUpdateDate, updates } from "@/data/updates";
         </p>
     </header>
     {updates.length > 0 ? (
-        <ul class="grid list-none gap-4 p-0">
+        <ul class="grid list-none gap-5 p-0">
             {updates.map((post) => (
                 <li>
-                    <a
-                        href={`/updates/${post.slug}/`}
-                        class="block border-4 border-rule bg-secondary-background px-4 py-3 text-main no-underline shadow-[6px_6px_0_var(--rule)] transition-transform hover:-translate-y-0.5"
-                    >
-                        <time
-                            datetime={post.date}
-                            class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase"
-                        >
-                            {formatUpdateDate(post.date)}
-                        </time>
-                        <p class="mt-2 font-heading text-2xl leading-tight font-extrabold uppercase">
-                            {post.title}
-                        </p>
-                        <p class="mt-2 text-sm">{post.summary}</p>
-                    </a>
+                    <UpdateCard update={post} />
                 </li>
             ))}
         </ul>
