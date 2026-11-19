@@ -178,13 +178,13 @@ const contentComponents = {
         },
     }),
     Skills: block({
-        label: "Skills panel",
+        label: "Departments panel",
         description:
-            "The non-build roles the team needs: business, media, and speaking.",
+            "The departments students can work in, from partnerships to build.",
         schema: {
             title: fields.text({
                 label: "Title",
-                defaultValue: "What the team needs",
+                defaultValue: "Pick a department",
             }),
         },
     }),
@@ -377,7 +377,8 @@ const pageDefinitions = [
     { key: "fll", label: "Start an FLL Team" },
     { key: "ftc", label: "Start an FTC Team" },
     { key: "sponsors", label: "Sponsors" },
-    { key: "interest", label: "Join" },
+    { key: "join", label: "Join the Team" },
+    { key: "interest", label: "Interest Form" },
 ] as const;
 
 const pageSingletons = Object.fromEntries(

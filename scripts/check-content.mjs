@@ -9,6 +9,7 @@ const pages = [
     "fll",
     "ftc",
     "interest",
+    "join",
     "outreach",
     "sponsors",
 ];

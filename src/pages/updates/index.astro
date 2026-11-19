@@ -1,7 +1,5 @@
 ---
-import PageHero from "@/components/PageHero.astro";
 import Layout from "@/layouts/PageLayout.astro";
-import teamPhoto from "@/images/pages/team.png";
 import { formatUpdateDate, updates } from "@/data/updates";
 ---
 
@@ -9,14 +7,15 @@ import { formatUpdateDate, updates } from "@/data/updates";
     title="Updates"
     description="News and notes from Team V.A.N., a rookie FIRST Robotics Competition team in Palm Bay, Florida."
 >
-    <PageHero
-        slot="hero"
-        image={teamPhoto}
-        alt="Team V.A.N. members stand in a row in front of a projector screen showing the team's mirrored VAN logo"
-        kicker="Updates"
-        title="Team Updates"
-        blurb="Short posts about meetings, events, and what the team is working on."
-    />
+    <header>
+        <p class="text-[0.65rem] font-bold tracking-[0.18em] text-link uppercase">
+            Updates
+        </p>
+        <h1 class="mt-2">Team Updates</h1>
+        <p class="mt-2 max-w-2xl">
+            Short posts about meetings, events, and what the team is working on.
+        </p>
+    </header>
     {updates.length > 0 ? (
         <ul class="grid list-none gap-4 p-0">
             {updates.map((post) => (

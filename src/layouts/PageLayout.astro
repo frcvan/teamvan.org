@@ -21,21 +21,21 @@ const { title, description } = Astro.props;
     <Header
         navlinks={[
             { href: "/", label: "About Us" },
-            { href: "/about/", label: "What Is FIRST" },
             { href: "/calendar/", label: "Calendar" },
-            { href: "/competitions/", label: "Competitions" },
+            { href: "/outreach/", label: "Outreach" },
             {
-                href: "/outreach/",
-                label: "Outreach",
+                href: "/updates/",
+                label: "Resources",
                 children: [
-                    { href: "/outreach/", label: "Outreach Overview" },
+                    { href: "/updates/", label: "Updates" },
+                    { href: "/about/", label: "What Is FIRST" },
+                    { href: "/competitions/", label: "Competitions" },
                     { href: "/fll/", label: "Start an FLL Team" },
                     { href: "/ftc/", label: "Start an FTC Team" },
                 ],
             },
-            { href: "/updates/", label: "Updates" },
             { href: "/sponsors/", label: "Sponsors" },
-            { href: "/interest/", label: "Join" },
+            { href: "/join/", label: "Join" },
         ]}
     />
     <slot name="hero" />
