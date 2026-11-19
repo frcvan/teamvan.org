@@ -11,7 +11,7 @@ const { month, day, year } = formatUpdateDateParts(update.date);
 
 <a
     href={`/updates/${update.slug}/`}
-    class="group grid overflow-hidden border-4 border-rule bg-secondary-background text-main no-underline shadow-[6px_6px_0_var(--rule)] transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_var(--link)] sm:grid-cols-[8rem_1fr]"
+    class="group grid overflow-hidden border-4 border-rule bg-secondary-background text-main no-underline shadow-[6px_6px_0_var(--rule)] transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_var(--gold)] sm:grid-cols-[8rem_1fr]"
 >
     <div class="flex items-center justify-between gap-3 border-b-4 border-rule bg-brand px-4 py-3 text-cream sm:flex-col sm:items-start sm:justify-between sm:border-r-4 sm:border-b-0">
         <time datetime={update.date} class="block">
@@ -22,7 +22,7 @@ const { month, day, year } = formatUpdateDateParts(update.date);
                 {month} {year}
             </span>
         </time>
-        <span class="border-2 border-cream px-2 py-1 text-[0.55rem] font-bold tracking-[0.18em] uppercase">
+        <span class="border-2 border-ink bg-gold px-2 py-1 text-[0.55rem] font-bold tracking-[0.18em] text-ink uppercase shadow-[2px_2px_0_var(--ink)]">
             Update
         </span>
     </div>
@@ -35,7 +35,7 @@ const { month, day, year } = formatUpdateDateParts(update.date);
             Read update
             <span
                 aria-hidden="true"
-                class="transition-transform duration-200 group-hover:translate-x-1"
+                class="grid size-5 place-items-center border-2 border-rule bg-gold text-[0.7rem] leading-none font-bold text-ink shadow-[2px_2px_0_var(--rule)] transition-transform duration-200 group-hover:translate-x-1"
             >
                 →
             </span>
